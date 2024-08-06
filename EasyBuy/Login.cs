@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using EasyBuy.Repositories.Interfaces;
+using EasyBuy.Repositories;
 
 namespace EasyBuy
 {
@@ -46,12 +48,15 @@ namespace EasyBuy
                 }
                 else if (comboBox1.SelectedIndex == 0) // Admin Form
                 {
-                    con.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter("Select * From Employee_Table where User_Name ='" + txt_username.Text + "' and Password ='" + txt_password.Text + "' and Role='" + comboBox1.SelectedItem.ToString() + "'", con);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    con.Close();
-                    if (dt.Rows.Count > 0)
+                    IEmployee employee = new Employee();
+
+                   var emp = employee.GetEmployeeAsync(txt_username.Text, txt_password.Text);
+                    //con.Open();
+                    //SqlDataAdapter adapter = new SqlDataAdapter("Select * From Employee_Table where User_Name ='" + txt_username.Text + "' and Password ='" + txt_password.Text + "' and Role='" + comboBox1.SelectedItem.ToString() + "'", con);
+                    //DataTable dt = new DataTable();
+                    //adapter.Fill(dt);
+                    //con.Close();
+                    if (emp!=null)
                     {
                         UserName = txt_username.Text;
                         Home x = new Home();
