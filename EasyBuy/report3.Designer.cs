@@ -36,6 +36,7 @@
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_search = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +157,7 @@
         private System.Windows.Forms.Button btn_clear;
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.Label label1;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

@@ -42,6 +42,7 @@
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_search = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -226,6 +227,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.TextBox txt_name;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_points2;

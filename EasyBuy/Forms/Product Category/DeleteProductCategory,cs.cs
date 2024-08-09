@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
+﻿using EasyBuy.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EasyBuy.Forms
 {
@@ -19,72 +14,61 @@ namespace EasyBuy.Forms
         {
             InitializeComponent();
         }
-        SqlConnection con;
-        SqlCommand cmd;
-
+      
         private void DeleteProductCategory_cs_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'keels_SuperMarket_DatabaseDataSet.Category_Tbl' table. You can move, or remove it, as needed.
+        {           
             dataGridView3.EnableHeadersVisualStyles = false;
             dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.MidnightBlue;
             dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
-
             dataGridView3.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
             Refresh();
-
-            con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
         }
-        private void Refresh()
+        private async void Refresh()
         {
-            //this.category_TblTableAdapter.Fill(this.keels_SuperMarket_DatabaseDataSet.Category_Tbl);
-            
-            txt_cname.Clear();
-            txt_cdes.Clear();
-            txt_cname.Enabled = false;
-            txt_cdes.Enabled = false;
-            btn_delete.Enabled = false;
-        }
-
-        private void btn_check_Click(object sender, EventArgs e)
-        {
-            con.Open();
-            cmd = new SqlCommand("Select Category_ID,Category_Name,Category_Description from Category_Tbl where Category_ID = @cid", con);
-            cmd.Parameters.AddWithValue("cid", txt_cid.Text);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            try
             {
-                txt_cname.Text = reader["Category_Name"].ToString();
-                txt_cdes.Text = reader["Category_Description"].ToString();
-                btn_delete.Enabled = true;
+                await using var context = new EasyBuyContext();
+                var categories = await Task.Run(() => context.Category.ToListAsync());
+                dataGridView3.DataSource = categories;
+                txt_cname.Clear();
+                txt_cdes.Clear();
+                txt_cname.Enabled = false;
+                txt_cdes.Enabled = false;
+                btn_delete.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }           
+            
+        }
 
+        private async void btn_check_Click(object sender, EventArgs e)
+        {
+            var _id = Convert.ToInt64(txt_cid.Text);
+            await using var context = new EasyBuyContext();
+            var category = await Task.Run(() => context.Category.FirstOrDefault(x => x.Id == _id));
+            if (category != null)
+            {
+                txt_cname.Text = category.Name;
+                txt_cdes.Text = category.Description;
+                btn_delete.Enabled = true;
             }
             else
             {
                 MessageBox.Show("Category Data Not Found or Category ID Is Invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            con.Close();
-
         }
 
-        private void btn_delete_Click(object sender, EventArgs e)
+        private async void btn_delete_Click(object sender, EventArgs e)
         {
             try
             {
-                    con.Open();
-                    cmd = new SqlCommand("Delete from Category_Tbl where Category_ID= '" + txt_cid.Text + "'", con);
-            int x = cmd.ExecuteNonQuery();
-                    //cmd.Parameters.AddWithValue("cid", txt_cid.Text);
-                if (x == 1)
-                    {
-                        MessageBox.Show("Category Deleted Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Category Cannot Be Deleted", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    con.Close();
-                    Refresh();
+                await using var context = new EasyBuyContext();
+                var category = new Category() { Id = Convert.ToInt64(txt_cid.Text), Name = txt_cname.Text, Description = txt_cdes.Text };
+                await Task.Run(() => context.Category.Remove(category));
+                await context.SaveChangesAsync();
+                Refresh();
            }
             catch (FormatException)
             {

@@ -1,7 +1,9 @@
 ﻿using EasyBuy.Forms;
-using EasyBuy.Forms.Employee_Account;
-using EasyBuy.Forms.Nexus;
 using EasyBuy.Forms.Product_Items;
+
+//using EasyBuy.Forms.Employee_Account;
+//using EasyBuy.Forms.Nexus;
+//using EasyBuy.Forms.Product_Items;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,7 +92,7 @@ namespace EasyBuy
 
         private void btn_nexus_Click(object sender, EventArgs e)
         {
-            showSubMenu(SubPanel_NexusMembers);
+            //showSubMenu(SubPanel_NexusMembers);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -100,12 +102,12 @@ namespace EasyBuy
 
         private void btn_dashboard_Click(object sender, EventArgs e)
         {
-            openChildForm(new Dashboard());
+            //openChildForm(new Dashboard());
         }
 
         private void Home_Load(object sender, EventArgs e)
         {
-            openChildForm(new Dashboard());
+            //openChildForm(new Dashboard());
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -135,32 +137,32 @@ namespace EasyBuy
 
         private void btn_createemployee_Click(object sender, EventArgs e)
         {
-            openChildForm(new CreateEmployeeAccount());
+            //openChildForm(new CreateEmployeeAccount());
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            openChildForm(new UpdateAccount());
+            //openChildForm(new UpdateAccount());
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openChildForm(new DeleteAccount());
+            //openChildForm(new DeleteAccount());
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            openChildForm(new AddNewMember());
+           // openChildForm(new AddNewMember());
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            openChildForm(new DeleteMember());
+            //openChildForm(new DeleteMember());
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-            openChildForm(new EditMember());
+           // openChildForm(new EditMember());
         }
 
         

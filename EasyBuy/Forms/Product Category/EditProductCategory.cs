@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.IO;
-
+using Microsoft.EntityFrameworkCore;
+using EasyBuy.Models;
 
 namespace EasyBuy.Forms
 {
@@ -20,35 +14,37 @@ namespace EasyBuy.Forms
         {
             InitializeComponent();
         }
-        SqlConnection con;
-        SqlCommand cmd;
-        private void Refresh()
+
+        private async void Refresh()
         {
-            //this.category_TblTableAdapter.Fill(this.keels_SuperMarket_DatabaseDataSet.Category_Tbl);
-            
-            txt_cname.Clear();
-            txt_cdes.Clear();
-            txt_cname.Enabled = false;
-            txt_cdes.Enabled = false;
-            btn_edit.Enabled = false;
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var categories = await Task.Run(() => context.Category.ToListAsync());
+                dataGridView2.DataSource = categories;
+                txt_cname.Clear();
+                txt_cdes.Clear();
+                txt_cname.Enabled = false;
+                txt_cdes.Enabled = false;
+                btn_edit.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         private void EditProductCategory_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'keels_SuperMarket_DatabaseDataSet.Category_Tbl' table. You can move, or remove it, as needed.
             Refresh();
-            con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
-
             dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.MidnightBlue;
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
-            
-            dataGridView2.DefaultCellStyle.Font = new Font("Consolas", 7,FontStyle.Bold);
-            
+            dataGridView2.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
 
         }
 
-        private void btn_edit_Click(object sender, EventArgs e)
+        private async void btn_edit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -62,33 +58,21 @@ namespace EasyBuy.Forms
                 }
                 else
                 {
-                    con.Open();
-                    cmd = new SqlCommand("Update Category_Tbl set Category_Name ='" + txt_cname.Text + "',Category_Description = '" + txt_cdes.Text + "' where Category_ID = '" + txt_cid.Text + "'", con);
-                    int x = cmd.ExecuteNonQuery();
-                    if (x == 1)
-                    {
-                        MessageBox.Show("Category Updated Successfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Category Cannot Be Updated", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    con.Close();
+                    await using var context = new EasyBuyContext();
+                    var category = new Category() { Id = Convert.ToInt64(txt_cid.Text), Name = txt_cname.Text, Description = txt_cdes.Text };
+                    var employee = await Task.Run(() => context.Category.Update(category));
+                    await context.SaveChangesAsync();
                     Refresh();
                 }
-            
+
             }
             catch (FormatException)
             {
-
                 MessageBox.Show("Please Enter Numbers Only", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception)
-
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
 
         }
@@ -105,58 +89,42 @@ namespace EasyBuy.Forms
 
         private void txt_cid_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
-            con.Open();
-            cmd = new SqlCommand("Select Category_ID,Category_Name,Category_Description from Category_Tbl where Category_ID = @cid", con);
-            cmd.Parameters.AddWithValue("cid", txt_cid.Text);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
-                txt_cname.Text = reader["Category_Name"].ToString();
-                txt_cdes.Text = reader["Category_Description"].ToString();
-                txt_cname.Enabled = true;
-                txt_cdes.Enabled = true;
-                btn_edit.Enabled = true;
-
-            }
-            else
-            {
-                MessageBox.Show("Category Data Not Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            con.Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if(txt_cid.Text.Length == 0)
+            if (txt_cid.Text.Length == 0)
             {
                 MessageBox.Show("Category ID Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else { 
-                con.Open();
-                cmd = new SqlCommand("Select Category_ID,Category_Name,Category_Description from Category_Tbl where Category_ID = @cid", con);
-                cmd.Parameters.AddWithValue("cid", txt_cid.Text);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+            else
+            {
+                try
                 {
-                    txt_cname.Text = reader["Category_Name"].ToString();
-                    txt_cdes.Text = reader["Category_Description"].ToString();
-                    txt_cname.Enabled = true;
-                    txt_cdes.Enabled = true;
-                    btn_edit.Enabled = true;
+                    var _id = Convert.ToInt64(txt_cid.Text);
+                    await using var context = new EasyBuyContext();
+                    var category = await Task.Run(() => context.Category.FirstOrDefault(x => x.Id == _id));
+                    if (category != null)
+                    {
+                        txt_cname.Text = category.Name;
+                        txt_cdes.Text = category.Description;
+                        txt_cname.Enabled = true;
+                        txt_cdes.Enabled = true;
+                        btn_edit.Enabled = true;
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Category Data Not Found or Category ID Is Invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Category Data Not Found or Category ID Is Invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                con.Close();
             }
-           
+
         }
     }
 }

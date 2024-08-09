@@ -44,6 +44,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txt_bid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -245,6 +246,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txt_bid;
         private System.Windows.Forms.Label label1;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

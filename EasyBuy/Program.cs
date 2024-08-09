@@ -1,5 +1,8 @@
-﻿using EasyBuy.Forms.Cashier;
-using EasyBuy.Forms.Nexus;
+﻿using EasyBuy.Forms;
+using EasyBuy.Forms.Cashier;
+using EasyBuy.Forms.Product_Items;
+
+//using EasyBuy.Forms.Nexus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,7 @@ namespace EasyBuy
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Splash_Screen());
+            Application.Run(new AddNewItem());
         }
     }
 }

@@ -28,535 +28,532 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SubMenu_Panel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.SubPanel_NexusMembers = new System.Windows.Forms.Panel();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.btn_nexus = new System.Windows.Forms.Button();
-            this.SubPanel_Employees = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.btn_createemployee = new System.Windows.Forms.Button();
-            this.btn_Employees = new System.Windows.Forms.Button();
-            this.SubPanel_Catogories = new System.Windows.Forms.Panel();
-            this.btn_deletecategory = new System.Windows.Forms.Button();
-            this.btn_editcategory = new System.Windows.Forms.Button();
-            this.btn_addcategory = new System.Windows.Forms.Button();
-            this.btn_catogories = new System.Windows.Forms.Button();
-            this.SubPanel_Products = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btn_products = new System.Windows.Forms.Button();
-            this.btn_dashboard = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Panel_ChildForm = new System.Windows.Forms.Panel();
-            this.SubMenu_Panel.SuspendLayout();
-            this.SubPanel_NexusMembers.SuspendLayout();
-            this.SubPanel_Employees.SuspendLayout();
-            this.SubPanel_Catogories.SuspendLayout();
-            this.SubPanel_Products.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            SubMenu_Panel = new System.Windows.Forms.Panel();
+            button1 = new System.Windows.Forms.Button();
+            SubPanel_NexusMembers = new System.Windows.Forms.Panel();
+            button11 = new System.Windows.Forms.Button();
+            button12 = new System.Windows.Forms.Button();
+            button13 = new System.Windows.Forms.Button();
+            btn_nexus = new System.Windows.Forms.Button();
+            SubPanel_Employees = new System.Windows.Forms.Panel();
+            button2 = new System.Windows.Forms.Button();
+            button6 = new System.Windows.Forms.Button();
+            btn_createemployee = new System.Windows.Forms.Button();
+            btn_Employees = new System.Windows.Forms.Button();
+            SubPanel_Catogories = new System.Windows.Forms.Panel();
+            btn_deletecategory = new System.Windows.Forms.Button();
+            btn_editcategory = new System.Windows.Forms.Button();
+            btn_addcategory = new System.Windows.Forms.Button();
+            btn_catogories = new System.Windows.Forms.Button();
+            SubPanel_Products = new System.Windows.Forms.Panel();
+            button5 = new System.Windows.Forms.Button();
+            button4 = new System.Windows.Forms.Button();
+            button3 = new System.Windows.Forms.Button();
+            btn_products = new System.Windows.Forms.Button();
+            btn_dashboard = new System.Windows.Forms.Button();
+            panel1 = new System.Windows.Forms.Panel();
+            label2 = new System.Windows.Forms.Label();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            label1 = new System.Windows.Forms.Label();
+            Panel_ChildForm = new System.Windows.Forms.Panel();
+            SubMenu_Panel.SuspendLayout();
+            SubPanel_NexusMembers.SuspendLayout();
+            SubPanel_Employees.SuspendLayout();
+            SubPanel_Catogories.SuspendLayout();
+            SubPanel_Products.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // SubMenu_Panel
             // 
-            this.SubMenu_Panel.AutoScroll = true;
-            this.SubMenu_Panel.Controls.Add(this.button1);
-            this.SubMenu_Panel.Controls.Add(this.SubPanel_NexusMembers);
-            this.SubMenu_Panel.Controls.Add(this.btn_nexus);
-            this.SubMenu_Panel.Controls.Add(this.SubPanel_Employees);
-            this.SubMenu_Panel.Controls.Add(this.btn_Employees);
-            this.SubMenu_Panel.Controls.Add(this.SubPanel_Catogories);
-            this.SubMenu_Panel.Controls.Add(this.btn_catogories);
-            this.SubMenu_Panel.Controls.Add(this.SubPanel_Products);
-            this.SubMenu_Panel.Controls.Add(this.btn_products);
-            this.SubMenu_Panel.Controls.Add(this.btn_dashboard);
-            this.SubMenu_Panel.Controls.Add(this.panel1);
-            this.SubMenu_Panel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SubMenu_Panel.Location = new System.Drawing.Point(0, 0);
-            this.SubMenu_Panel.Name = "SubMenu_Panel";
-            this.SubMenu_Panel.Size = new System.Drawing.Size(270, 603);
-            this.SubMenu_Panel.TabIndex = 0;
+            SubMenu_Panel.AutoScroll = true;
+            SubMenu_Panel.Controls.Add(button1);
+            SubMenu_Panel.Controls.Add(SubPanel_NexusMembers);
+            SubMenu_Panel.Controls.Add(btn_nexus);
+            SubMenu_Panel.Controls.Add(SubPanel_Employees);
+            SubMenu_Panel.Controls.Add(btn_Employees);
+            SubMenu_Panel.Controls.Add(SubPanel_Catogories);
+            SubMenu_Panel.Controls.Add(btn_catogories);
+            SubMenu_Panel.Controls.Add(SubPanel_Products);
+            SubMenu_Panel.Controls.Add(btn_products);
+            SubMenu_Panel.Controls.Add(btn_dashboard);
+            SubMenu_Panel.Controls.Add(panel1);
+            SubMenu_Panel.Dock = System.Windows.Forms.DockStyle.Left;
+            SubMenu_Panel.Location = new System.Drawing.Point(0, 0);
+            SubMenu_Panel.Name = "SubMenu_Panel";
+            SubMenu_Panel.Size = new System.Drawing.Size(236, 573);
+            SubMenu_Panel.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.button1.Image = global::EasyBuy.Properties.Resources.icons8_logout_24;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 877);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.button1.Size = new System.Drawing.Size(249, 69);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Log Out";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button1.ForeColor = System.Drawing.Color.DarkGreen;
+            button1.Image = Properties.Resources.icons8_logout_24;
+            button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button1.Location = new System.Drawing.Point(0, 820);
+            button1.Name = "button1";
+            button1.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            button1.Size = new System.Drawing.Size(219, 65);
+            button1.TabIndex = 10;
+            button1.Text = "Log Out";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // SubPanel_NexusMembers
             // 
-            this.SubPanel_NexusMembers.Controls.Add(this.button11);
-            this.SubPanel_NexusMembers.Controls.Add(this.button12);
-            this.SubPanel_NexusMembers.Controls.Add(this.button13);
-            this.SubPanel_NexusMembers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SubPanel_NexusMembers.Location = new System.Drawing.Point(0, 739);
-            this.SubPanel_NexusMembers.Name = "SubPanel_NexusMembers";
-            this.SubPanel_NexusMembers.Size = new System.Drawing.Size(249, 138);
-            this.SubPanel_NexusMembers.TabIndex = 9;
+            SubPanel_NexusMembers.Controls.Add(button11);
+            SubPanel_NexusMembers.Controls.Add(button12);
+            SubPanel_NexusMembers.Controls.Add(button13);
+            SubPanel_NexusMembers.Dock = System.Windows.Forms.DockStyle.Top;
+            SubPanel_NexusMembers.Location = new System.Drawing.Point(0, 691);
+            SubPanel_NexusMembers.Name = "SubPanel_NexusMembers";
+            SubPanel_NexusMembers.Size = new System.Drawing.Size(219, 129);
+            SubPanel_NexusMembers.TabIndex = 9;
             // 
             // button11
             // 
-            this.button11.BackColor = System.Drawing.Color.White;
-            this.button11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button11.FlatAppearance.BorderSize = 0;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Image = global::EasyBuy.Properties.Resources.icons8_member_123;
-            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button11.Location = new System.Drawing.Point(0, 80);
-            this.button11.Name = "button11";
-            this.button11.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button11.Size = new System.Drawing.Size(249, 40);
-            this.button11.TabIndex = 2;
-            this.button11.Text = "Delete Member";
-            this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            button11.BackColor = System.Drawing.Color.White;
+            button11.Dock = System.Windows.Forms.DockStyle.Top;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button11.Image = Properties.Resources.icons8_member_123;
+            button11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button11.Location = new System.Drawing.Point(0, 76);
+            button11.Name = "button11";
+            button11.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button11.Size = new System.Drawing.Size(219, 38);
+            button11.TabIndex = 2;
+            button11.Text = "Delete Member";
+            button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button11.UseVisualStyleBackColor = false;
+            button11.Click += button11_Click;
             // 
             // button12
             // 
-            this.button12.BackColor = System.Drawing.Color.White;
-            this.button12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button12.FlatAppearance.BorderSize = 0;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Image = global::EasyBuy.Properties.Resources.icons8_member_12_1;
-            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button12.Location = new System.Drawing.Point(0, 40);
-            this.button12.Name = "button12";
-            this.button12.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button12.Size = new System.Drawing.Size(249, 40);
-            this.button12.TabIndex = 1;
-            this.button12.Text = "Update Member";
-            this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            button12.BackColor = System.Drawing.Color.White;
+            button12.Dock = System.Windows.Forms.DockStyle.Top;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button12.Image = Properties.Resources.icons8_member_12_1;
+            button12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button12.Location = new System.Drawing.Point(0, 38);
+            button12.Name = "button12";
+            button12.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button12.Size = new System.Drawing.Size(219, 38);
+            button12.TabIndex = 1;
+            button12.Text = "Update Member";
+            button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button12.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // button13
             // 
-            this.button13.BackColor = System.Drawing.Color.White;
-            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button13.FlatAppearance.BorderSize = 0;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.Image = global::EasyBuy.Properties.Resources.icons8_member_12;
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button13.Location = new System.Drawing.Point(0, 0);
-            this.button13.Name = "button13";
-            this.button13.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button13.Size = new System.Drawing.Size(249, 40);
-            this.button13.TabIndex = 0;
-            this.button13.Text = "Register New Member";
-            this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            button13.BackColor = System.Drawing.Color.White;
+            button13.Dock = System.Windows.Forms.DockStyle.Top;
+            button13.FlatAppearance.BorderSize = 0;
+            button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button13.Image = Properties.Resources.icons8_member_12;
+            button13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button13.Location = new System.Drawing.Point(0, 0);
+            button13.Name = "button13";
+            button13.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button13.Size = new System.Drawing.Size(219, 38);
+            button13.TabIndex = 0;
+            button13.Text = "Register New Member";
+            button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button13.UseVisualStyleBackColor = false;
+            button13.Click += button13_Click;
             // 
             // btn_nexus
             // 
-            this.btn_nexus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_nexus.FlatAppearance.BorderSize = 0;
-            this.btn_nexus.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btn_nexus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.btn_nexus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nexus.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_nexus.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btn_nexus.Image = global::EasyBuy.Properties.Resources.icons8_debit_card_24;
-            this.btn_nexus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_nexus.Location = new System.Drawing.Point(0, 694);
-            this.btn_nexus.Name = "btn_nexus";
-            this.btn_nexus.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btn_nexus.Size = new System.Drawing.Size(249, 45);
-            this.btn_nexus.TabIndex = 8;
-            this.btn_nexus.Text = "Nexus Members";
-            this.btn_nexus.UseVisualStyleBackColor = true;
-            this.btn_nexus.Click += new System.EventHandler(this.btn_nexus_Click);
+            btn_nexus.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_nexus.FlatAppearance.BorderSize = 0;
+            btn_nexus.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            btn_nexus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            btn_nexus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_nexus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_nexus.ForeColor = System.Drawing.Color.DarkGreen;
+            btn_nexus.Image = Properties.Resources.icons8_debit_card_24;
+            btn_nexus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_nexus.Location = new System.Drawing.Point(0, 649);
+            btn_nexus.Name = "btn_nexus";
+            btn_nexus.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            btn_nexus.Size = new System.Drawing.Size(219, 42);
+            btn_nexus.TabIndex = 8;
+            btn_nexus.Text = "Nexus Members";
+            btn_nexus.UseVisualStyleBackColor = true;
+            btn_nexus.Click += btn_nexus_Click;
             // 
             // SubPanel_Employees
             // 
-            this.SubPanel_Employees.Controls.Add(this.button2);
-            this.SubPanel_Employees.Controls.Add(this.button6);
-            this.SubPanel_Employees.Controls.Add(this.btn_createemployee);
-            this.SubPanel_Employees.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SubPanel_Employees.Location = new System.Drawing.Point(0, 556);
-            this.SubPanel_Employees.Name = "SubPanel_Employees";
-            this.SubPanel_Employees.Size = new System.Drawing.Size(249, 138);
-            this.SubPanel_Employees.TabIndex = 7;
+            SubPanel_Employees.Controls.Add(button2);
+            SubPanel_Employees.Controls.Add(button6);
+            SubPanel_Employees.Controls.Add(btn_createemployee);
+            SubPanel_Employees.Dock = System.Windows.Forms.DockStyle.Top;
+            SubPanel_Employees.Location = new System.Drawing.Point(0, 520);
+            SubPanel_Employees.Name = "SubPanel_Employees";
+            SubPanel_Employees.Size = new System.Drawing.Size(219, 129);
+            SubPanel_Employees.TabIndex = 7;
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::EasyBuy.Properties.Resources.icons8_denied_12;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(0, 80);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button2.Size = new System.Drawing.Size(249, 40);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Delete Account";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            button2.BackColor = System.Drawing.Color.White;
+            button2.Dock = System.Windows.Forms.DockStyle.Top;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button2.Image = Properties.Resources.icons8_denied_12;
+            button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button2.Location = new System.Drawing.Point(0, 76);
+            button2.Name = "button2";
+            button2.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button2.Size = new System.Drawing.Size(219, 38);
+            button2.TabIndex = 2;
+            button2.Text = "Delete Account";
+            button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.White;
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Image = global::EasyBuy.Properties.Resources.icons8_change_user_12;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button6.Location = new System.Drawing.Point(0, 40);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button6.Size = new System.Drawing.Size(249, 40);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "Update Account";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            button6.BackColor = System.Drawing.Color.White;
+            button6.Dock = System.Windows.Forms.DockStyle.Top;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button6.Image = Properties.Resources.icons8_change_user_12;
+            button6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button6.Location = new System.Drawing.Point(0, 38);
+            button6.Name = "button6";
+            button6.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button6.Size = new System.Drawing.Size(219, 38);
+            button6.TabIndex = 1;
+            button6.Text = "Update Account";
+            button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // btn_createemployee
             // 
-            this.btn_createemployee.BackColor = System.Drawing.Color.White;
-            this.btn_createemployee.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_createemployee.FlatAppearance.BorderSize = 0;
-            this.btn_createemployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_createemployee.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_createemployee.Image = global::EasyBuy.Properties.Resources.icons8_add_user_male_12;
-            this.btn_createemployee.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_createemployee.Location = new System.Drawing.Point(0, 0);
-            this.btn_createemployee.Name = "btn_createemployee";
-            this.btn_createemployee.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.btn_createemployee.Size = new System.Drawing.Size(249, 40);
-            this.btn_createemployee.TabIndex = 0;
-            this.btn_createemployee.Text = "Create New Account";
-            this.btn_createemployee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_createemployee.UseVisualStyleBackColor = false;
-            this.btn_createemployee.Click += new System.EventHandler(this.btn_createemployee_Click);
+            btn_createemployee.BackColor = System.Drawing.Color.White;
+            btn_createemployee.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_createemployee.FlatAppearance.BorderSize = 0;
+            btn_createemployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_createemployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_createemployee.Image = Properties.Resources.icons8_add_user_male_12;
+            btn_createemployee.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btn_createemployee.Location = new System.Drawing.Point(0, 0);
+            btn_createemployee.Name = "btn_createemployee";
+            btn_createemployee.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            btn_createemployee.Size = new System.Drawing.Size(219, 38);
+            btn_createemployee.TabIndex = 0;
+            btn_createemployee.Text = "Create New Account";
+            btn_createemployee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_createemployee.UseVisualStyleBackColor = false;
+            btn_createemployee.Click += btn_createemployee_Click;
             // 
             // btn_Employees
             // 
-            this.btn_Employees.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Employees.FlatAppearance.BorderSize = 0;
-            this.btn_Employees.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btn_Employees.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.btn_Employees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Employees.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Employees.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btn_Employees.Image = global::EasyBuy.Properties.Resources.icons8_administrator_male_24;
-            this.btn_Employees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Employees.Location = new System.Drawing.Point(0, 511);
-            this.btn_Employees.Name = "btn_Employees";
-            this.btn_Employees.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btn_Employees.Size = new System.Drawing.Size(249, 45);
-            this.btn_Employees.TabIndex = 6;
-            this.btn_Employees.Text = "Employees";
-            this.btn_Employees.UseVisualStyleBackColor = true;
-            this.btn_Employees.Click += new System.EventHandler(this.btn_Employees_Click);
+            btn_Employees.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_Employees.FlatAppearance.BorderSize = 0;
+            btn_Employees.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            btn_Employees.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            btn_Employees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_Employees.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_Employees.ForeColor = System.Drawing.Color.DarkGreen;
+            btn_Employees.Image = Properties.Resources.icons8_administrator_male_24;
+            btn_Employees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_Employees.Location = new System.Drawing.Point(0, 478);
+            btn_Employees.Name = "btn_Employees";
+            btn_Employees.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            btn_Employees.Size = new System.Drawing.Size(219, 42);
+            btn_Employees.TabIndex = 6;
+            btn_Employees.Text = "Employees";
+            btn_Employees.UseVisualStyleBackColor = true;
+            btn_Employees.Click += btn_Employees_Click;
             // 
             // SubPanel_Catogories
             // 
-            this.SubPanel_Catogories.Controls.Add(this.btn_deletecategory);
-            this.SubPanel_Catogories.Controls.Add(this.btn_editcategory);
-            this.SubPanel_Catogories.Controls.Add(this.btn_addcategory);
-            this.SubPanel_Catogories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SubPanel_Catogories.Location = new System.Drawing.Point(0, 373);
-            this.SubPanel_Catogories.Name = "SubPanel_Catogories";
-            this.SubPanel_Catogories.Size = new System.Drawing.Size(249, 138);
-            this.SubPanel_Catogories.TabIndex = 5;
+            SubPanel_Catogories.Controls.Add(btn_deletecategory);
+            SubPanel_Catogories.Controls.Add(btn_editcategory);
+            SubPanel_Catogories.Controls.Add(btn_addcategory);
+            SubPanel_Catogories.Dock = System.Windows.Forms.DockStyle.Top;
+            SubPanel_Catogories.Location = new System.Drawing.Point(0, 349);
+            SubPanel_Catogories.Name = "SubPanel_Catogories";
+            SubPanel_Catogories.Size = new System.Drawing.Size(219, 129);
+            SubPanel_Catogories.TabIndex = 5;
             // 
             // btn_deletecategory
             // 
-            this.btn_deletecategory.BackColor = System.Drawing.Color.White;
-            this.btn_deletecategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_deletecategory.FlatAppearance.BorderSize = 0;
-            this.btn_deletecategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_deletecategory.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_deletecategory.Image = global::EasyBuy.Properties.Resources.icons8_minus_12;
-            this.btn_deletecategory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_deletecategory.Location = new System.Drawing.Point(0, 80);
-            this.btn_deletecategory.Name = "btn_deletecategory";
-            this.btn_deletecategory.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.btn_deletecategory.Size = new System.Drawing.Size(249, 40);
-            this.btn_deletecategory.TabIndex = 2;
-            this.btn_deletecategory.Text = "Delete Category";
-            this.btn_deletecategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_deletecategory.UseVisualStyleBackColor = false;
-            this.btn_deletecategory.Click += new System.EventHandler(this.button7_Click);
+            btn_deletecategory.BackColor = System.Drawing.Color.White;
+            btn_deletecategory.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_deletecategory.FlatAppearance.BorderSize = 0;
+            btn_deletecategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_deletecategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_deletecategory.Image = Properties.Resources.icons8_minus_12;
+            btn_deletecategory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btn_deletecategory.Location = new System.Drawing.Point(0, 76);
+            btn_deletecategory.Name = "btn_deletecategory";
+            btn_deletecategory.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            btn_deletecategory.Size = new System.Drawing.Size(219, 38);
+            btn_deletecategory.TabIndex = 2;
+            btn_deletecategory.Text = "Delete Category";
+            btn_deletecategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_deletecategory.UseVisualStyleBackColor = false;
+            btn_deletecategory.Click += button7_Click;
             // 
             // btn_editcategory
             // 
-            this.btn_editcategory.BackColor = System.Drawing.Color.White;
-            this.btn_editcategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_editcategory.FlatAppearance.BorderSize = 0;
-            this.btn_editcategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_editcategory.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_editcategory.Image = global::EasyBuy.Properties.Resources.icons8_pencil_drawing_12;
-            this.btn_editcategory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_editcategory.Location = new System.Drawing.Point(0, 40);
-            this.btn_editcategory.Name = "btn_editcategory";
-            this.btn_editcategory.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.btn_editcategory.Size = new System.Drawing.Size(249, 40);
-            this.btn_editcategory.TabIndex = 1;
-            this.btn_editcategory.Text = "Edit Category";
-            this.btn_editcategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_editcategory.UseVisualStyleBackColor = false;
-            this.btn_editcategory.Click += new System.EventHandler(this.button8_Click);
+            btn_editcategory.BackColor = System.Drawing.Color.White;
+            btn_editcategory.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_editcategory.FlatAppearance.BorderSize = 0;
+            btn_editcategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_editcategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_editcategory.Image = Properties.Resources.icons8_pencil_drawing_12;
+            btn_editcategory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btn_editcategory.Location = new System.Drawing.Point(0, 38);
+            btn_editcategory.Name = "btn_editcategory";
+            btn_editcategory.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            btn_editcategory.Size = new System.Drawing.Size(219, 38);
+            btn_editcategory.TabIndex = 1;
+            btn_editcategory.Text = "Edit Category";
+            btn_editcategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_editcategory.UseVisualStyleBackColor = false;
+            btn_editcategory.Click += button8_Click;
             // 
             // btn_addcategory
             // 
-            this.btn_addcategory.BackColor = System.Drawing.Color.White;
-            this.btn_addcategory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_addcategory.FlatAppearance.BorderSize = 0;
-            this.btn_addcategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addcategory.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addcategory.Image = global::EasyBuy.Properties.Resources.icons8_add_12;
-            this.btn_addcategory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_addcategory.Location = new System.Drawing.Point(0, 0);
-            this.btn_addcategory.Name = "btn_addcategory";
-            this.btn_addcategory.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.btn_addcategory.Size = new System.Drawing.Size(249, 40);
-            this.btn_addcategory.TabIndex = 0;
-            this.btn_addcategory.Text = "Add New Category";
-            this.btn_addcategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_addcategory.UseVisualStyleBackColor = false;
-            this.btn_addcategory.Click += new System.EventHandler(this.button9_Click);
+            btn_addcategory.BackColor = System.Drawing.Color.White;
+            btn_addcategory.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_addcategory.FlatAppearance.BorderSize = 0;
+            btn_addcategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_addcategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_addcategory.Image = Properties.Resources.icons8_add_12;
+            btn_addcategory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btn_addcategory.Location = new System.Drawing.Point(0, 0);
+            btn_addcategory.Name = "btn_addcategory";
+            btn_addcategory.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            btn_addcategory.Size = new System.Drawing.Size(219, 38);
+            btn_addcategory.TabIndex = 0;
+            btn_addcategory.Text = "Add New Category";
+            btn_addcategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_addcategory.UseVisualStyleBackColor = false;
+            btn_addcategory.Click += button9_Click;
             // 
             // btn_catogories
             // 
-            this.btn_catogories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_catogories.FlatAppearance.BorderSize = 0;
-            this.btn_catogories.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btn_catogories.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.btn_catogories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_catogories.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_catogories.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btn_catogories.Image = global::EasyBuy.Properties.Resources.icons8_click___collect_24;
-            this.btn_catogories.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_catogories.Location = new System.Drawing.Point(0, 328);
-            this.btn_catogories.Name = "btn_catogories";
-            this.btn_catogories.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btn_catogories.Size = new System.Drawing.Size(249, 45);
-            this.btn_catogories.TabIndex = 4;
-            this.btn_catogories.Text = "Categories";
-            this.btn_catogories.UseVisualStyleBackColor = true;
-            this.btn_catogories.Click += new System.EventHandler(this.btn_catogories_Click);
+            btn_catogories.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_catogories.FlatAppearance.BorderSize = 0;
+            btn_catogories.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            btn_catogories.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            btn_catogories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_catogories.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_catogories.ForeColor = System.Drawing.Color.DarkGreen;
+            btn_catogories.Image = Properties.Resources.icons8_click___collect_24;
+            btn_catogories.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_catogories.Location = new System.Drawing.Point(0, 307);
+            btn_catogories.Name = "btn_catogories";
+            btn_catogories.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            btn_catogories.Size = new System.Drawing.Size(219, 42);
+            btn_catogories.TabIndex = 4;
+            btn_catogories.Text = "Categories";
+            btn_catogories.UseVisualStyleBackColor = true;
+            btn_catogories.Click += btn_catogories_Click;
             // 
             // SubPanel_Products
             // 
-            this.SubPanel_Products.Controls.Add(this.button5);
-            this.SubPanel_Products.Controls.Add(this.button4);
-            this.SubPanel_Products.Controls.Add(this.button3);
-            this.SubPanel_Products.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SubPanel_Products.Location = new System.Drawing.Point(0, 190);
-            this.SubPanel_Products.Name = "SubPanel_Products";
-            this.SubPanel_Products.Size = new System.Drawing.Size(249, 138);
-            this.SubPanel_Products.TabIndex = 3;
+            SubPanel_Products.Controls.Add(button5);
+            SubPanel_Products.Controls.Add(button4);
+            SubPanel_Products.Controls.Add(button3);
+            SubPanel_Products.Dock = System.Windows.Forms.DockStyle.Top;
+            SubPanel_Products.Location = new System.Drawing.Point(0, 178);
+            SubPanel_Products.Name = "SubPanel_Products";
+            SubPanel_Products.Size = new System.Drawing.Size(219, 129);
+            SubPanel_Products.TabIndex = 3;
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = global::EasyBuy.Properties.Resources.icons8_product_12p__2_;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.Location = new System.Drawing.Point(0, 80);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button5.Size = new System.Drawing.Size(249, 40);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Delete Product Item";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            button5.BackColor = System.Drawing.Color.White;
+            button5.Dock = System.Windows.Forms.DockStyle.Top;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button5.Image = Properties.Resources.icons8_product_12p__2_;
+            button5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button5.Location = new System.Drawing.Point(0, 76);
+            button5.Name = "button5";
+            button5.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button5.Size = new System.Drawing.Size(219, 38);
+            button5.TabIndex = 2;
+            button5.Text = "Delete Product Item";
+            button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = global::EasyBuy.Properties.Resources.icons8_product_12p;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.Location = new System.Drawing.Point(0, 40);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button4.Size = new System.Drawing.Size(249, 40);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Update Product Item";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            button4.BackColor = System.Drawing.Color.White;
+            button4.Dock = System.Windows.Forms.DockStyle.Top;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button4.Image = Properties.Resources.icons8_product_12p;
+            button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button4.Location = new System.Drawing.Point(0, 38);
+            button4.Name = "button4";
+            button4.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button4.Size = new System.Drawing.Size(219, 38);
+            button4.TabIndex = 1;
+            button4.Text = "Update Product Item";
+            button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::EasyBuy.Properties.Resources.icons8_product_12;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(0, 0);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(35, 0, 15, 0);
-            this.button3.Size = new System.Drawing.Size(249, 40);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Add Product Item";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            button3.BackColor = System.Drawing.Color.White;
+            button3.Dock = System.Windows.Forms.DockStyle.Top;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button3.Image = Properties.Resources.icons8_product_12;
+            button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            button3.Location = new System.Drawing.Point(0, 0);
+            button3.Name = "button3";
+            button3.Padding = new System.Windows.Forms.Padding(31, 0, 13, 0);
+            button3.Size = new System.Drawing.Size(219, 38);
+            button3.TabIndex = 0;
+            button3.Text = "Add Product Item";
+            button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // btn_products
             // 
-            this.btn_products.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_products.FlatAppearance.BorderSize = 0;
-            this.btn_products.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btn_products.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.btn_products.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_products.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_products.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btn_products.Image = global::EasyBuy.Properties.Resources.icons8_sell_stock_24;
-            this.btn_products.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_products.Location = new System.Drawing.Point(0, 145);
-            this.btn_products.Name = "btn_products";
-            this.btn_products.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btn_products.Size = new System.Drawing.Size(249, 45);
-            this.btn_products.TabIndex = 2;
-            this.btn_products.Text = "Products";
-            this.btn_products.UseVisualStyleBackColor = true;
-            this.btn_products.Click += new System.EventHandler(this.btn_products_Click);
+            btn_products.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_products.FlatAppearance.BorderSize = 0;
+            btn_products.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            btn_products.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            btn_products.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_products.ForeColor = System.Drawing.Color.DarkGreen;
+            btn_products.Image = Properties.Resources.icons8_sell_stock_24;
+            btn_products.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_products.Location = new System.Drawing.Point(0, 136);
+            btn_products.Name = "btn_products";
+            btn_products.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            btn_products.Size = new System.Drawing.Size(219, 42);
+            btn_products.TabIndex = 2;
+            btn_products.Text = "Products";
+            btn_products.UseVisualStyleBackColor = true;
+            btn_products.Click += btn_products_Click;
             // 
             // btn_dashboard
             // 
-            this.btn_dashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_dashboard.FlatAppearance.BorderSize = 0;
-            this.btn_dashboard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btn_dashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            this.btn_dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_dashboard.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dashboard.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btn_dashboard.Image = global::EasyBuy.Properties.Resources.icons8_dashboard_layout_24;
-            this.btn_dashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_dashboard.Location = new System.Drawing.Point(0, 100);
-            this.btn_dashboard.Name = "btn_dashboard";
-            this.btn_dashboard.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btn_dashboard.Size = new System.Drawing.Size(249, 45);
-            this.btn_dashboard.TabIndex = 1;
-            this.btn_dashboard.Text = "Dashboard";
-            this.btn_dashboard.UseVisualStyleBackColor = true;
-            this.btn_dashboard.Click += new System.EventHandler(this.btn_dashboard_Click);
+            btn_dashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_dashboard.FlatAppearance.BorderSize = 0;
+            btn_dashboard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            btn_dashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            btn_dashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_dashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_dashboard.ForeColor = System.Drawing.Color.DarkGreen;
+            btn_dashboard.Image = Properties.Resources.icons8_dashboard_layout_24;
+            btn_dashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_dashboard.Location = new System.Drawing.Point(0, 94);
+            btn_dashboard.Name = "btn_dashboard";
+            btn_dashboard.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            btn_dashboard.Size = new System.Drawing.Size(219, 42);
+            btn_dashboard.TabIndex = 1;
+            btn_dashboard.Text = "Dashboard";
+            btn_dashboard.UseVisualStyleBackColor = true;
+            btn_dashboard.Click += btn_dashboard_Click;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(249, 100);
-            this.panel1.TabIndex = 0;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label1);
+            panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(219, 94);
+            panel1.TabIndex = 0;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Pusia-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(133, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 27);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Admin";
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label2.Location = new System.Drawing.Point(116, 30);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(54, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Admin";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::EasyBuy.Properties.Resources.icons8_test_account_96;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(96, 96);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            pictureBox1.Image = Properties.Resources.icons8_test_account_96;
+            pictureBox1.Location = new System.Drawing.Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(85, 90);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Pusia-Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(120, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Welcome";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            label1.Location = new System.Drawing.Point(105, 8);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(66, 17);
+            label1.TabIndex = 1;
+            label1.Text = "Welcome";
             // 
             // Panel_ChildForm
             // 
-            this.Panel_ChildForm.BackColor = System.Drawing.Color.White;
-            this.Panel_ChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel_ChildForm.Font = new System.Drawing.Font("Pusia-Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Panel_ChildForm.Location = new System.Drawing.Point(270, 0);
-            this.Panel_ChildForm.MaximumSize = new System.Drawing.Size(930, 600);
-            this.Panel_ChildForm.MinimumSize = new System.Drawing.Size(930, 600);
-            this.Panel_ChildForm.Name = "Panel_ChildForm";
-            this.Panel_ChildForm.Size = new System.Drawing.Size(930, 600);
-            this.Panel_ChildForm.TabIndex = 1;
+            Panel_ChildForm.BackColor = System.Drawing.Color.White;
+            Panel_ChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            Panel_ChildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            Panel_ChildForm.Location = new System.Drawing.Point(236, 0);
+            Panel_ChildForm.MaximumSize = new System.Drawing.Size(814, 562);
+            Panel_ChildForm.MinimumSize = new System.Drawing.Size(814, 562);
+            Panel_ChildForm.Name = "Panel_ChildForm";
+            Panel_ChildForm.Size = new System.Drawing.Size(814, 562);
+            Panel_ChildForm.TabIndex = 1;
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Honeydew;
-            this.ClientSize = new System.Drawing.Size(1182, 603);
-            this.Controls.Add(this.Panel_ChildForm);
-            this.Controls.Add(this.SubMenu_Panel);
-            this.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.MinimumSize = new System.Drawing.Size(1200, 650);
-            this.Name = "Home";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Home";
-            this.Load += new System.EventHandler(this.Home_Load);
-            this.SubMenu_Panel.ResumeLayout(false);
-            this.SubPanel_NexusMembers.ResumeLayout(false);
-            this.SubPanel_Employees.ResumeLayout(false);
-            this.SubPanel_Catogories.ResumeLayout(false);
-            this.SubPanel_Products.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.Honeydew;
+            ClientSize = new System.Drawing.Size(1036, 573);
+            Controls.Add(Panel_ChildForm);
+            Controls.Add(SubMenu_Panel);
+            MaximumSize = new System.Drawing.Size(1052, 612);
+            MinimumSize = new System.Drawing.Size(1052, 612);
+            Name = "Home";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Home";
+            Load += Home_Load;
+            SubMenu_Panel.ResumeLayout(false);
+            SubPanel_NexusMembers.ResumeLayout(false);
+            SubPanel_Employees.ResumeLayout(false);
+            SubPanel_Catogories.ResumeLayout(false);
+            SubPanel_Products.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

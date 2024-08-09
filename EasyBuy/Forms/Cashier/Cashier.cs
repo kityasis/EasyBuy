@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.IO;
 using System.Drawing.Drawing2D;
+using Microsoft.EntityFrameworkCore;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Security.Cryptography.X509Certificates;
-using EasyBuy.Forms.Nexus;
-
+using System.Data;
 namespace EasyBuy.Forms.Cashier
 {
     public partial class Cashier : Form
@@ -21,59 +16,61 @@ namespace EasyBuy.Forms.Cashier
         public Cashier()
         {
             InitializeComponent();
-        }
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataAdapter adapter;
-        DataTable dt;
+        }    
         TextBox SelectedTextBox = null;
         int dis = 0;
         public static string mem_id_pass;  
 
-        private void SearchProducts2()
+        private async void SearchProducts2()
         {
-            con.Open();
-            cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%' and Product_Category='" + cmb_productcategory.SelectedItem + "'", con);
-            cmd.Parameters.AddWithValue("a", txt_search.Text);
-            cmd.ExecuteNonQuery();
-            adapter = new SqlDataAdapter(cmd);
-            dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Close();
+            //con.Open();
+            //cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%' and Product_Category='" + cmb_productcategory.SelectedItem + "'", con);
+            //cmd.Parameters.AddWithValue("a", txt_search.Text);
+            //cmd.ExecuteNonQuery();
+            //adapter = new SqlDataAdapter(cmd);
+            //dt = new DataTable();
+            //adapter.Fill(dt);
+            //dataGridView1.DataSource = dt;
+            //con.Close();
+   
+
+            //string search = txt_search.Text;
+            //await using var context = new EasyBuyContext();
+            //var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(search) && x.).ToListAsync());
+            //dataGridView1.DataSource = products;
+
 
             dataGridView1.Columns[0].Width = 80;
             dataGridView1.Columns[1].Width = 67;
             dataGridView1.Columns[2].Width = 60;
         }
-        private void SearchProducts()
+        private async void SearchProducts()
         {
-
-            con.Open();
-            cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%'", con);
-            cmd.Parameters.AddWithValue("a", txt_search.Text);
-            cmd.ExecuteNonQuery();
-            adapter = new SqlDataAdapter(cmd);
-            dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Close();
-
-            dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 67;
-            dataGridView1.Columns[2].Width = 60;
-
+            try
+            {
+                string search = txt_search.Text;
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.Product.Where(x=>x.Name.Contains(search)).ToListAsync());
+                dataGridView1.DataSource = products;
+                dataGridView1.Columns[0].Width = 80;
+                dataGridView1.Columns[1].Width = 67;
+                dataGridView1.Columns[2].Width = 60;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.InnerException.ToString());
+            }
         }
         private void GenBID()
         {
-            con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
-            con.Open();
-            cmd = new SqlCommand("Select count (Bill_ID) from [Bill_Table]", con);
-            cmd.ExecuteNonQuery();
-            int count = Convert.ToInt32(((SqlCommand)cmd).ExecuteScalar());
-            count++;
-            txt_billid.Text = "BID-" + count.ToString();
-            con.Close();
+            //con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
+            //con.Open();
+            //cmd = new SqlCommand("Select count (Bill_ID) from [Bill_Table]", con);
+            //cmd.ExecuteNonQuery();
+            //int count = Convert.ToInt32(((SqlCommand)cmd).ExecuteScalar());
+            //count++;
+            //txt_billid.Text = "BID-" + count.ToString();
+            //con.Close();
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
@@ -174,7 +171,7 @@ namespace EasyBuy.Forms.Cashier
             // LoadAccDetails();
 
             LoadPFP();
-            con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
+            //con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
 
             dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
@@ -224,15 +221,15 @@ namespace EasyBuy.Forms.Cashier
         {
             try
             {
-                con.Open();
-                cmd = new SqlCommand("SELECT [Prodcut_Quantity] FROM Product_Table WHERE [Product_Name] = '" + txt_productname.Text + "'", con);
-                SqlDataReader reader1 = cmd.ExecuteReader();
+                //con.Open();
+                //cmd = new SqlCommand("SELECT [Prodcut_Quantity] FROM Product_Table WHERE [Product_Name] = '" + txt_productname.Text + "'", con);
+                //SqlDataReader reader1 = cmd.ExecuteReader();
 
-                if (reader1.Read())
-                {
-                    textBox1.Text = reader1["Prodcut_Quantity"].ToString();
-                }
-                con.Close();
+                //if (reader1.Read())
+                //{
+                //    textBox1.Text = reader1["Prodcut_Quantity"].ToString();
+                //}
+                //con.Close();
 
 
                 int x_quantity = Convert.ToInt32(textBox1.Text);
@@ -302,18 +299,18 @@ namespace EasyBuy.Forms.Cashier
         private void LoadComboBox()
         {
             cmb_productcategory.Items.Clear();
-            con.Open();
-            cmd = new SqlCommand("Select Category_Name from Category_Tbl", con);
-            cmd.ExecuteNonQuery();
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
+            //con.Open();
+            //cmd = new SqlCommand("Select Category_Name from Category_Tbl", con);
+            //cmd.ExecuteNonQuery();
+            //DataTable dt = new DataTable();
+            //SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //da.Fill(dt);
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                cmb_productcategory.Items.Add(dr["Category_Name"].ToString());
-            }
-            con.Close();
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    cmb_productcategory.Items.Add(dr["Category_Name"].ToString());
+            //}
+            //con.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -332,15 +329,15 @@ namespace EasyBuy.Forms.Cashier
 
         private void cmb_productcategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            con.Open();
-            cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%' and Product_Category='" + cmb_productcategory.SelectedItem + "'", con);
-            cmd.Parameters.AddWithValue("a", txt_search.Text);
-            cmd.ExecuteNonQuery();
-            adapter = new SqlDataAdapter(cmd);
-            dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Close();
+            //con.Open();
+            //cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%' and Product_Category='" + cmb_productcategory.SelectedItem + "'", con);
+            //cmd.Parameters.AddWithValue("a", txt_search.Text);
+            //cmd.ExecuteNonQuery();
+            //adapter = new SqlDataAdapter(cmd);
+            //dt = new DataTable();
+            //adapter.Fill(dt);
+            //dataGridView1.DataSource = dt;
+            //con.Close();
 
             dataGridView1.Columns[0].Width = 80;
             dataGridView1.Columns[1].Width = 67;
@@ -372,24 +369,24 @@ namespace EasyBuy.Forms.Cashier
                 }
                 else if (radioButton1.Checked == true)
                 {
-                    con.Open();
-                    cmd = new SqlCommand("Insert Into Bill_Table values ('" + txt_billid.Text + "','" + DateTime.Today + "','" + CashierName.Text + "','Guest','None','" +grandtotal + "')", con);
-                    int i = cmd.ExecuteNonQuery();
-                    con.Close();
-                    if (i == 1)
-                    {
-                        MessageBox.Show("Transaction " + txt_billid.Text + " Completed Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        UpdateQTY();
-                        PrintBill();
-                        var reopen = new Cashier();
-                        reopen.ShowDialog();
-                        Dispose();
+                    //con.Open();
+                    //cmd = new SqlCommand("Insert Into Bill_Table values ('" + txt_billid.Text + "','" + DateTime.Today + "','" + CashierName.Text + "','Guest','None','" +grandtotal + "')", con);
+                    //int i = cmd.ExecuteNonQuery();
+                    //con.Close();
+                    //if (i == 1)
+                    //{
+                    //    MessageBox.Show("Transaction " + txt_billid.Text + " Completed Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //    UpdateQTY();
+                    //    PrintBill();
+                    //    var reopen = new Cashier();
+                    //    reopen.ShowDialog();
+                    //    Dispose();
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Transaction Failed Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Transaction Failed Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                     
                 }
                 else if (label15.Text != "Member Found" && radioButton2.Checked == true)
@@ -398,24 +395,24 @@ namespace EasyBuy.Forms.Cashier
                 }
                 else if (label15.Text == "Member Found"  && radioButton2.Checked == true)
                 {
-                    con.Open();
-                    cmd = new SqlCommand("Insert Into Bill_Table values ('" + txt_billid.Text + "','" + DateTime.Today + "','" + CashierName.Text + "','Member','" + txt_memberid.Text + "','" + Convert.ToInt32(txt_subtotal.Text) + "')", con);
-                    int i = cmd.ExecuteNonQuery();
-                    con.Close();
-                    if (i == 1)
-                    {
-                        MessageBox.Show("Transaction " + txt_billid.Text + " Completed Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        PointsUpdate();
-                        UpdateQTY();
-                        PrintBill();
-                        var reopen = new Cashier();
-                        reopen.ShowDialog();
-                        Dispose();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Transaction Failed Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //con.Open();
+                    //cmd = new SqlCommand("Insert Into Bill_Table values ('" + txt_billid.Text + "','" + DateTime.Today + "','" + CashierName.Text + "','Member','" + txt_memberid.Text + "','" + Convert.ToInt32(txt_subtotal.Text) + "')", con);
+                    //int i = cmd.ExecuteNonQuery();
+                    //con.Close();
+                    //if (i == 1)
+                    //{
+                    //    MessageBox.Show("Transaction " + txt_billid.Text + " Completed Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //    PointsUpdate();
+                    //    UpdateQTY();
+                    //    PrintBill();
+                    //    var reopen = new Cashier();
+                    //    reopen.ShowDialog();
+                    //    Dispose();
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Transaction Failed Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                     
                 }
             }
@@ -428,14 +425,14 @@ namespace EasyBuy.Forms.Cashier
 
         private void LoadAccDetails()
         {
-            con.Open();
-            cmd = new SqlCommand("Select Full_Name from Employee_Table where User_Name='" + us.Text + "'", con);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
-                CashierName.Text = reader["Full_Name"].ToString();
-            }
-            con.Close();
+            //con.Open();
+            //cmd = new SqlCommand("Select Full_Name from Employee_Table where User_Name='" + us.Text + "'", con);
+            //SqlDataReader reader = cmd.ExecuteReader();
+            //if (reader.Read())
+            //{
+            //    CashierName.Text = reader["Full_Name"].ToString();
+            //}
+            //con.Close();
         }
 
         private void LoadPFP()
@@ -444,27 +441,27 @@ namespace EasyBuy.Forms.Cashier
             gp.AddEllipse(pictureBox1.DisplayRectangle);
             pictureBox1.Region = new Region(gp);
 
-            con.Open();
-            cmd = new SqlCommand("Select Full_Name,Image from Employee_Table where User_Name='" + us.Text + "'", con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
+            //con.Open();
+            //cmd = new SqlCommand("Select Full_Name,Image from Employee_Table where User_Name='" + us.Text + "'", con);
+            //SqlDataReader dr = cmd.ExecuteReader();
+            //dr.Read();
 
-            if (dr.HasRows)
-            {
-                CashierName.Text = dr["Full_Name"].ToString();
-                byte[] Images = (byte[])dr[1];
+            //if (dr.HasRows)
+            //{
+            //    CashierName.Text = dr["Full_Name"].ToString();
+            //    byte[] Images = (byte[])dr[1];
 
-                if (Images == null)
-                {
-                    pictureBox1.Image = null;
-                }
-                else
-                {
-                    MemoryStream memoryStream = new MemoryStream(Images);
-                    pictureBox1.Image = Image.FromStream(memoryStream);
-                }
-            }
-            con.Close();
+            //    if (Images == null)
+            //    {
+            //        pictureBox1.Image = null;
+            //    }
+            //    else
+            //    {
+            //        MemoryStream memoryStream = new MemoryStream(Images);
+            //        pictureBox1.Image = Image.FromStream(memoryStream);
+            //    }
+            //}
+            //con.Close();
 
         }
 
@@ -607,13 +604,13 @@ namespace EasyBuy.Forms.Cashier
         {
             for (int x = 0; x < dgv_qtupdate.Rows.Count - 1; x++)
             {
-                con.Open();
-                cmd = new SqlCommand("Update Product_Table set Prodcut_Quantity =@qty where Product_Name=@name", con);
+                //con.Open();
+                //cmd = new SqlCommand("Update Product_Table set Prodcut_Quantity =@qty where Product_Name=@name", con);
 
-                cmd.Parameters.AddWithValue("name", dgv_qtupdate.Rows[x].Cells[0].Value);
-                cmd.Parameters.AddWithValue("qty", dgv_qtupdate.Rows[x].Cells[1].Value);
-                cmd.ExecuteNonQuery();
-                con.Close();
+                //cmd.Parameters.AddWithValue("name", dgv_qtupdate.Rows[x].Cells[0].Value);
+                //cmd.Parameters.AddWithValue("qty", dgv_qtupdate.Rows[x].Cells[1].Value);
+                //cmd.ExecuteNonQuery();
+                //con.Close();
             }
         }
 
@@ -649,29 +646,29 @@ namespace EasyBuy.Forms.Cashier
         {
             if (radioButton2.Checked == true)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where Member_ID like @a AND TPO like @b", con))
-                {
-                    con.Open();
-                    sqlCommand.Parameters.AddWithValue("@a", txt_memberid.Text);
-                    sqlCommand.Parameters.AddWithValue("@b", txt_mobilenum.Text);
-                    int userCount = (int)sqlCommand.ExecuteScalar();
-                    con.Close();
-                    if (userCount > 0)
-                    {
-                        txt_mobilenum.BackColor = Color.LightSeaGreen;
-                        txt_memberid.BackColor = Color.LightSeaGreen;
-                        label15.Text = "Member Found";
-                        btn_membershow.Visible = true;
-                    }
-                    else
-                    {
-                        txt_mobilenum.BackColor = Color.OrangeRed;
-                        txt_memberid.BackColor = Color.OrangeRed;
-                        label15.Text = "Member Not Found";
-                        btn_membershow.Visible = false;
-                    }
+                //using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where Member_ID like @a AND TPO like @b", con))
+                //{
+                //    con.Open();
+                //    sqlCommand.Parameters.AddWithValue("@a", txt_memberid.Text);
+                //    sqlCommand.Parameters.AddWithValue("@b", txt_mobilenum.Text);
+                //    int userCount = (int)sqlCommand.ExecuteScalar();
+                //    con.Close();
+                //    if (userCount > 0)
+                //    {
+                //        txt_mobilenum.BackColor = Color.LightSeaGreen;
+                //        txt_memberid.BackColor = Color.LightSeaGreen;
+                //        label15.Text = "Member Found";
+                //        btn_membershow.Visible = true;
+                //    }
+                //    else
+                //    {
+                //        txt_mobilenum.BackColor = Color.OrangeRed;
+                //        txt_memberid.BackColor = Color.OrangeRed;
+                //        label15.Text = "Member Not Found";
+                //        btn_membershow.Visible = false;
+                //    }
 
-                }
+                //}
             }
 
         }
@@ -690,10 +687,10 @@ namespace EasyBuy.Forms.Cashier
         {
             int points=0;
             points = grandtotal / 300;
-            con.Open();
-            cmd = new SqlCommand("Update Member_Tbl set Member_Points = '"+points+"' where Member_ID = '" + txt_memberid.Text + "'", con);
-            cmd.ExecuteNonQuery();
-            con.Close();
+            //con.Open();
+            //cmd = new SqlCommand("Update Member_Tbl set Member_Points = '"+points+"' where Member_ID = '" + txt_memberid.Text + "'", con);
+            //cmd.ExecuteNonQuery();
+            //con.Close();
             Refresh();
 
         }
@@ -701,15 +698,15 @@ namespace EasyBuy.Forms.Cashier
         private void btn_membershow_Click(object sender, EventArgs e)
         {
             mem_id_pass = txt_memberid.Text;
-            ShowMember x = new ShowMember();
-            x.Show();
+            //ShowMember x = new ShowMember();
+            //x.Show();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
             slide(button4);
-            Cashier_memreg x = new Cashier_memreg();
-            x.Show();   
+            //Cashier_memreg x = new Cashier_memreg();
+            //x.Show();   
         }
     }
 }
