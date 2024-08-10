@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EasyBuy.Forms.Product_Items
+namespace EasyBuy.Forms.Product
 {
     public partial class DeleteProductItem : Form
     {

@@ -73,6 +73,14 @@
     <Compile Remove="Forms\Cashier_memreg.Designer.cs" />
     <Compile Remove="Forms\Dashboard.cs" />
     <Compile Remove="Forms\Dashboard.Designer.cs" />
+    <Compile Remove="Forms\Category\DeleteProductCategory,cs.cs" />
+    <Compile Remove="Forms\Category\DeleteProductCategory,cs.Designer.cs" />
+    <Compile Remove="Forms\Category\EditProductCategory.cs" />
+    <Compile Remove="Forms\Category\EditProductCategory.Designer.cs" />
+    <Compile Remove="Forms\Product\DeleteProductItem.cs" />
+    <Compile Remove="Forms\Product\DeleteProductItem.Designer.cs" />
+    <Compile Remove="Forms\Product\EditProductItem.cs" />
+    <Compile Remove="Forms\Product\EditProductItem.Designer.cs" />
     <Compile Remove="Keels_SuperMarket_DatabaseDataSet1.Designer.cs" />
     <Compile Remove="report2.cs" />
     <Compile Remove="report2.Designer.cs" />
@@ -86,6 +94,10 @@
     <EmbeddedResource Remove="Forms\Cashier\ShowMember.resx" />
     <EmbeddedResource Remove="Forms\Cashier_memreg.resx" />
     <EmbeddedResource Remove="Forms\Dashboard.resx" />
+    <EmbeddedResource Remove="Forms\Category\DeleteProductCategory,cs.resx" />
+    <EmbeddedResource Remove="Forms\Category\EditProductCategory.resx" />
+    <EmbeddedResource Remove="Forms\Product\DeleteProductItem.resx" />
+    <EmbeddedResource Remove="Forms\Product\EditProductItem.resx" />
     <EmbeddedResource Remove="report2.resx" />
     <EmbeddedResource Remove="report3.resx" />
     <EmbeddedResource Remove="report4.resx" />
@@ -100,5 +112,9 @@
     <None Update="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Category\" />
+    <Folder Include="Forms\Product\" />
   </ItemGroup>
 </Project>

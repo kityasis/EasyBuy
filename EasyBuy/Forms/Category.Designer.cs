@@ -1,6 +1,6 @@
 ﻿namespace EasyBuy.Forms
 {
-    partial class AddProductCategory
+    partial class Category
     {
         /// <summary>
         /// Required designer variable.

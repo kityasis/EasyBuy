@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace EasyBuy.Forms
 {
-    public partial class AddProductCategory : Form
+    public partial class Category : Form
     {
-        public AddProductCategory()
+        public Category()
         {
             InitializeComponent();
         }
@@ -52,7 +52,7 @@ namespace EasyBuy.Forms
                 else
                 {
                     await using var context = new EasyBuyContext();
-                    var category = new Category() { Name = txt_cname.Text, Description = txt_cdes.Text };
+                    var category = new Models.Category() { Name = txt_cname.Text, Description = txt_cdes.Text };
                     var employee = await Task.Run(() => context.Category.Add(category));
                     await context.SaveChangesAsync();
                     txt_cname.Clear();
