@@ -8,6 +8,7 @@ namespace EasyBuy.Forms
 {
     public partial class Category : Form
     {
+        private Int64 _id;
         public Category()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace EasyBuy.Forms
         {
             txtName.Clear();
             txtDescription.Clear();
+            btnAdd.Text = "Add";
         }
 
         private async void btnAdd_Click(object sender, EventArgs e)
@@ -52,7 +54,17 @@ namespace EasyBuy.Forms
                 {
                     await using var context = new EasyBuyContext();
                     var category = new Models.Category() { Name = txtName.Text, Description = txtDescription.Text };
-                    var employee = await Task.Run(() => context.Category.Add(category));
+                    if (btnAdd.Text == "Add")
+                    {
+
+                        await Task.Run(() => context.Category.Add(category));
+                    }
+                    else
+                    {
+                        category.Id = _id;
+                        await Task.Run(() => context.Category.Update(category));
+
+                    }
                     await context.SaveChangesAsync();
                     txtName.Clear();
                     txtDescription.Clear();
@@ -68,7 +80,7 @@ namespace EasyBuy.Forms
             var senderGrid = (DataGridView)sender;
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                Int64 id = Convert.ToInt64(CategoryDataGridView[0, e.RowIndex].Value);
+                var id = Convert.ToInt64(CategoryDataGridView[0, e.RowIndex].Value);
                 if (e.ColumnIndex == 4)
                 {
                     if (MessageBox.Show("Are You Sure You Want To Delete", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -95,6 +107,8 @@ namespace EasyBuy.Forms
                         var category = await Task.Run(() => context.Category.FirstOrDefaultAsync(x => x.Id == id));
                         txtName.Text = category.Name;
                         txtDescription.Text = category.Description;
+                        this._id = category.Id;
+                        btnAdd.Text = "Update";
                     }
                     catch (Exception)
                     {
