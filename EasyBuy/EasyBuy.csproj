@@ -117,4 +117,12 @@
     <Folder Include="Forms\Category\" />
     <Folder Include="Forms\Product\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Forms\Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>

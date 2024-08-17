@@ -33,6 +33,7 @@
             btn_nexus = new System.Windows.Forms.Button();
             btn_Employees = new System.Windows.Forms.Button();
             btn_catogories = new System.Windows.Forms.Button();
+            btn_supplier = new System.Windows.Forms.Button();
             btn_products = new System.Windows.Forms.Button();
             btn_dashboard = new System.Windows.Forms.Button();
             panel1 = new System.Windows.Forms.Panel();
@@ -50,6 +51,7 @@
             SubMenu_Panel.Controls.Add(btn_nexus);
             SubMenu_Panel.Controls.Add(btn_Employees);
             SubMenu_Panel.Controls.Add(btn_catogories);
+            SubMenu_Panel.Controls.Add(btn_supplier);
             SubMenu_Panel.Controls.Add(btn_products);
             SubMenu_Panel.Controls.Add(btn_dashboard);
             SubMenu_Panel.Controls.Add(panel1);
@@ -143,6 +145,27 @@
             btn_catogories.Text = "Categories";
             btn_catogories.UseVisualStyleBackColor = true;
             btn_catogories.Click += btn_catogories_Click;
+            // 
+            // btn_supplier
+            // 
+            btn_supplier.Dock = System.Windows.Forms.DockStyle.Top;
+            btn_supplier.FlatAppearance.BorderSize = 0;
+            btn_supplier.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            btn_supplier.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            btn_supplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btn_supplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btn_supplier.ForeColor = System.Drawing.Color.DarkGreen;
+            btn_supplier.Image = Properties.Resources.icons8_click___collect_24;
+            btn_supplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btn_supplier.Location = new System.Drawing.Point(0, 196);
+            btn_supplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btn_supplier.Name = "btn_supplier";
+            btn_supplier.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            btn_supplier.Size = new System.Drawing.Size(270, 56);
+            btn_supplier.TabIndex = 4;
+            btn_supplier.Text = "Supplier";
+            btn_supplier.UseVisualStyleBackColor = true;
+            btn_supplier.Click += btn_supplier_Click;
             // 
             // btn_products
             // 
@@ -257,6 +280,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_products;
         private System.Windows.Forms.Button btn_catogories;
+        private System.Windows.Forms.Button btn_supplier;
         private System.Windows.Forms.Button btn_Employees;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

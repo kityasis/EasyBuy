@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace EasyBuy.Forms
 {
-    public partial class Category : Form
+    public partial class Supplier : Form
     {
         private Int64 _id;
-        public Category()
+        public Supplier()
         {
             InitializeComponent();
         }
@@ -19,8 +19,8 @@ namespace EasyBuy.Forms
             try
             {
                 await using var context = new EasyBuyContext();
-                var categories = await Task.Run(() => context.Category.ToListAsync());
-                CategoryDataGridView.DataSource = categories;
+                var suppliers = await Task.Run(() => context.Supplier.ToListAsync());
+                SupplierDataGridView.DataSource = suppliers;
             }
             catch (Exception)
             {
@@ -28,19 +28,20 @@ namespace EasyBuy.Forms
             }
 
         }
-        private void AddProductCategory_Load(object sender, EventArgs e)
+        private void Supplier_Load(object sender, EventArgs e)
         {
             RefreshData();
-            CategoryDataGridView.EnableHeadersVisualStyles = false;
-            CategoryDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
-            CategoryDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            CategoryDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
+            SupplierDataGridView.EnableHeadersVisualStyles = false;
+            SupplierDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
+            SupplierDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            SupplierDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtName.Clear();
-            txtDescription.Clear();
+            txtAddress.Clear();
+            txtContactNumber.Clear();
             btnAdd.Text = "Add";
         }
 
@@ -48,27 +49,29 @@ namespace EasyBuy.Forms
         {
             try
             {
-                if (txtName.Text.Length == 0) { MessageBox.Show("Category Name Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                else if (txtDescription.Text.Length == 0) { MessageBox.Show("Category Description Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                if (txtName.Text.Length == 0) { MessageBox.Show("Supplier Name Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else if (txtAddress.Text.Length == 0) { MessageBox.Show("Supplier Description Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 else
                 {
                     await using var context = new EasyBuyContext();
-                    var category = new Models.Category() { Name = txtName.Text, Description = txtDescription.Text };
+                    var Supplier = new Models.Supplier() { Name = txtName.Text, ContactNumber = Convert.ToInt32(txtContactNumber.Text), Address = txtAddress.Text };
                     if (btnAdd.Text == "Add")
                     {
 
-                        await Task.Run(() => context.Category.Add(category));
+                        await Task.Run(() => context.Supplier.Add(Supplier));
                     }
                     else
                     {
-                        category.Id = _id;
-                        await Task.Run(() => context.Category.Update(category));
+                        Supplier.Id = _id;
+                        await Task.Run(() => context.Supplier.Update(Supplier));
                         btnAdd.Text = "Add";
 
                     }
                     await context.SaveChangesAsync();
                     txtName.Clear();
-                    txtDescription.Clear();
+                    txtAddress.Clear();
+                    txtContactNumber.Clear();
+                      
                 }
             }
             catch (FormatException) { MessageBox.Show("Please Enter Numbers Only", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -76,21 +79,21 @@ namespace EasyBuy.Forms
             RefreshData();
         }
 
-        private async void CategoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void SupplierDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                var id = Convert.ToInt64(CategoryDataGridView[0, e.RowIndex].Value);
-                if (e.ColumnIndex == 4)
+                var id = Convert.ToInt64(SupplierDataGridView[0, e.RowIndex].Value);
+                if (e.ColumnIndex == 5)
                 {
                     if (MessageBox.Show("Are You Sure You Want To Delete", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         try
                         {
                             await using var context = new EasyBuyContext();
-                            var category = await Task.Run(() => context.Category.FirstOrDefaultAsync(x => x.Id == id));
-                            await Task.Run(() => context.Category.Remove(category));
+                            var supplier = await Task.Run(() => context.Supplier.FirstOrDefaultAsync(x => x.Id == id));
+                            await Task.Run(() => context.Supplier.Remove(supplier));
                             await context.SaveChangesAsync();
                             RefreshData();
                         }
@@ -100,15 +103,16 @@ namespace EasyBuy.Forms
                         }
                     }
                 }
-                else if (e.ColumnIndex == 3)
+                else if (e.ColumnIndex == 4)
                 {
                     try
                     {
                         await using var context = new EasyBuyContext();
-                        var category = await Task.Run(() => context.Category.FirstOrDefaultAsync(x => x.Id == id));
-                        txtName.Text = category.Name;
-                        txtDescription.Text = category.Description;
-                        this._id = category.Id;
+                        var supplier = await Task.Run(() => context.Supplier.FirstOrDefaultAsync(x => x.Id == id));
+                        txtName.Text = supplier.Name;
+                        txtContactNumber.Text= supplier.ContactNumber.ToString();
+                        txtAddress.Text = supplier.Address;
+                        this._id = supplier.Id;
                         btnAdd.Text = "Update";
                     }
                     catch (Exception)

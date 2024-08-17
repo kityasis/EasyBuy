@@ -8,7 +8,8 @@ namespace EasyBuy
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
-        
+        public DbSet<Supplier> Supplier { get; set; }
+
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
