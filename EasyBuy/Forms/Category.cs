@@ -1,5 +1,4 @@
-﻿using EasyBuy.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -13,55 +12,96 @@ namespace EasyBuy.Forms
         {
             InitializeComponent();
         }
-       
+
         private async void RefreshData()
         {
             try
             {
                 await using var context = new EasyBuyContext();
                 var categories = await Task.Run(() => context.Category.ToListAsync());
-                dataGridView1.DataSource = categories;
+                CategoryDataGridView.DataSource = categories;
             }
-            catch (Exception ex) {
+            catch (Exception)
+            {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                      
 
         }
         private void AddProductCategory_Load(object sender, EventArgs e)
         {
             RefreshData();
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
+            CategoryDataGridView.EnableHeadersVisualStyles = false;
+            CategoryDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
+            CategoryDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            CategoryDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
-        {           
-            txt_cname.Clear();
-            txt_cdes.Clear();           
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtName.Clear();
+            txtDescription.Clear();
         }
 
-        private async void btn_add_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txt_cname.Text.Length == 0) { MessageBox.Show("Category Name Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                else if (txt_cdes.Text.Length == 0) { MessageBox.Show("Category Description Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                if (txtName.Text.Length == 0) { MessageBox.Show("Category Name Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else if (txtDescription.Text.Length == 0) { MessageBox.Show("Category Description Cannot Be Blank", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 else
                 {
                     await using var context = new EasyBuyContext();
-                    var category = new Models.Category() { Name = txt_cname.Text, Description = txt_cdes.Text };
+                    var category = new Models.Category() { Name = txtName.Text, Description = txtDescription.Text };
                     var employee = await Task.Run(() => context.Category.Add(category));
                     await context.SaveChangesAsync();
-                    txt_cname.Clear();
-                    txt_cdes.Clear();
+                    txtName.Clear();
+                    txtDescription.Clear();
                 }
             }
             catch (FormatException) { MessageBox.Show("Please Enter Numbers Only", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             catch (Exception) { MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             RefreshData();
+        }
+
+        private async void CategoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                Int64 id = Convert.ToInt64(CategoryDataGridView[0, e.RowIndex].Value);
+                if (e.ColumnIndex == 4)
+                {
+                    if (MessageBox.Show("Are You Sure You Want To Delete", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            await using var context = new EasyBuyContext();
+                            var category = await Task.Run(() => context.Category.FirstOrDefaultAsync(x => x.Id == id));
+                            await Task.Run(() => context.Category.Remove(category));
+                            await context.SaveChangesAsync();
+                            RefreshData();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else if (e.ColumnIndex == 3)
+                {
+                    try
+                    {
+                        await using var context = new EasyBuyContext();
+                        var category = await Task.Run(() => context.Category.FirstOrDefaultAsync(x => x.Id == id));
+                        txtName.Text = category.Name;
+                        txtDescription.Text = category.Description;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

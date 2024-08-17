@@ -71,12 +71,12 @@
     <Compile Remove="Forms\Cashier\ShowMember.Designer.cs" />
     <Compile Remove="Forms\Cashier_memreg.cs" />
     <Compile Remove="Forms\Cashier_memreg.Designer.cs" />
-    <Compile Remove="Forms\Dashboard.cs" />
-    <Compile Remove="Forms\Dashboard.Designer.cs" />
     <Compile Remove="Forms\Category\DeleteProductCategory,cs.cs" />
     <Compile Remove="Forms\Category\DeleteProductCategory,cs.Designer.cs" />
     <Compile Remove="Forms\Category\EditProductCategory.cs" />
     <Compile Remove="Forms\Category\EditProductCategory.Designer.cs" />
+    <Compile Remove="Forms\Dashboard.cs" />
+    <Compile Remove="Forms\Dashboard.Designer.cs" />
     <Compile Remove="Forms\Product\DeleteProductItem.cs" />
     <Compile Remove="Forms\Product\DeleteProductItem.Designer.cs" />
     <Compile Remove="Forms\Product\EditProductItem.cs" />
@@ -93,9 +93,9 @@
     <EmbeddedResource Remove="Dashboard.resx" />
     <EmbeddedResource Remove="Forms\Cashier\ShowMember.resx" />
     <EmbeddedResource Remove="Forms\Cashier_memreg.resx" />
-    <EmbeddedResource Remove="Forms\Dashboard.resx" />
     <EmbeddedResource Remove="Forms\Category\DeleteProductCategory,cs.resx" />
     <EmbeddedResource Remove="Forms\Category\EditProductCategory.resx" />
+    <EmbeddedResource Remove="Forms\Dashboard.resx" />
     <EmbeddedResource Remove="Forms\Product\DeleteProductItem.resx" />
     <EmbeddedResource Remove="Forms\Product\EditProductItem.resx" />
     <EmbeddedResource Remove="report2.resx" />

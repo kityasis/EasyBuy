@@ -30,7 +30,8 @@ namespace EasyBuy.Forms.Product_Items
             {
                 await using var context = new EasyBuyContext();
                 var products = await Task.Run(() => context.Product.ToListAsync());
-                productDataGridView.DataSource= products;
+                //productDataGridView.DataSource= products;
+                productDataGridView.Rows.Add(products);
             }
             catch (Exception ex)
             {
