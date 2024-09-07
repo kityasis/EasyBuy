@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
@@ -16,13 +17,6 @@ namespace EasyBuy.Forms.Product_Items
         }
         private async void Product_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'keels_SuperMarket_DatabaseDataSet3.Product_Table' table. You can move, or remove it, as needed.
-            //this.product_TableTableAdapter.Fill(this.keels_SuperMarket_DatabaseDataSet3.Product_Table);
-            //con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
-            //dataGridView1.EnableHeadersVisualStyles = false;
-            //dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.YellowGreen;
-            //dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
             this.productDataGridView.AllowUserToAddRows = true;
             this.productDataGridView.AllowUserToDeleteRows = true;
             productDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
@@ -38,25 +32,15 @@ namespace EasyBuy.Forms.Product_Items
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            LoadComboBox();
+            LoadCategoryComboBox();
+            LoadSupplierComboBox();
         }
         private void Refresh()
         {
             // this.product_TableTableAdapter.Fill(this.keels_SuperMarket_DatabaseDataSet3.Product_Table);
 
-        }
-        int ax;
-        private void AutoProductIDGen()
-        {
-            //con.Open();
-            //cmd = new SqlCommand("Select count (Product_ID) from [Product_Table]", con);
-            //ax = Convert.ToInt32(((SqlCommand)cmd).ExecuteScalar());
-            //con.Close();
-            //ax++;
-            //txt_productid.Text = "PID-" + ax.ToString();
-
-        }
-        private async void LoadComboBox()
+        }        
+        private async void LoadCategoryComboBox()
         {
             cmbCategory.Items.Clear();
             try
@@ -71,49 +55,58 @@ namespace EasyBuy.Forms.Product_Items
             }
 
         }
-
-
-        private void btn_add_Click(object sender, EventArgs e)
+        private async void LoadSupplierComboBox()
         {
-            if (txtName.Text.Length == 0)
+            cmbSupplier.Items.Clear();
+            try
             {
-                MessageBox.Show("Product Name Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                await using var context = new EasyBuyContext();
+                var supplieres = await Task.Run(() => context.Supplier.ToListAsync());
+                cmbSupplier.Items.AddRange(supplieres.Select(x => x.Name).ToArray());
             }
-            else if (txtGstAmount.Text.Length == 0 || txtGstAmount.Text.Any(Char.IsLetter))
+            catch (Exception ex)
             {
-                MessageBox.Show("Product Price Cannot Be Blanck Or Cannot Contain Letters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (txtQunatity.Text.Length == 0 || txtQunatity.Text.Any(Char.IsLetter))
-            {
-                MessageBox.Show("Product Quantity Cannot Be Blanck Or Cannot Contain Letters", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (cmbCategory.Text.Length == 0)
-            {
-                MessageBox.Show("Please Select An Category", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+        }
+
+        private async void btn_add_Click(object sender, EventArgs e)
+        {
+             if (cmbSupplier.Text == "---Select---") MessageBox.Show("Please Select A Supplier", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (cmbCategory.Text == "---Select---") MessageBox.Show("Please Select An Category", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtName.Text.Length == 0) MessageBox.Show("Product Name Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtPrice.Text.Length == 0) MessageBox.Show("Product Price Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtQunatity.Text.Length == 0) MessageBox.Show("Product Qunatity Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtTotalPrice.Text.Length == 0) MessageBox.Show("Product TotalPrice Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);           
+            else if (txtGST.Text.Length == 0) MessageBox.Show("Product Gst Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtGstAmount.Text.Length == 0) MessageBox.Show("Product Gst Amount Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtFinalPrice.Text.Length == 0) MessageBox.Show("Product Final Price Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             else
             {
-                //con.Open();
-                //cmd = new SqlCommand("Select Prodcut_Quantity from Product_Table where Product_Name = '" + txt_productid + "'", con);
-                //con.Close();
+
                 try
                 {
-                    //con.Open();
-                    //cmd = new SqlCommand("Insert Into Product_Table values('" + txt_productid.Text + "','" + txt_productname.Text + "','" + txt_price.Text + "','" + txt_productqunatity.Text + "',@a)", con);
-                    //cmd.Parameters.AddWithValue("@a", cmb_productcategory.SelectedItem);
-                    //int i = cmd.ExecuteNonQuery();
-                    //con.Close();
-                    //if (i == 1)
+                    await using var context = new EasyBuyContext();
+                    //var product = new Models.Product() { Name = txtName.Text, ContactNumber = Convert.ToInt32(txtContactNumber.Text), Address = txtAddress.Text };
+                    //if (btnAdd.Text == "Add")
                     //{
-                    //    Refresh();
-                    //    MessageBox.Show("New Product Added Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //    await Task.Run(() => context.Product.Add(product));
                     //}
                     //else
                     //{
-                    //    MessageBox.Show("New Product Cannot Be Added", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
+                    //    Supplier.Id = _id;
+                    //    await Task.Run(() => context.Supplier.Update(Supplier));
+                    //    btnAdd.Text = "Add";
 
-                    AutoProductIDGen();
+                    //}
+                    //await context.SaveChangesAsync();
+                    //txtName.Clear();
+                    //txtAddress.Clear();
+                    //txtContactNumber.Clear();
+
 
                 }
                 catch (FormatException)
@@ -129,9 +122,7 @@ namespace EasyBuy.Forms.Product_Items
 
                 }
 
-
             }
-
 
         }
 
@@ -141,8 +132,7 @@ namespace EasyBuy.Forms.Product_Items
             txtName.Clear();
             txtQunatity.Clear();
             txtGstAmount.Clear();
-            cmbCategory.SelectedIndex = -1;
-            AutoProductIDGen();
+            cmbCategory.SelectedIndex = -1;          
 
         }
 
@@ -200,6 +190,37 @@ namespace EasyBuy.Forms.Product_Items
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
-       
+
+        private void txtQunatity_TextChanged(object sender, EventArgs e)
+        {
+            if (txtQunatity.Text.Length == 0) return;
+            if (txtPrice.Text.Length == 0) return;
+            txtTotalPrice.Text = (Convert.ToDouble(txtQunatity.Text) * Convert.ToDouble(txtPrice.Text)).ToString();
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (txtQunatity.Text.Length == 0) return;
+            if (txtPrice.Text.Length == 0) return;
+            txtTotalPrice.Text = (Convert.ToDouble(txtQunatity.Text) * Convert.ToDouble(txtPrice.Text)).ToString();
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTotalPrice.Text.Length == 0) return;
+            if (txtDiscount.Text.Length == 0) return;
+            txtDiscountAmount.Text = ((Convert.ToDouble(txtTotalPrice.Text) * Convert.ToDouble(txtDiscount.Text)) / 100).ToString();
+            txtTotalPriceAfterDiscount.Text = (Convert.ToDouble(txtTotalPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)).ToString();
+        }
+
+        private void txtGST_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTotalPriceAfterDiscount.Text.Length == 0 && txtTotalPrice.Text.Length == 0) return;
+            if (txtGST.Text.Length == 0) return;
+            var price =string.IsNullOrEmpty(txtTotalPriceAfterDiscount.Text) ? txtTotalPrice.Text: txtTotalPriceAfterDiscount.Text;
+            var gstAmount = (Convert.ToDouble(price) * Convert.ToDouble(txtGST.Text)) / 100;
+            txtGstAmount.Text = gstAmount.ToString();
+            txtFinalPrice.Text = (Convert.ToDouble(price) + Convert.ToDouble(txtGstAmount.Text)).ToString();
+        }
     }
 }
