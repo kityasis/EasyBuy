@@ -55,8 +55,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = System.Windows.Forms.DockStyle.Top;
             panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(887, 33);
+            panel1.Size = new System.Drawing.Size(1014, 44);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -64,19 +65,19 @@
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(10, 8);
+            label1.Location = new System.Drawing.Point(11, 11);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(178, 17);
+            label1.Size = new System.Drawing.Size(76, 20);
             label1.TabIndex = 0;
-            label1.Text = "Add New Product Category";
+            label1.Text = "Category";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label3.Location = new System.Drawing.Point(60, 54);
+            label3.Location = new System.Drawing.Point(69, 72);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(45, 15);
+            label3.Size = new System.Drawing.Size(52, 18);
             label3.TabIndex = 2;
             label3.Text = "Name";
             // 
@@ -84,24 +85,26 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label4.Location = new System.Drawing.Point(24, 111);
+            label4.Location = new System.Drawing.Point(27, 148);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(80, 15);
+            label4.Size = new System.Drawing.Size(94, 18);
             label4.TabIndex = 3;
             label4.Text = "Description";
             // 
             // txtName
             // 
-            txtName.Location = new System.Drawing.Point(114, 51);
+            txtName.Location = new System.Drawing.Point(130, 68);
+            txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new System.Drawing.Size(415, 23);
+            txtName.Size = new System.Drawing.Size(474, 27);
             txtName.TabIndex = 5;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new System.Drawing.Point(114, 107);
+            txtDescription.Location = new System.Drawing.Point(130, 143);
+            txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new System.Drawing.Size(415, 23);
+            txtDescription.Size = new System.Drawing.Size(474, 27);
             txtDescription.TabIndex = 6;
             // 
             // btnAdd
@@ -110,9 +113,10 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(549, 107);
+            btnAdd.Location = new System.Drawing.Point(627, 143);
+            btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(84, 26);
+            btnAdd.Size = new System.Drawing.Size(96, 35);
             btnAdd.TabIndex = 7;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -124,9 +128,10 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(647, 107);
+            btnClear.Location = new System.Drawing.Point(739, 143);
+            btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(84, 26);
+            btnClear.Size = new System.Drawing.Size(96, 35);
             btnClear.TabIndex = 10;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -141,13 +146,14 @@
             CategoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CategoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn, Edit, Delete });
             CategoryDataGridView.DataSource = categoryBindingSource;
-            CategoryDataGridView.Location = new System.Drawing.Point(24, 150);
+            CategoryDataGridView.Location = new System.Drawing.Point(27, 200);
+            CategoryDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             CategoryDataGridView.Name = "CategoryDataGridView";
             CategoryDataGridView.ReadOnly = true;
             CategoryDataGridView.RowHeadersVisible = false;
             CategoryDataGridView.RowHeadersWidth = 51;
             CategoryDataGridView.RowTemplate.Height = 24;
-            CategoryDataGridView.Size = new System.Drawing.Size(820, 297);
+            CategoryDataGridView.Size = new System.Drawing.Size(937, 396);
             CategoryDataGridView.TabIndex = 20;
             CategoryDataGridView.CellContentClick += CategoryDataGridView_CellContentClick;
             // 
@@ -205,9 +211,9 @@
             // 
             // Category
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(887, 475);
+            ClientSize = new System.Drawing.Size(1014, 633);
             Controls.Add(CategoryDataGridView);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);
@@ -217,6 +223,7 @@
             Controls.Add(label3);
             Controls.Add(panel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "Category";
             Text = "Category";
             Load += AddProductCategory_Load;

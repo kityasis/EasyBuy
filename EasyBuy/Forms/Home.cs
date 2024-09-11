@@ -33,7 +33,7 @@ namespace EasyBuy
 
         private void btn_catogories_Click(object sender, EventArgs e)
         {
-            openChildForm(new Supplier());
+            openChildForm(new Category());
         }
         private void btn_supplier_Click(object sender, EventArgs e)
         {
