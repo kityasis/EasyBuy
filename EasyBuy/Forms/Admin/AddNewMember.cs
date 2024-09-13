@@ -19,32 +19,31 @@ namespace EasyBuy.Forms.Nexus
         {
             InitializeComponent();
         }
-        SqlConnection con;
-        SqlCommand cmd;
+       
         int check = 0;
 
         private void AddNewMember_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
+           // con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
             Refresh_Nexus_Table();
             AutoNexusMemberID();
         }
         private void CheckTPO()
         {
-            using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where TPO ='" + txt_tpo.Text + "'", con))
-            {
-                con.Open();
-                int userCount = (int)sqlCommand.ExecuteScalar();
-                con.Close();
-                if (userCount > 0)
-                {
-                    check = 1;
-                }
-                else
-                {
-                    check = 0;
-                }
-            }
+            //using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where TPO ='" + txt_tpo.Text + "'", con))
+            //{
+            //    con.Open();
+            //    int userCount = (int)sqlCommand.ExecuteScalar();
+            //    con.Close();
+            //    if (userCount > 0)
+            //    {
+            //        check = 1;
+            //    }
+            //    else
+            //    {
+            //        check = 0;
+            //    }
+            //}
         }
 
         private void Refresh_Nexus_Table()
@@ -54,31 +53,31 @@ namespace EasyBuy.Forms.Nexus
         int ax;
         private void AutoNexusMemberID()
         {
-            con.Open();
-            cmd = new SqlCommand("Select count (Member_ID) from [Member_Tbl]", con);
-            ax = Convert.ToInt32(((SqlCommand)cmd).ExecuteScalar());
-            con.Close();
+            //con.Open();
+            //cmd = new SqlCommand("Select count (Member_ID) from [Member_Tbl]", con);
+            //ax = Convert.ToInt32(((SqlCommand)cmd).ExecuteScalar());
+            //con.Close();
             ax++;
             txt_memid.Text = "NMEM" + ax.ToString();
         }
         private void FixID()
         {
-            using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where TPO = '" + txt_memid.Text + "' ", con))
-            {
-                con.Open();
+            //using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where TPO = '" + txt_memid.Text + "' ", con))
+            //{
+            //    con.Open();
 
-                int userCount = (int)sqlCommand.ExecuteScalar();
-                con.Close();
-                if (userCount > 0)
-                {
-                    ax = ax + 1;
-                    txt_memid.Text = "NMEM" + ax.ToString();
-                }
-                else
-                {
+            //    int userCount = (int)sqlCommand.ExecuteScalar();
+            //    con.Close();
+            //    if (userCount > 0)
+            //    {
+            //        ax = ax + 1;
+            //        txt_memid.Text = "NMEM" + ax.ToString();
+            //    }
+            //    else
+            //    {
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -112,18 +111,18 @@ namespace EasyBuy.Forms.Nexus
                 else
                 {
                     int xyz = 0;
-                    con.Open();
-                    cmd = new SqlCommand("Insert Into Member_Tbl values('" + txt_memid.Text + "','" + txt_name.Text + "','" + txt_tpo.Text + "','" + label4.Text + "')", con);
-                    int i = cmd.ExecuteNonQuery();
-                    con.Close();
-                    if(i == 1)
-                    {
-                        MessageBox.Show("New Member Registerd Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("New Member Cannot Be Registerd", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //con.Open();
+                    //cmd = new SqlCommand("Insert Into Member_Tbl values('" + txt_memid.Text + "','" + txt_name.Text + "','" + txt_tpo.Text + "','" + label4.Text + "')", con);
+                    //int i = cmd.ExecuteNonQuery();
+                    //con.Close();
+                    //if(i == 1)
+                    //{
+                    //    MessageBox.Show("New Member Registerd Succesfully", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("New Member Cannot Be Registerd", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                 }
             }
             catch (FormatException)

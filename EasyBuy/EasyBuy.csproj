@@ -27,14 +27,8 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Forms\Employee Account\**" />
-    <Compile Remove="Forms\Nexus\**" />
     <Compile Remove="Reports - Forms\**" />
-    <EmbeddedResource Remove="Forms\Employee Account\**" />
-    <EmbeddedResource Remove="Forms\Nexus\**" />
     <EmbeddedResource Remove="Reports - Forms\**" />
-    <None Remove="Forms\Employee Account\**" />
-    <None Remove="Forms\Nexus\**" />
     <None Remove="Reports - Forms\**" />
   </ItemGroup>
   <ItemGroup>
