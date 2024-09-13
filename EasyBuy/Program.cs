@@ -21,7 +21,7 @@ namespace EasyBuy
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Cashier());
+            Application.Run(new Home());
         }
     }
 }

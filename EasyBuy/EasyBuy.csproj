@@ -102,10 +102,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Forms\Supplier.cs">
+    <Compile Update="Forms\Admin\Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\Supplier.cs">
+    <Compile Update="Forms\Admin\Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
