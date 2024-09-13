@@ -31,16 +31,16 @@
             components = new System.ComponentModel.Container();
             panel1 = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
-            txt_password = new System.Windows.Forms.TextBox();
+            txtPassword = new System.Windows.Forms.TextBox();
             label7 = new System.Windows.Forms.Label();
-            cmd_role = new System.Windows.Forms.ComboBox();
-            txt_uname = new System.Windows.Forms.TextBox();
+            cmdRole = new System.Windows.Forms.ComboBox();
+            txtUserName = new System.Windows.Forms.TextBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
-            btn_clear = new System.Windows.Forms.Button();
-            btn_add = new System.Windows.Forms.Button();
-            txt_password2 = new System.Windows.Forms.TextBox();
-            txt_fname = new System.Windows.Forms.TextBox();
+            btnClear = new System.Windows.Forms.Button();
+            btnAdd = new System.Windows.Forms.Button();
+            txtConfirmPassword = new System.Windows.Forms.TextBox();
+            txtFullName = new System.Windows.Forms.TextBox();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             EmployeeDataGridView = new System.Windows.Forms.DataGridView();
@@ -78,12 +78,12 @@
             label1.TabIndex = 0;
             label1.Text = "Employee";
             // 
-            // txt_password
+            // txtPassword
             // 
-            txt_password.Location = new System.Drawing.Point(219, 118);
-            txt_password.Name = "txt_password";
-            txt_password.Size = new System.Drawing.Size(247, 23);
-            txt_password.TabIndex = 50;
+            txtPassword.Location = new System.Drawing.Point(219, 118);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new System.Drawing.Size(247, 23);
+            txtPassword.TabIndex = 50;
             // 
             // label7
             // 
@@ -95,22 +95,23 @@
             label7.TabIndex = 49;
             label7.Text = "Password";
             // 
-            // cmd_role
+            // cmdRole
             // 
-            cmd_role.FormattingEnabled = true;
-            cmd_role.Items.AddRange(new object[] { "Administrator", "Cashier" });
-            cmd_role.Location = new System.Drawing.Point(219, 174);
-            cmd_role.Name = "cmd_role";
-            cmd_role.Size = new System.Drawing.Size(247, 23);
-            cmd_role.TabIndex = 48;
+            cmdRole.FormattingEnabled = true;
+            cmdRole.Items.AddRange(new object[] { "Administrator", "Cashier" });
+            cmdRole.Location = new System.Drawing.Point(219, 174);
+            cmdRole.Name = "cmdRole";
+            cmdRole.Size = new System.Drawing.Size(247, 23);
+            cmdRole.TabIndex = 48;
+            cmdRole.Text = "---Select Role---";
             // 
-            // txt_uname
+            // txtUserName
             // 
-            txt_uname.Location = new System.Drawing.Point(219, 90);
-            txt_uname.Name = "txt_uname";
-            txt_uname.Size = new System.Drawing.Size(247, 23);
-            txt_uname.TabIndex = 47;
-            txt_uname.TextChanged += txt_uname_TextChanged;
+            txtUserName.Location = new System.Drawing.Point(219, 90);
+            txtUserName.Name = "txtUserName";
+            txtUserName.Size = new System.Drawing.Size(247, 23);
+            txtUserName.TabIndex = 47;
+            txtUserName.Leave += txtUserName_Leave;
             // 
             // label5
             // 
@@ -132,47 +133,48 @@
             label6.TabIndex = 45;
             label6.Text = "User Name";
             // 
-            // btn_clear
+            // btnClear
             // 
-            btn_clear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
-            btn_clear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
-            btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btn_clear.Location = new System.Drawing.Point(576, 165);
-            btn_clear.Name = "btn_clear";
-            btn_clear.Size = new System.Drawing.Size(84, 32);
-            btn_clear.TabIndex = 44;
-            btn_clear.Text = "Clear";
-            btn_clear.UseVisualStyleBackColor = true;
-            btn_clear.Click += btn_clear_Click;
+            btnClear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnClear.Location = new System.Drawing.Point(576, 165);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new System.Drawing.Size(84, 32);
+            btnClear.TabIndex = 44;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
-            // btn_add
+            // btnAdd
             // 
-            btn_add.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
-            btn_add.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
-            btn_add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btn_add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btn_add.Location = new System.Drawing.Point(486, 165);
-            btn_add.Name = "btn_add";
-            btn_add.Size = new System.Drawing.Size(84, 32);
-            btn_add.TabIndex = 43;
-            btn_add.Text = "Add";
-            btn_add.UseVisualStyleBackColor = true;
-            btn_add.Click += btn_add_Click;
+            btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnAdd.Location = new System.Drawing.Point(486, 165);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new System.Drawing.Size(84, 32);
+            btnAdd.TabIndex = 43;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
-            // txt_password2
+            // txtConfirmPassword
             // 
-            txt_password2.Location = new System.Drawing.Point(219, 146);
-            txt_password2.Name = "txt_password2";
-            txt_password2.Size = new System.Drawing.Size(247, 23);
-            txt_password2.TabIndex = 42;
+            txtConfirmPassword.Location = new System.Drawing.Point(219, 146);
+            txtConfirmPassword.Name = "txtConfirmPassword";
+            txtConfirmPassword.Size = new System.Drawing.Size(247, 23);
+            txtConfirmPassword.TabIndex = 42;
+            txtConfirmPassword.Leave += txtConfirmPassword_Leave;
             // 
-            // txt_fname
+            // txtFullName
             // 
-            txt_fname.Location = new System.Drawing.Point(219, 62);
-            txt_fname.Name = "txt_fname";
-            txt_fname.Size = new System.Drawing.Size(247, 23);
-            txt_fname.TabIndex = 41;
+            txtFullName.Location = new System.Drawing.Point(219, 62);
+            txtFullName.Name = "txtFullName";
+            txtFullName.Size = new System.Drawing.Size(247, 23);
+            txtFullName.TabIndex = 41;
             // 
             // label3
             // 
@@ -211,6 +213,7 @@
             EmployeeDataGridView.RowTemplate.Height = 24;
             EmployeeDataGridView.Size = new System.Drawing.Size(820, 297);
             EmployeeDataGridView.TabIndex = 51;
+            EmployeeDataGridView.CellContentClick += EmployeeDataGridView_CellContentClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -283,23 +286,23 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(864, 562);
             Controls.Add(EmployeeDataGridView);
-            Controls.Add(txt_password);
+            Controls.Add(txtPassword);
             Controls.Add(label7);
-            Controls.Add(cmd_role);
-            Controls.Add(txt_uname);
+            Controls.Add(cmdRole);
+            Controls.Add(txtUserName);
             Controls.Add(label5);
             Controls.Add(label6);
-            Controls.Add(btn_clear);
-            Controls.Add(btn_add);
-            Controls.Add(txt_password2);
-            Controls.Add(txt_fname);
+            Controls.Add(btnClear);
+            Controls.Add(btnAdd);
+            Controls.Add(txtConfirmPassword);
+            Controls.Add(txtFullName);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Name = "Employee";
-            Text = "CreateEmployeeAccount";
-            Load += CreateEmployeeAccount_Load;
+            Text = "Employee";
+            Load += Employee_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)EmployeeDataGridView).EndInit();
@@ -312,16 +315,16 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_password;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cmd_role;
-        private System.Windows.Forms.TextBox txt_uname;
+        private System.Windows.Forms.ComboBox cmdRole;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btn_clear;
-        private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.TextBox txt_password2;
-        private System.Windows.Forms.TextBox txt_fname;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
+        private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView EmployeeDataGridView;

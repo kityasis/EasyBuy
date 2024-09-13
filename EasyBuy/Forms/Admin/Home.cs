@@ -1,4 +1,6 @@
 ﻿using EasyBuy.Forms;
+using EasyBuy.Forms.Employee_Account;
+using EasyBuy.Forms.Nexus;
 using EasyBuy.Forms.Product_Items;
 using System;
 using System.Windows.Forms;
@@ -42,12 +44,12 @@ namespace EasyBuy
 
         private void btn_Employees_Click(object sender, EventArgs e)
         {
-
+            openChildForm(new Employee());
         }
 
         private void btn_nexus_Click(object sender, EventArgs e)
         {
-            //showSubMenu(SubPanel_NexusMembers);
+            openChildForm(new Member());
         }
 
         private void button3_Click(object sender, EventArgs e)

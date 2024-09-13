@@ -9,6 +9,8 @@ namespace EasyBuy
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<Sale> Sale { get; set; }
 
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
