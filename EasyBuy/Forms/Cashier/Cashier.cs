@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,51 +15,167 @@ namespace EasyBuy.Forms.Cashier
         public Cashier()
         {
             InitializeComponent();
-        }    
+        }
         TextBox SelectedTextBox = null;
         int dis = 0;
-        public static string mem_id_pass;  
+        public static string mem_id_pass;
 
         private async void SearchProducts2()
         {
-            //con.Open();
-            //cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%' and Product_Category='" + cmb_productcategory.SelectedItem + "'", con);
-            //cmd.Parameters.AddWithValue("a", txt_search.Text);
-            //cmd.ExecuteNonQuery();
-            //adapter = new SqlDataAdapter(cmd);
-            //dt = new DataTable();
-            //adapter.Fill(dt);
-            //dataGridView1.DataSource = dt;
-            //con.Close();
-   
+            try
+            {
+                string search = txtSearch.Text;
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(search) && x.Catagory.Contains(cmbProductCategory.Text)).ToListAsync());
+                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPurchaseCostInclGST, x.Quantity });
+                searchProductGridView.Columns[0].Width = 80;
+                searchProductGridView.Columns[1].Width = 67;
+                searchProductGridView.Columns[2].Width = 60;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            //string search = txt_search.Text;
-            //await using var context = new EasyBuyContext();
-            //var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(search) && x.).ToListAsync());
-            //dataGridView1.DataSource = products;
-
-
-            dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 67;
-            dataGridView1.Columns[2].Width = 60;
         }
         private async void SearchProducts()
         {
             try
             {
-                string search = txt_search.Text;
+                string search = txtSearch.Text;
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Product.Where(x=>x.Name.Contains(search)).ToListAsync());
-                dataGridView1.DataSource = products;
-                dataGridView1.Columns[0].Width = 80;
-                dataGridView1.Columns[1].Width = 67;
-                dataGridView1.Columns[2].Width = 60;
+                var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(search)).ToListAsync());
+                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPurchaseCostInclGST, x.Quantity }).ToList();
+                searchProductGridView.Columns[0].Width = 80;
+                searchProductGridView.Columns[1].Width = 67;
+                searchProductGridView.Columns[2].Width = 60;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.InnerException.ToString());
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private async void LoadComboBox()
+        {
+            cmbProductCategory.Items.Clear();
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var categories = await Task.Run(() => context.Product.ToListAsync());
+                cmbProductCategory.Items.AddRange(categories.Select(x => x.Catagory).ToArray());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void cmbProductCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string search = cmbProductCategory.Text;
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(search)).ToListAsync());
+                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPurchaseCostInclGST, x.Quantity }).ToList();
+                searchProductGridView.Columns[0].Width = 80;
+                searchProductGridView.Columns[1].Width = 67;
+                searchProductGridView.Columns[2].Width = 60;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void searchProductGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                DataGridViewRow row = this.searchProductGridView.Rows[e.RowIndex];
+                txtProductName.Text = row.Cells["Name"].Value.ToString();
+                txtProductPrice.Text = row.Cells["TotalPurchaseCostInclGST"].Value.ToString();
+                txtProductQuantity.Text = row.Cells["Quantity"].Value.ToString();
+
+            }
+            catch
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //con.Open();
+                //cmd = new SqlCommand("SELECT [Prodcut_Quantity] FROM Product_Table WHERE [Product_Name] = '" + txt_productname.Text + "'", con);
+                //SqlDataReader reader1 = cmd.ExecuteReader();
+
+                //if (reader1.Read())
+                //{
+                //    textBox1.Text = reader1["Prodcut_Quantity"].ToString();
+                //}
+                //con.Close();
+
+
+                int x_quantity = 13;// Convert.ToInt32(textBox1.Text);
+
+
+                int y = Convert.ToInt32(txtProductQuantity.Text);
+
+                if (txtProductName.Text.Length == 0 || txtProductPrice.Text.Length == 0)
+                {
+                    MessageBox.Show("Please Search A Product First To Enter Detials Into The Bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtProductQuantity.Text.Any(Char.IsLetter))
+                {
+                    MessageBox.Show("Product Quantity Must Be In Numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (y <= 0)
+                {
+                    MessageBox.Show("Product Qunatity Must Be Atleast 1 or Higher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (y >= x_quantity)
+                {
+                    MessageBox.Show("Reached The Maximum Available Product Quantity", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+                    int total = Convert.ToInt32(txtProductPrice.Text) * Convert.ToInt32(txtProductQuantity.Text);
+                    DataGridViewRow newRow = new DataGridViewRow();
+                    newRow.CreateCells(dataGridView2);
+                    newRow.Cells[0].Value = n++;
+                    newRow.Cells[1].Value = txtProductName.Text;
+                    newRow.Cells[2].Value = txtProductPrice.Text;
+                    newRow.Cells[3].Value = txtProductQuantity.Text;
+                    newRow.Cells[4].Value = Convert.ToInt32(txtProductPrice.Text) * Convert.ToInt32(txtProductQuantity.Text);
+                    dataGridView2.Rows.Add(newRow);
+                    xy++;
+                    subtotal = subtotal + total;
+                    txt_subtotal.Text = subtotal.ToString();
+                    grandtotal = subtotal - dis;
+                    txt_grandtotal.Text = "Rs " + grandtotal.ToString();
+                    textBox2_TextChanged(sender, new EventArgs());
+
+                    int c_ty = Convert.ToInt32(txt_cty.Text);
+                    int pty = Convert.ToInt32(txtProductQuantity.Text);
+
+
+                    txt_newqty.Text = (c_ty - pty).ToString();
+                    DataGridViewRow newRow1 = new DataGridViewRow();
+                    newRow1.CreateCells(dgv_qtupdate);
+                    newRow1.Cells[0].Value = txtProductName.Text;
+                    newRow1.Cells[1].Value = txt_newqty.Text;
+                    dgv_qtupdate.Rows.Add(newRow1);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Searched Product Not Found or Product Quantity Must Be In Numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void GenBID()
         {
             //con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
@@ -100,7 +215,7 @@ namespace EasyBuy.Forms.Cashier
             Cashier x = new Cashier();
             x.Show();
             this.Hide();
-            
+
         }
 
         private void btn_searchproduct_Click(object sender, EventArgs e)
@@ -153,12 +268,12 @@ namespace EasyBuy.Forms.Cashier
             txt_memberid.Enabled = false;
             label2.Enabled = false;
             label3.Enabled = false;
-            txt_billid.ReadOnly = true; 
+            txt_billid.ReadOnly = true;
             GenBID();
             LoadComboBox();
             this.radioButton1.Checked = true;
 
-            if (cmb_productcategory.SelectedIndex == -1)
+            if (cmbProductCategory.SelectedIndex == -1)
             {
                 SearchProducts();
             }
@@ -177,8 +292,8 @@ namespace EasyBuy.Forms.Cashier
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
 
-            txt_productname.ReadOnly = true;
-            txt_productprice.ReadOnly = true;
+            txtProductName.ReadOnly = true;
+            txtProductPrice.ReadOnly = true;
             datelb.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
         }
 
@@ -187,22 +302,7 @@ namespace EasyBuy.Forms.Cashier
             SearchProducts();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
-                txt_productname.Text = row.Cells["Product_Name"].Value.ToString();
-                txt_productprice.Text = row.Cells["Product_Price"].Value.ToString();
-                txt_cty.Text = row.Cells["Prodcut_Quantity"].Value.ToString();
 
-               
-            }
-            catch
-            {
-
-            }
-        }
 
         private void btn_canceltransaction_Click(object sender, EventArgs e)
         {
@@ -216,79 +316,8 @@ namespace EasyBuy.Forms.Cashier
             }
         }
         int n = 1; int subtotal = 0; int xy = 0; int grandtotal = 0;
-        
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //con.Open();
-                //cmd = new SqlCommand("SELECT [Prodcut_Quantity] FROM Product_Table WHERE [Product_Name] = '" + txt_productname.Text + "'", con);
-                //SqlDataReader reader1 = cmd.ExecuteReader();
-
-                //if (reader1.Read())
-                //{
-                //    textBox1.Text = reader1["Prodcut_Quantity"].ToString();
-                //}
-                //con.Close();
 
 
-                int x_quantity = Convert.ToInt32(textBox1.Text);
-
-
-                int y = Convert.ToInt32(txt_productquantity.Text);
-
-                if (txt_productname.Text.Length == 0 || txt_productprice.Text.Length == 0)
-                {
-                    MessageBox.Show("Please Search A Product First To Enter Detials Into The Bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (txt_productquantity.Text.Any(Char.IsLetter))
-                {
-                    MessageBox.Show("Product Quantity Must Be In Numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (y <= 0)
-                {
-                    MessageBox.Show("Product Qunatity Must Be Atleast 1 or Higher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (y >= x_quantity)
-                {
-                    MessageBox.Show("Reached The Maximum Available Product Quantity", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    
-                    int total = Convert.ToInt32(txt_productprice.Text) * Convert.ToInt32(txt_productquantity.Text);
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(dataGridView2);
-                    newRow.Cells[0].Value = n++;
-                    newRow.Cells[1].Value = txt_productname.Text;
-                    newRow.Cells[2].Value = txt_productprice.Text;
-                    newRow.Cells[3].Value = txt_productquantity.Text;
-                    newRow.Cells[4].Value = Convert.ToInt32(txt_productprice.Text) * Convert.ToInt32(txt_productquantity.Text);
-                    dataGridView2.Rows.Add(newRow);
-                    xy++;
-                    subtotal = subtotal + total;
-                    txt_subtotal.Text = subtotal.ToString();
-                    grandtotal = subtotal - dis;
-                    txt_grandtotal.Text = "Rs " + grandtotal.ToString();
-                    textBox2_TextChanged(sender, new EventArgs());
-
-                    int c_ty = Convert.ToInt32(txt_cty.Text);
-                    int pty = Convert.ToInt32(txt_productquantity.Text);
-
-
-                    txt_newqty.Text = (c_ty - pty).ToString();
-                    DataGridViewRow newRow1 = new DataGridViewRow();
-                    newRow1.CreateCells(dgv_qtupdate);
-                    newRow1.Cells[0].Value = txt_productname.Text;
-                    newRow1.Cells[1].Value = txt_newqty.Text;
-                    dgv_qtupdate.Rows.Add(newRow1);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Searched Product Not Found or Product Quantity Must Be In Numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -296,65 +325,25 @@ namespace EasyBuy.Forms.Cashier
 
         }
 
-        private void LoadComboBox()
-        {
-            cmb_productcategory.Items.Clear();
-            //con.Open();
-            //cmd = new SqlCommand("Select Category_Name from Category_Tbl", con);
-            //cmd.ExecuteNonQuery();
-            //DataTable dt = new DataTable();
-            //SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //da.Fill(dt);
 
-            //foreach (DataRow dr in dt.Rows)
-            //{
-            //    cmb_productcategory.Items.Add(dr["Category_Name"].ToString());
-            //}
-            //con.Close();
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            txt_productname.Clear();
-            txt_search.Clear();
-            txt_productquantity.Clear();
-            cmb_productcategory.Items.Clear();
-            txt_productquantity.Text = "0";
-            txt_productprice.Clear();
-            dataGridView1.DataSource = null;
-            dataGridView1.Refresh();
-            cmb_productcategory.ResetText();
+            txtProductName.Clear();
+            txtSearch.Clear();
+            txtProductQuantity.Clear();
+            cmbProductCategory.Items.Clear();
+            txtProductQuantity.Text = "0";
+            txtProductPrice.Clear();
+            searchProductGridView.DataSource = null;
+            searchProductGridView.Refresh();
+            cmbProductCategory.ResetText();
             LoadComboBox();
         }
 
-        private void cmb_productcategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //con.Open();
-            //cmd = new SqlCommand("Select Product_Name,Product_Price,Prodcut_Quantity from Product_Table where  Product_Name like '%'+@a+'%' and Product_Category='" + cmb_productcategory.SelectedItem + "'", con);
-            //cmd.Parameters.AddWithValue("a", txt_search.Text);
-            //cmd.ExecuteNonQuery();
-            //adapter = new SqlDataAdapter(cmd);
-            //dt = new DataTable();
-            //adapter.Fill(dt);
-            //dataGridView1.DataSource = dt;
-            //con.Close();
 
-            dataGridView1.Columns[0].Width = 80;
-            dataGridView1.Columns[1].Width = 67;
-            dataGridView1.Columns[2].Width = 60;
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (cmb_productcategory.SelectedIndex == -1)
-            {
-                SearchProducts();
-            }
-            else
-            {
-                SearchProducts2();
-            }
-        }
+        
         private void OutPutBill()
         {
             try
@@ -387,13 +376,13 @@ namespace EasyBuy.Forms.Cashier
                     //{
                     //    MessageBox.Show("Transaction Failed Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //}
-                    
+
                 }
                 else if (label15.Text != "Member Found" && radioButton2.Checked == true)
                 {
-                        MessageBox.Show("Member Not Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Member Not Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (label15.Text == "Member Found"  && radioButton2.Checked == true)
+                else if (label15.Text == "Member Found" && radioButton2.Checked == true)
                 {
                     //con.Open();
                     //cmd = new SqlCommand("Insert Into Bill_Table values ('" + txt_billid.Text + "','" + DateTime.Today + "','" + CashierName.Text + "','Member','" + txt_memberid.Text + "','" + Convert.ToInt32(txt_subtotal.Text) + "')", con);
@@ -413,7 +402,7 @@ namespace EasyBuy.Forms.Cashier
                     //{
                     //    MessageBox.Show("Transaction Failed Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //}
-                    
+
                 }
             }
 
@@ -560,11 +549,11 @@ namespace EasyBuy.Forms.Cashier
 
         private void btn_backspace_Click(object sender, EventArgs e)
         {
-            if(SelectedTextBox.Text.Length !=0 )
+            if (SelectedTextBox.Text.Length != 0)
             {
                 SelectedTextBox.Text = SelectedTextBox.Text.Remove(SelectedTextBox.Text.Length - 1, 1);
             }
-            
+
         }
 
         private void txt_memberid_Click(object sender, EventArgs e)
@@ -582,14 +571,14 @@ namespace EasyBuy.Forms.Cashier
             int dis_pt;
             try
             {
-                dis_pt = Convert.ToInt32(textBox2.Text);
+                dis_pt = Convert.ToInt32(txtDiscunt.Text);
                 dis = subtotal * dis_pt / 100;
-                txt_discount.Text = "Rs. "+dis.ToString();
+                txtDiscountAmount.Text = "Rs. " + dis.ToString();
                 txt_discount2.Text = dis.ToString();
                 grandtotal = subtotal - dis;
                 txt_grandtotal.Text = "Rs " + grandtotal.ToString();
             }
-           catch
+            catch
             {
 
             }
@@ -600,7 +589,7 @@ namespace EasyBuy.Forms.Cashier
             SelectedTextBox = sender as TextBox;
         }
 
-       private void UpdateQTY()
+        private void UpdateQTY()
         {
             for (int x = 0; x < dgv_qtupdate.Rows.Count - 1; x++)
             {
@@ -616,23 +605,23 @@ namespace EasyBuy.Forms.Cashier
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("Keels-Super", new Font("Fake Receipt",20,FontStyle.Regular),Brushes.Black, new Point(285,20));
-            e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt",10, FontStyle.Regular), Brushes.Black, new Point(30,80));
+            e.Graphics.DrawString("Keels-Super", new Font("Fake Receipt", 20, FontStyle.Regular), Brushes.Black, new Point(285, 20));
+            e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(30, 80));
             e.Graphics.DrawString("NO. 968 , Mahabage Road , Ragama", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 110));
-            e.Graphics.DrawString("Date - "+DateTime.Now, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 140));
-            e.Graphics.DrawString("Bill ID - "+txt_billid.Text + "                                       "+"Cashier Name -"+CashierName.Text, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 170));
+            e.Graphics.DrawString("Date - " + DateTime.Now, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 140));
+            e.Graphics.DrawString("Bill ID - " + txt_billid.Text + "                                       " + "Cashier Name -" + CashierName.Text, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 170));
             e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(30, 200));
             e.Graphics.DrawImage(bit, 30, 230);
-            e.Graphics.DrawString("Grand Total - Rs"+grandtotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 240));
+            e.Graphics.DrawString("Grand Total - Rs" + grandtotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 240));
             e.Graphics.DrawString("_________________________________", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(630, 250));
             e.Graphics.DrawString("Subtotal - Rs" + subtotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 270));
-            e.Graphics.DrawString("Discount - Rs" + dis +"("+ textBox2.Text+ "%)", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 290));
+            e.Graphics.DrawString("Discount - Rs" + dis + "(" + txtDiscunt.Text + "%)", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 290));
 
         }
         Bitmap bit;
         private void PrintBill()
         {
-            
+
             int h = dataGridView2.Height;
             dataGridView2.Height = dataGridView2.RowCount * dataGridView2.RowTemplate.Height * 2;
             bit = new Bitmap(dataGridView2.Width, dataGridView2.Height);
@@ -685,7 +674,7 @@ namespace EasyBuy.Forms.Cashier
 
         private void PointsUpdate()
         {
-            int points=0;
+            int points = 0;
             points = grandtotal / 300;
             //con.Open();
             //cmd = new SqlCommand("Update Member_Tbl set Member_Points = '"+points+"' where Member_ID = '" + txt_memberid.Text + "'", con);
@@ -708,6 +697,8 @@ namespace EasyBuy.Forms.Cashier
             //Cashier_memreg x = new Cashier_memreg();
             //x.Show();   
         }
+
+       
     }
 }
 
