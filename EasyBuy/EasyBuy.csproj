@@ -27,11 +27,6 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Reports - Forms\**" />
-    <EmbeddedResource Remove="Reports - Forms\**" />
-    <None Remove="Reports - Forms\**" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-product-12p %282%29.png" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +50,8 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1652.0" />
+    <PackageReference Include="Microsoft.ReportViewer.WinForms" Version="10.0.40219.1" />
     <PackageReference Include="Microsoft.SqlServer.Types" Version="160.1000.6" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
@@ -63,32 +60,9 @@
     <Compile Remove="Dashboard.Designer.cs" />
     <Compile Remove="Forms\Cashier\ShowMember.cs" />
     <Compile Remove="Forms\Cashier\ShowMember.Designer.cs" />
-    <Compile Remove="Forms\Cashier_memreg.cs" />
-    <Compile Remove="Forms\Cashier_memreg.Designer.cs" />
-    <Compile Remove="Forms\Dashboard.cs" />
-    <Compile Remove="Forms\Dashboard.Designer.cs" />
     <Compile Remove="Keels_SuperMarket_DatabaseDataSet1.Designer.cs" />
-    <Compile Remove="report2.cs" />
-    <Compile Remove="report2.Designer.cs" />
-    <Compile Remove="report3.cs" />
-    <Compile Remove="report3.Designer.cs" />
-    <Compile Remove="report4.cs" />
-    <Compile Remove="report4.Designer.cs" />
-    <Compile Remove="Reports\Report1.cs" />
-    <Compile Remove="Reports\Report1.Designer.cs" />
     <EmbeddedResource Remove="Dashboard.resx" />
     <EmbeddedResource Remove="Forms\Cashier\ShowMember.resx" />
-    <EmbeddedResource Remove="Forms\Cashier_memreg.resx" />
-    <EmbeddedResource Remove="Forms\Dashboard.resx" />
-    <EmbeddedResource Remove="report2.resx" />
-    <EmbeddedResource Remove="report3.resx" />
-    <EmbeddedResource Remove="report4.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Report1.rdlc" />
-    <None Remove="Report2.rdlc" />
-    <None Remove="Report3.rdlc" />
-    <None Remove="Report4.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Model1.tt">
