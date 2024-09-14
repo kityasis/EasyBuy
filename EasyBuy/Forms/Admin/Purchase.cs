@@ -31,10 +31,10 @@ namespace EasyBuy.Forms.Product_Items
             try
             {
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Product.ToListAsync());
-                PurchaseDataGridView.DataSource = products;
+                var purchases = await Task.Run(() => context.Purchase.ToListAsync());
+                PurchaseDataGridView.DataSource = purchases;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -233,8 +233,8 @@ namespace EasyBuy.Forms.Product_Items
         {
             if (txtTotalPrice.Text.Length == 0) return;
             if (txtDiscount.Text.Length == 0) return;
-            txtDiscountAmount.Text = ((Convert.ToDouble(txtTotalPrice.Text) * Convert.ToDouble(txtDiscount.Text)) / 100).ToString();
-            txtTotalPriceAfterDiscount.Text = (Convert.ToDouble(txtTotalPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)).ToString();
+            txtDiscountAmount.Text = Math.Round(((Convert.ToDouble(txtTotalPrice.Text) * Convert.ToDouble(txtDiscount.Text)) / 100), 2).ToString();
+            txtTotalPriceAfterDiscount.Text = Math.Round((Convert.ToDouble(txtTotalPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)), 2).ToString();
         }
 
         private void txtGST_TextChanged(object sender, EventArgs e)
@@ -242,9 +242,10 @@ namespace EasyBuy.Forms.Product_Items
             if (txtTotalPriceAfterDiscount.Text.Length == 0 && txtTotalPrice.Text.Length == 0) return;
             if (txtGST.Text.Length == 0) return;
             var price = string.IsNullOrEmpty(txtTotalPriceAfterDiscount.Text) ? txtTotalPrice.Text : txtTotalPriceAfterDiscount.Text;
-            var gstAmount = (Convert.ToDouble(price) * Convert.ToDouble(txtGST.Text)) / 100;
-            txtSGstAmount.Text = gstAmount.ToString();
-            txtFinalPrice.Text = (Convert.ToDouble(price) + Convert.ToDouble(txtSGstAmount.Text)).ToString();
+            var gstAmount = ((Convert.ToDouble(price) * Convert.ToDouble(txtGST.Text)) / 100) / 2;
+            txtSGstAmount.Text =Math.Round(gstAmount,2).ToString();
+            txtCGstAmount.Text = Math.Round(gstAmount, 2).ToString();
+            txtFinalPrice.Text = Math.Round((Convert.ToDouble(price) + Convert.ToDouble(txtSGstAmount.Text)), 2).ToString();
         }
 
         private async void ProductDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

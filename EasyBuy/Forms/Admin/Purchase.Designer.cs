@@ -41,6 +41,23 @@
             panel1 = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             PurchaseDataGridView = new System.Windows.Forms.DataGridView();
+            idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            supplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            catagoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            totalBaseBuyPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inputGSTPercentageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inputSGSTAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inputCGSTAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            purchaseBindingSource = new System.Windows.Forms.BindingSource(components);
             productBindingSource = new System.Windows.Forms.BindingSource(components);
             txtPrice = new System.Windows.Forms.TextBox();
             label4 = new System.Windows.Forms.Label();
@@ -63,30 +80,13 @@
             groupBox3 = new System.Windows.Forms.GroupBox();
             label6 = new System.Windows.Forms.Label();
             txtCGstAmount = new System.Windows.Forms.TextBox();
-            purchaseBindingSource = new System.Windows.Forms.BindingSource(components);
-            idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            supplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            catagoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            basePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            totalBaseBuyPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inputGSTPercentageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inputSGSTAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inputCGSTAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PurchaseDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)purchaseBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)purchaseBindingSource).BeginInit();
             SuspendLayout();
             // 
             // txtQunatity
@@ -146,7 +146,7 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(1431, 172);
+            btnClear.Location = new System.Drawing.Point(1329, 234);
             btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
             btnClear.Size = new System.Drawing.Size(96, 41);
@@ -161,7 +161,7 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(1431, 113);
+            btnAdd.Location = new System.Drawing.Point(1215, 234);
             btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new System.Drawing.Size(96, 41);
@@ -196,7 +196,7 @@
             panel1.Location = new System.Drawing.Point(0, 0);
             panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(1598, 44);
+            panel1.Size = new System.Drawing.Size(1468, 44);
             panel1.TabIndex = 26;
             // 
             // label1
@@ -219,16 +219,167 @@
             PurchaseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             PurchaseDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, supplierDataGridViewTextBoxColumn, catagoryDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, basePriceDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, totalBaseBuyPriceDataGridViewTextBoxColumn, discountOnBaseBuyPriceDataGridViewTextBoxColumn, totalPurchaseDiscountAmountDataGridViewTextBoxColumn, totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn, inputGSTPercentageDataGridViewTextBoxColumn, inputSGSTAmountDataGridViewTextBoxColumn, inputCGSTAmountDataGridViewTextBoxColumn, totalPurchaseCostInclGSTDataGridViewTextBoxColumn, Edit, Delete });
             PurchaseDataGridView.DataSource = purchaseBindingSource;
-            PurchaseDataGridView.Location = new System.Drawing.Point(27, 239);
+            PurchaseDataGridView.Location = new System.Drawing.Point(27, 296);
             PurchaseDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             PurchaseDataGridView.Name = "PurchaseDataGridView";
             PurchaseDataGridView.ReadOnly = true;
             PurchaseDataGridView.RowHeadersVisible = false;
             PurchaseDataGridView.RowHeadersWidth = 51;
             PurchaseDataGridView.RowTemplate.Height = 24;
-            PurchaseDataGridView.Size = new System.Drawing.Size(1500, 513);
+            PurchaseDataGridView.Size = new System.Drawing.Size(1398, 456);
             PurchaseDataGridView.TabIndex = 39;
             PurchaseDataGridView.CellContentClick += ProductDataGridView_CellContentClick;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Visible = false;
+            idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // supplierDataGridViewTextBoxColumn
+            // 
+            supplierDataGridViewTextBoxColumn.DataPropertyName = "Supplier";
+            supplierDataGridViewTextBoxColumn.HeaderText = "Supplier";
+            supplierDataGridViewTextBoxColumn.MinimumWidth = 6;
+            supplierDataGridViewTextBoxColumn.Name = "supplierDataGridViewTextBoxColumn";
+            supplierDataGridViewTextBoxColumn.ReadOnly = true;
+            supplierDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // catagoryDataGridViewTextBoxColumn
+            // 
+            catagoryDataGridViewTextBoxColumn.DataPropertyName = "Catagory";
+            catagoryDataGridViewTextBoxColumn.HeaderText = "Catagory";
+            catagoryDataGridViewTextBoxColumn.MinimumWidth = 6;
+            catagoryDataGridViewTextBoxColumn.Name = "catagoryDataGridViewTextBoxColumn";
+            catagoryDataGridViewTextBoxColumn.ReadOnly = true;
+            catagoryDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // basePriceDataGridViewTextBoxColumn
+            // 
+            basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
+            basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
+            basePriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
+            basePriceDataGridViewTextBoxColumn.ReadOnly = true;
+            basePriceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
+            quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            quantityDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // totalBaseBuyPriceDataGridViewTextBoxColumn
+            // 
+            totalBaseBuyPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalBaseBuyPrice";
+            totalBaseBuyPriceDataGridViewTextBoxColumn.HeaderText = "TotalBaseBuyPrice";
+            totalBaseBuyPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            totalBaseBuyPriceDataGridViewTextBoxColumn.Name = "totalBaseBuyPriceDataGridViewTextBoxColumn";
+            totalBaseBuyPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            totalBaseBuyPriceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // discountOnBaseBuyPriceDataGridViewTextBoxColumn
+            // 
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn.DataPropertyName = "DiscountOnBaseBuyPrice";
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn.HeaderText = "DiscountOnBaseBuyPrice";
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn.Name = "discountOnBaseBuyPriceDataGridViewTextBoxColumn";
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            discountOnBaseBuyPriceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // totalPurchaseDiscountAmountDataGridViewTextBoxColumn
+            // 
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.DataPropertyName = "TotalPurchaseDiscountAmount";
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.HeaderText = "TotalPurchaseDiscountAmount";
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.Name = "totalPurchaseDiscountAmountDataGridViewTextBoxColumn";
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn
+            // 
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.DataPropertyName = "TotalBaseBuyPriceAfterDiscount";
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.HeaderText = "TotalBaseBuyPriceAfterDiscount";
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.Name = "totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn";
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.ReadOnly = true;
+            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // inputGSTPercentageDataGridViewTextBoxColumn
+            // 
+            inputGSTPercentageDataGridViewTextBoxColumn.DataPropertyName = "InputGSTPercentage";
+            inputGSTPercentageDataGridViewTextBoxColumn.HeaderText = "InputGSTPercentage";
+            inputGSTPercentageDataGridViewTextBoxColumn.MinimumWidth = 6;
+            inputGSTPercentageDataGridViewTextBoxColumn.Name = "inputGSTPercentageDataGridViewTextBoxColumn";
+            inputGSTPercentageDataGridViewTextBoxColumn.ReadOnly = true;
+            inputGSTPercentageDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // inputSGSTAmountDataGridViewTextBoxColumn
+            // 
+            inputSGSTAmountDataGridViewTextBoxColumn.DataPropertyName = "InputSGSTAmount";
+            inputSGSTAmountDataGridViewTextBoxColumn.HeaderText = "InputSGSTAmount";
+            inputSGSTAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            inputSGSTAmountDataGridViewTextBoxColumn.Name = "inputSGSTAmountDataGridViewTextBoxColumn";
+            inputSGSTAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            inputSGSTAmountDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // inputCGSTAmountDataGridViewTextBoxColumn
+            // 
+            inputCGSTAmountDataGridViewTextBoxColumn.DataPropertyName = "InputCGSTAmount";
+            inputCGSTAmountDataGridViewTextBoxColumn.HeaderText = "InputCGSTAmount";
+            inputCGSTAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            inputCGSTAmountDataGridViewTextBoxColumn.Name = "inputCGSTAmountDataGridViewTextBoxColumn";
+            inputCGSTAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            inputCGSTAmountDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // totalPurchaseCostInclGSTDataGridViewTextBoxColumn
+            // 
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.DataPropertyName = "TotalPurchaseCostInclGST";
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.HeaderText = "TotalPurchaseCostInclGST";
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.Name = "totalPurchaseCostInclGSTDataGridViewTextBoxColumn";
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.ReadOnly = true;
+            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // Edit
+            // 
+            Edit.HeaderText = "Edit";
+            Edit.MinimumWidth = 6;
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Text = "Edit";
+            Edit.UseColumnTextForButtonValue = true;
+            Edit.Width = 125;
+            // 
+            // Delete
+            // 
+            Delete.HeaderText = "Delete";
+            Delete.MinimumWidth = 6;
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            Delete.Width = 125;
+            // 
+            // purchaseBindingSource
+            // 
+            purchaseBindingSource.DataSource = typeof(Models.Purchase);
             // 
             // productBindingSource
             // 
@@ -472,163 +623,12 @@
             txtCGstAmount.Size = new System.Drawing.Size(98, 27);
             txtCGstAmount.TabIndex = 856;
             // 
-            // purchaseBindingSource
-            // 
-            purchaseBindingSource.DataSource = typeof(Models.Purchase);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            idDataGridViewTextBoxColumn.Visible = false;
-            idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // supplierDataGridViewTextBoxColumn
-            // 
-            supplierDataGridViewTextBoxColumn.DataPropertyName = "Supplier";
-            supplierDataGridViewTextBoxColumn.HeaderText = "Supplier";
-            supplierDataGridViewTextBoxColumn.MinimumWidth = 6;
-            supplierDataGridViewTextBoxColumn.Name = "supplierDataGridViewTextBoxColumn";
-            supplierDataGridViewTextBoxColumn.ReadOnly = true;
-            supplierDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // catagoryDataGridViewTextBoxColumn
-            // 
-            catagoryDataGridViewTextBoxColumn.DataPropertyName = "Catagory";
-            catagoryDataGridViewTextBoxColumn.HeaderText = "Catagory";
-            catagoryDataGridViewTextBoxColumn.MinimumWidth = 6;
-            catagoryDataGridViewTextBoxColumn.Name = "catagoryDataGridViewTextBoxColumn";
-            catagoryDataGridViewTextBoxColumn.ReadOnly = true;
-            catagoryDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.ReadOnly = true;
-            nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // basePriceDataGridViewTextBoxColumn
-            // 
-            basePriceDataGridViewTextBoxColumn.DataPropertyName = "BasePrice";
-            basePriceDataGridViewTextBoxColumn.HeaderText = "BasePrice";
-            basePriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            basePriceDataGridViewTextBoxColumn.Name = "basePriceDataGridViewTextBoxColumn";
-            basePriceDataGridViewTextBoxColumn.ReadOnly = true;
-            basePriceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            quantityDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // totalBaseBuyPriceDataGridViewTextBoxColumn
-            // 
-            totalBaseBuyPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalBaseBuyPrice";
-            totalBaseBuyPriceDataGridViewTextBoxColumn.HeaderText = "TotalBaseBuyPrice";
-            totalBaseBuyPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            totalBaseBuyPriceDataGridViewTextBoxColumn.Name = "totalBaseBuyPriceDataGridViewTextBoxColumn";
-            totalBaseBuyPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            totalBaseBuyPriceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // discountOnBaseBuyPriceDataGridViewTextBoxColumn
-            // 
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn.DataPropertyName = "DiscountOnBaseBuyPrice";
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn.HeaderText = "DiscountOnBaseBuyPrice";
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn.Name = "discountOnBaseBuyPriceDataGridViewTextBoxColumn";
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            discountOnBaseBuyPriceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // totalPurchaseDiscountAmountDataGridViewTextBoxColumn
-            // 
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.DataPropertyName = "TotalPurchaseDiscountAmount";
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.HeaderText = "TotalPurchaseDiscountAmount";
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.Name = "totalPurchaseDiscountAmountDataGridViewTextBoxColumn";
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            totalPurchaseDiscountAmountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn
-            // 
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.DataPropertyName = "TotalBaseBuyPriceAfterDiscount";
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.HeaderText = "TotalBaseBuyPriceAfterDiscount";
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.Name = "totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn";
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.ReadOnly = true;
-            totalBaseBuyPriceAfterDiscountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // inputGSTPercentageDataGridViewTextBoxColumn
-            // 
-            inputGSTPercentageDataGridViewTextBoxColumn.DataPropertyName = "InputGSTPercentage";
-            inputGSTPercentageDataGridViewTextBoxColumn.HeaderText = "InputGSTPercentage";
-            inputGSTPercentageDataGridViewTextBoxColumn.MinimumWidth = 6;
-            inputGSTPercentageDataGridViewTextBoxColumn.Name = "inputGSTPercentageDataGridViewTextBoxColumn";
-            inputGSTPercentageDataGridViewTextBoxColumn.ReadOnly = true;
-            inputGSTPercentageDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // inputSGSTAmountDataGridViewTextBoxColumn
-            // 
-            inputSGSTAmountDataGridViewTextBoxColumn.DataPropertyName = "InputSGSTAmount";
-            inputSGSTAmountDataGridViewTextBoxColumn.HeaderText = "InputSGSTAmount";
-            inputSGSTAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            inputSGSTAmountDataGridViewTextBoxColumn.Name = "inputSGSTAmountDataGridViewTextBoxColumn";
-            inputSGSTAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            inputSGSTAmountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // inputCGSTAmountDataGridViewTextBoxColumn
-            // 
-            inputCGSTAmountDataGridViewTextBoxColumn.DataPropertyName = "InputCGSTAmount";
-            inputCGSTAmountDataGridViewTextBoxColumn.HeaderText = "InputCGSTAmount";
-            inputCGSTAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            inputCGSTAmountDataGridViewTextBoxColumn.Name = "inputCGSTAmountDataGridViewTextBoxColumn";
-            inputCGSTAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            inputCGSTAmountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // totalPurchaseCostInclGSTDataGridViewTextBoxColumn
-            // 
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.DataPropertyName = "TotalPurchaseCostInclGST";
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.HeaderText = "TotalPurchaseCostInclGST";
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.Name = "totalPurchaseCostInclGSTDataGridViewTextBoxColumn";
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            totalPurchaseCostInclGSTDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // Edit
-            // 
-            Edit.HeaderText = "Edit";
-            Edit.MinimumWidth = 6;
-            Edit.Name = "Edit";
-            Edit.ReadOnly = true;
-            Edit.Text = "Edit";
-            Edit.UseColumnTextForButtonValue = true;
-            Edit.Width = 125;
-            // 
-            // Delete
-            // 
-            Delete.HeaderText = "Delete";
-            Delete.MinimumWidth = 6;
-            Delete.Name = "Delete";
-            Delete.ReadOnly = true;
-            Delete.Text = "Delete";
-            Delete.UseColumnTextForButtonValue = true;
-            Delete.Width = 125;
-            // 
             // Purchase
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.White;
-            ClientSize = new System.Drawing.Size(1598, 786);
+            ClientSize = new System.Drawing.Size(1468, 786);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -644,6 +644,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PurchaseDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)purchaseBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -651,7 +652,6 @@
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)purchaseBindingSource).EndInit();
             ResumeLayout(false);
         }
 
