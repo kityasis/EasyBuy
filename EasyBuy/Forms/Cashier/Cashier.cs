@@ -63,7 +63,7 @@ namespace EasyBuy.Forms.Cashier
                 string search = txtSearch.Text;
                 await using var context = new EasyBuyContext();
                 var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(search) && x.Catagory.Contains(cmbProductCategory.Text)).ToListAsync());
-                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPurchaseCostInclGST, x.Quantity });
+                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPriceIncludingGST, x.Quantity });
                 searchProductGridView.Columns[0].Width = 80;
                 searchProductGridView.Columns[1].Width = 67;
                 searchProductGridView.Columns[2].Width = 60;
@@ -81,7 +81,7 @@ namespace EasyBuy.Forms.Cashier
                 string search = txtSearch.Text;
                 await using var context = new EasyBuyContext();
                 var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(search)).ToListAsync());
-                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPurchaseCostInclGST, x.Quantity }).ToList();
+                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPriceIncludingGST, x.Quantity }).ToList();
                 searchProductGridView.Columns[0].Width = 80;
                 searchProductGridView.Columns[1].Width = 67;
                 searchProductGridView.Columns[2].Width = 60;
@@ -112,7 +112,7 @@ namespace EasyBuy.Forms.Cashier
                 string search = cmbProductCategory.Text;
                 await using var context = new EasyBuyContext();
                 var products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(search)).ToListAsync());
-                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPurchaseCostInclGST, x.Quantity }).ToList();
+                searchProductGridView.DataSource = products.Select(x => new { x.Name, x.TotalPriceIncludingGST, x.Quantity }).ToList();
                 searchProductGridView.Columns[0].Width = 80;
                 searchProductGridView.Columns[1].Width = 67;
                 searchProductGridView.Columns[2].Width = 60;

@@ -2,7 +2,6 @@
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
@@ -18,10 +17,10 @@ namespace EasyBuy.Forms.Product_Items
         }
         private void Product_Load(object sender, EventArgs e)
         {
-            ProductDataGridView.EnableHeadersVisualStyles = false;
-            ProductDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
-            ProductDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            ProductDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
+            PurchaseDataGridView.EnableHeadersVisualStyles = false;
+            PurchaseDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
+            PurchaseDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PurchaseDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
 
             RefreshData();
             LoadCategoryComboBox();
@@ -33,7 +32,7 @@ namespace EasyBuy.Forms.Product_Items
             {
                 await using var context = new EasyBuyContext();
                 var products = await Task.Run(() => context.Product.ToListAsync());
-                ProductDataGridView.DataSource = products;
+                PurchaseDataGridView.DataSource = products;
             }
             catch (Exception ex)
             {
@@ -81,7 +80,7 @@ namespace EasyBuy.Forms.Product_Items
             else if (txtQunatity.Text.Length == 0) MessageBox.Show("Product Qunatity Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (txtTotalPrice.Text.Length == 0) MessageBox.Show("Product TotalPrice Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (txtGST.Text.Length == 0) MessageBox.Show("Product Gst Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (txtGstAmount.Text.Length == 0) MessageBox.Show("Product Gst Amount Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (txtSGstAmount.Text.Length == 0) MessageBox.Show("Product Gst Amount Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (txtFinalPrice.Text.Length == 0) MessageBox.Show("Product Final Price Cannot Be Blanck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -89,10 +88,8 @@ namespace EasyBuy.Forms.Product_Items
                 try
                 {
                     await using var context = new EasyBuyContext();
-                    var product = new Models.Product()
-                    {
-
-                        Code = txtBarcode.Text,
+                    var purchase = new Models.Purchase()
+                    {                      
                         Supplier = cmbSupplier.Text,
                         Catagory = cmbCategory.Text,
                         Name = txtName.Text.Trim(),
@@ -103,19 +100,20 @@ namespace EasyBuy.Forms.Product_Items
                         TotalPurchaseDiscountAmount = Convert.ToDecimal(txtDiscountAmount.Text),
                         TotalBaseBuyPriceAfterDiscount = Convert.ToDecimal(txtTotalPriceAfterDiscount.Text),
                         InputGSTPercentage = Convert.ToDecimal(txtGST.Text),
-                        InputGSTAmount = Convert.ToDecimal(txtGstAmount.Text),
+                        InputSGSTAmount = Convert.ToDecimal(txtSGstAmount.Text),
+                        InputCGSTAmount = Convert.ToDecimal(txtCGstAmount.Text),
                         TotalPurchaseCostInclGST = Convert.ToDecimal(txtFinalPrice.Text)
 
                     };
                     if (btnAdd.Text == "Add")
                     {
 
-                        await Task.Run(() => context.Product.Add(product));
+                        await Task.Run(() => context.Purchase.Add(purchase));
                     }
                     else
                     {
-                        product.Id = _id;
-                        await Task.Run(() => context.Product.Update(product));
+                        purchase.Id = _id;
+                        await Task.Run(() => context.Purchase.Update(purchase));
                         btnAdd.Text = "Add";
 
                     }
@@ -148,8 +146,7 @@ namespace EasyBuy.Forms.Product_Items
         }
         private void Clear()
         {
-            txtName.Clear();
-            txtBarcode.Clear();
+            txtName.Clear();       
             txtPrice.Clear();
             txtQunatity.Clear();
             txtTotalPrice.Clear();
@@ -157,7 +154,8 @@ namespace EasyBuy.Forms.Product_Items
             txtDiscountAmount.Clear();
             txtTotalPriceAfterDiscount.Clear();
             txtGST.Clear();
-            txtGstAmount.Clear();
+            txtSGstAmount.Clear();
+            txtCGstAmount.Clear();
             txtFinalPrice.Clear();
             cmbCategory.SelectedIndex = -1;
             cmbSupplier.SelectedIndex = -1;
@@ -245,14 +243,8 @@ namespace EasyBuy.Forms.Product_Items
             if (txtGST.Text.Length == 0) return;
             var price = string.IsNullOrEmpty(txtTotalPriceAfterDiscount.Text) ? txtTotalPrice.Text : txtTotalPriceAfterDiscount.Text;
             var gstAmount = (Convert.ToDouble(price) * Convert.ToDouble(txtGST.Text)) / 100;
-            txtGstAmount.Text = gstAmount.ToString();
-            txtFinalPrice.Text = (Convert.ToDouble(price) + Convert.ToDouble(txtGstAmount.Text)).ToString();
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            if (txtName.Text?.Length <= 3) return;
-            txtBarcode.Text = txtName.Text?.Trim()?.Substring(0, 3);
+            txtSGstAmount.Text = gstAmount.ToString();
+            txtFinalPrice.Text = (Convert.ToDouble(price) + Convert.ToDouble(txtSGstAmount.Text)).ToString();
         }
 
         private async void ProductDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -260,7 +252,7 @@ namespace EasyBuy.Forms.Product_Items
             var senderGrid = (DataGridView)sender;
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                var id = Convert.ToInt64(ProductDataGridView[0, e.RowIndex].Value);
+                var id = Convert.ToInt64(PurchaseDataGridView[0, e.RowIndex].Value);
                 if (e.ColumnIndex == 15)
                 {
                     if (MessageBox.Show("Are You Sure You Want To Delete", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -268,8 +260,8 @@ namespace EasyBuy.Forms.Product_Items
                         try
                         {
                             await using var context = new EasyBuyContext();
-                            var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == id));
-                            await Task.Run(() => context.Product.Remove(product));
+                            var purchase = await Task.Run(() => context.Purchase.FirstOrDefaultAsync(x => x.Id == id));
+                            await Task.Run(() => context.Purchase.Remove(purchase));
                             await context.SaveChangesAsync();                            
                         }
                         catch (Exception)
@@ -283,9 +275,8 @@ namespace EasyBuy.Forms.Product_Items
                     try
                     {
                         await using var context = new EasyBuyContext();
-                        var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == id));
-                        txtName.Text= product.Name;
-                        txtBarcode.Text= product.Code;
+                        var product = await Task.Run(() => context.Purchase.FirstOrDefaultAsync(x => x.Id == id));
+                        txtName.Text= product.Name;                       
                         txtPrice.Text= product.BasePrice.ToString();
                         txtQunatity.Text= product.Quantity.ToString();
                         txtTotalPrice.Text= product.TotalBaseBuyPrice.ToString();
@@ -293,7 +284,8 @@ namespace EasyBuy.Forms.Product_Items
                         txtDiscountAmount.Text= product.TotalPurchaseDiscountAmount.ToString();
                         txtTotalPriceAfterDiscount.Text= product.TotalBaseBuyPriceAfterDiscount.ToString();
                         txtGST.Text= product.InputGSTPercentage.ToString();
-                        txtGstAmount.Text= product.InputGSTAmount.ToString();
+                        txtSGstAmount.Text= product.InputSGSTAmount.ToString();
+                        txtCGstAmount.Text = product.InputCGSTAmount.ToString();
                         txtFinalPrice.Text= product.TotalPurchaseCostInclGST.ToString()    ;
                         cmbCategory.Text = product.Catagory;
                         cmbSupplier.Text = product.Supplier;
