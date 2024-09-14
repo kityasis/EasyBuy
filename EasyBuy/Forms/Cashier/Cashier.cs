@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 using Microsoft.EntityFrameworkCore;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Data;
 namespace EasyBuy.Forms.Cashier
 {
@@ -19,7 +16,46 @@ namespace EasyBuy.Forms.Cashier
         TextBox SelectedTextBox = null;
         int dis = 0;
         public static string mem_id_pass;
+        private void Cashier_Load(object sender, EventArgs e)
+        {
+            txt_mobilenum.Enabled = false;
+            txt_memberid.Enabled = false;
+            label2.Enabled = false;
+            label3.Enabled = false;
+            txtBillNumber.ReadOnly = true;
+            GenerateBillNumber();
+            LoadComboBox();
+            this.radioButton1.Checked = true;
 
+            if (cmbProductCategory.SelectedIndex == -1)
+            {
+                SearchProducts();
+            }
+            else
+            {
+                SearchProducts2();
+            }
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
+            txtProductName.ReadOnly = true;
+            txtProductPrice.ReadOnly = true;
+            datelb.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
+        }       
+        private async void GenerateBillNumber()
+        {
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var billCount = await Task.Run(() => context.Bill.CountAsync());
+                txtBillNumber.Text = "EASYBYE-" + (billCount + 1);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private async void SearchProducts2()
         {
             try
@@ -94,14 +130,13 @@ namespace EasyBuy.Forms.Cashier
                 txtProductName.Text = row.Cells["Name"].Value.ToString();
                 txtProductPrice.Text = row.Cells["TotalPurchaseCostInclGST"].Value.ToString();
                 txtProductQuantity.Text = row.Cells["Quantity"].Value.ToString();
-
             }
             catch
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -156,11 +191,8 @@ namespace EasyBuy.Forms.Cashier
                     grandtotal = subtotal - dis;
                     txt_grandtotal.Text = "Rs " + grandtotal.ToString();
                     textBox2_TextChanged(sender, new EventArgs());
-
                     int c_ty = Convert.ToInt32(txt_cty.Text);
                     int pty = Convert.ToInt32(txtProductQuantity.Text);
-
-
                     txt_newqty.Text = (c_ty - pty).ToString();
                     DataGridViewRow newRow1 = new DataGridViewRow();
                     newRow1.CreateCells(dgv_qtupdate);
@@ -176,19 +208,9 @@ namespace EasyBuy.Forms.Cashier
         }
 
 
-        private void GenBID()
-        {
-            //con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
-            //con.Open();
-            //cmd = new SqlCommand("Select count (Bill_ID) from [Bill_Table]", con);
-            //cmd.ExecuteNonQuery();
-            //int count = Convert.ToInt32(((SqlCommand)cmd).ExecuteScalar());
-            //count++;
-            //txt_billid.Text = "BID-" + count.ToString();
-            //con.Close();
-        }
+       
 
-        private void btn_exit_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are You Sure You Want To Exit", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -231,13 +253,14 @@ namespace EasyBuy.Forms.Cashier
 
         private void btn_settlepayments_Click(object sender, EventArgs e)
         {
-            slide(btn_settlepayments);
-            OutPutBill();
+            PrintBill();
+            //slide(btn_settlepayments);
+            //OutPutBill();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
-            slide(btn_logout);
+            slide(btnLogout);
             if (MessageBox.Show("Are You Sure You Want To Log Out", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Login x = new Login();
@@ -262,40 +285,7 @@ namespace EasyBuy.Forms.Cashier
             label3.Enabled = true;
         }
 
-        private void Cashier_Load(object sender, EventArgs e)
-        {
-            txt_mobilenum.Enabled = false;
-            txt_memberid.Enabled = false;
-            label2.Enabled = false;
-            label3.Enabled = false;
-            txt_billid.ReadOnly = true;
-            GenBID();
-            LoadComboBox();
-            this.radioButton1.Checked = true;
-
-            if (cmbProductCategory.SelectedIndex == -1)
-            {
-                SearchProducts();
-            }
-            else
-            {
-                SearchProducts2();
-            }
-            us.Text = Login.UserName;
-            us.Visible = false;
-            // LoadAccDetails();
-
-            LoadPFP();
-            //con = new SqlConnection("Data Source=DESKTOP-SMVQK5B\\SQLEXPRESS;Initial Catalog=Keels_SuperMarket_Database;Integrated Security=True");
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-
-            txtProductName.ReadOnly = true;
-            txtProductPrice.ReadOnly = true;
-            datelb.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
-        }
+       
 
         private void txt_search_TextChanged(object sender, EventArgs e)
         {
@@ -343,7 +333,7 @@ namespace EasyBuy.Forms.Cashier
 
 
 
-        
+
         private void OutPutBill()
         {
             try
@@ -412,47 +402,8 @@ namespace EasyBuy.Forms.Cashier
             }
         }
 
-        private void LoadAccDetails()
-        {
-            //con.Open();
-            //cmd = new SqlCommand("Select Full_Name from Employee_Table where User_Name='" + us.Text + "'", con);
-            //SqlDataReader reader = cmd.ExecuteReader();
-            //if (reader.Read())
-            //{
-            //    CashierName.Text = reader["Full_Name"].ToString();
-            //}
-            //con.Close();
-        }
-
-        private void LoadPFP()
-        {
-            GraphicsPath gp = new GraphicsPath();
-            gp.AddEllipse(pictureBox1.DisplayRectangle);
-            pictureBox1.Region = new Region(gp);
-
-            //con.Open();
-            //cmd = new SqlCommand("Select Full_Name,Image from Employee_Table where User_Name='" + us.Text + "'", con);
-            //SqlDataReader dr = cmd.ExecuteReader();
-            //dr.Read();
-
-            //if (dr.HasRows)
-            //{
-            //    CashierName.Text = dr["Full_Name"].ToString();
-            //    byte[] Images = (byte[])dr[1];
-
-            //    if (Images == null)
-            //    {
-            //        pictureBox1.Image = null;
-            //    }
-            //    else
-            //    {
-            //        MemoryStream memoryStream = new MemoryStream(Images);
-            //        pictureBox1.Image = Image.FromStream(memoryStream);
-            //    }
-            //}
-            //con.Close();
-
-        }
+       
+      
 
         private void SubMenu_BillDetails_Paint(object sender, PaintEventArgs e)
         {
@@ -605,11 +556,11 @@ namespace EasyBuy.Forms.Cashier
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("Keels-Super", new Font("Fake Receipt", 20, FontStyle.Regular), Brushes.Black, new Point(285, 20));
+            e.Graphics.DrawString("Easy Bye", new Font("Fake Receipt", 20, FontStyle.Regular), Brushes.Black, new Point(285, 20));
             e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(30, 80));
             e.Graphics.DrawString("NO. 968 , Mahabage Road , Ragama", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 110));
             e.Graphics.DrawString("Date - " + DateTime.Now, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 140));
-            e.Graphics.DrawString("Bill ID - " + txt_billid.Text + "                                       " + "Cashier Name -" + CashierName.Text, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 170));
+            e.Graphics.DrawString("Bill ID - " + txtBillNumber.Text + "                                       " + "Cashier Name -" + CashierName.Text, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 170));
             e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(30, 200));
             e.Graphics.DrawImage(bit, 30, 230);
             e.Graphics.DrawString("Grand Total - Rs" + grandtotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 240));
@@ -698,7 +649,7 @@ namespace EasyBuy.Forms.Cashier
             //x.Show();   
         }
 
-       
+        
     }
 }
 

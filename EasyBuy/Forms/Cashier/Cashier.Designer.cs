@@ -32,16 +32,14 @@
             panel1 = new System.Windows.Forms.Panel();
             button4 = new System.Windows.Forms.Button();
             btn_canceltransaction = new System.Windows.Forms.Button();
-            btn_logout = new System.Windows.Forms.Button();
+            btnLogout = new System.Windows.Forms.Button();
             panel6 = new System.Windows.Forms.Panel();
             btn_settlepayments = new System.Windows.Forms.Button();
             btn_newtransaction = new System.Windows.Forms.Button();
             panel3 = new System.Windows.Forms.Panel();
             panel8 = new System.Windows.Forms.Panel();
-            us = new System.Windows.Forms.Label();
             CashierName = new System.Windows.Forms.Label();
             label13 = new System.Windows.Forms.Label();
-            pictureBox1 = new System.Windows.Forms.PictureBox();
             panel2 = new System.Windows.Forms.Panel();
             panel7 = new System.Windows.Forms.Panel();
             panelslide = new System.Windows.Forms.Panel();
@@ -49,7 +47,7 @@
             label5 = new System.Windows.Forms.Label();
             datelb = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
-            btn_exit = new System.Windows.Forms.Button();
+            btnExit = new System.Windows.Forms.Button();
             SubMenu_BillDetails = new System.Windows.Forms.Panel();
             btn_membershow = new System.Windows.Forms.Button();
             label15 = new System.Windows.Forms.Label();
@@ -81,11 +79,10 @@
             panel10 = new System.Windows.Forms.Panel();
             txt_grandtotal = new System.Windows.Forms.Label();
             label12 = new System.Windows.Forms.Label();
-            textBox1 = new System.Windows.Forms.TextBox();
             radioButton2 = new System.Windows.Forms.RadioButton();
             txt_memberid = new System.Windows.Forms.TextBox();
             txt_mobilenum = new System.Windows.Forms.TextBox();
-            txt_billid = new System.Windows.Forms.TextBox();
+            txtBillNumber = new System.Windows.Forms.TextBox();
             radioButton1 = new System.Windows.Forms.RadioButton();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -118,7 +115,6 @@
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             SubMenu_BillDetails.SuspendLayout();
@@ -135,7 +131,7 @@
             panel1.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(btn_canceltransaction);
-            panel1.Controls.Add(btn_logout);
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(btn_settlepayments);
             panel1.Controls.Add(btn_newtransaction);
@@ -157,7 +153,7 @@
             button4.ForeColor = System.Drawing.Color.Honeydew;
             button4.Image = (System.Drawing.Image)resources.GetObject("button4.Image");
             button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            button4.Location = new System.Drawing.Point(0, 295);
+            button4.Location = new System.Drawing.Point(0, 242);
             button4.Name = "button4";
             button4.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
             button4.Size = new System.Drawing.Size(245, 42);
@@ -178,7 +174,7 @@
             btn_canceltransaction.ForeColor = System.Drawing.Color.Honeydew;
             btn_canceltransaction.Image = (System.Drawing.Image)resources.GetObject("btn_canceltransaction.Image");
             btn_canceltransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btn_canceltransaction.Location = new System.Drawing.Point(0, 253);
+            btn_canceltransaction.Location = new System.Drawing.Point(0, 200);
             btn_canceltransaction.Name = "btn_canceltransaction";
             btn_canceltransaction.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
             btn_canceltransaction.Size = new System.Drawing.Size(245, 42);
@@ -188,26 +184,26 @@
             btn_canceltransaction.UseVisualStyleBackColor = true;
             btn_canceltransaction.Click += btn_canceltransaction_Click;
             // 
-            // btn_logout
+            // btnLogout
             // 
-            btn_logout.Dock = System.Windows.Forms.DockStyle.Bottom;
-            btn_logout.FlatAppearance.BorderSize = 0;
-            btn_logout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
-            btn_logout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkBlue;
-            btn_logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btn_logout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btn_logout.ForeColor = System.Drawing.Color.Honeydew;
-            btn_logout.Image = (System.Drawing.Image)resources.GetObject("btn_logout.Image");
-            btn_logout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btn_logout.Location = new System.Drawing.Point(0, 699);
-            btn_logout.Name = "btn_logout";
-            btn_logout.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            btn_logout.Size = new System.Drawing.Size(245, 42);
-            btn_logout.TabIndex = 8;
-            btn_logout.Text = "Log Out";
-            btn_logout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btn_logout.UseVisualStyleBackColor = true;
-            btn_logout.Click += btn_logout_Click;
+            btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkBlue;
+            btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = System.Drawing.Color.Honeydew;
+            btnLogout.Image = (System.Drawing.Image)resources.GetObject("btnLogout.Image");
+            btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnLogout.Location = new System.Drawing.Point(0, 699);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
+            btnLogout.Size = new System.Drawing.Size(245, 42);
+            btnLogout.TabIndex = 8;
+            btnLogout.Text = "Log Out";
+            btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btn_logout_Click;
             // 
             // panel6
             // 
@@ -228,7 +224,7 @@
             btn_settlepayments.ForeColor = System.Drawing.Color.Honeydew;
             btn_settlepayments.Image = (System.Drawing.Image)resources.GetObject("btn_settlepayments.Image");
             btn_settlepayments.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btn_settlepayments.Location = new System.Drawing.Point(0, 211);
+            btn_settlepayments.Location = new System.Drawing.Point(0, 158);
             btn_settlepayments.Name = "btn_settlepayments";
             btn_settlepayments.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
             btn_settlepayments.Size = new System.Drawing.Size(245, 42);
@@ -249,7 +245,7 @@
             btn_newtransaction.ForeColor = System.Drawing.Color.Honeydew;
             btn_newtransaction.Image = (System.Drawing.Image)resources.GetObject("btn_newtransaction.Image");
             btn_newtransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btn_newtransaction.Location = new System.Drawing.Point(0, 169);
+            btn_newtransaction.Location = new System.Drawing.Point(0, 116);
             btn_newtransaction.Name = "btn_newtransaction";
             btn_newtransaction.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
             btn_newtransaction.Size = new System.Drawing.Size(245, 42);
@@ -263,14 +259,12 @@
             // 
             panel3.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
             panel3.Controls.Add(panel8);
-            panel3.Controls.Add(us);
             panel3.Controls.Add(CashierName);
             panel3.Controls.Add(label13);
-            panel3.Controls.Add(pictureBox1);
             panel3.Dock = System.Windows.Forms.DockStyle.Top;
             panel3.Location = new System.Drawing.Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new System.Drawing.Size(245, 169);
+            panel3.Size = new System.Drawing.Size(245, 116);
             panel3.TabIndex = 0;
             // 
             // panel8
@@ -282,23 +276,12 @@
             panel8.Size = new System.Drawing.Size(245, 38);
             panel8.TabIndex = 4;
             // 
-            // us
-            // 
-            us.AutoSize = true;
-            us.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            us.ForeColor = System.Drawing.Color.White;
-            us.Location = new System.Drawing.Point(114, 102);
-            us.Name = "us";
-            us.Size = new System.Drawing.Size(109, 20);
-            us.TabIndex = 3;
-            us.Text = "Cashier Name";
-            // 
             // CashierName
             // 
             CashierName.AutoSize = true;
             CashierName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             CashierName.ForeColor = System.Drawing.Color.White;
-            CashierName.Location = new System.Drawing.Point(114, 73);
+            CashierName.Location = new System.Drawing.Point(28, 84);
             CashierName.Name = "CashierName";
             CashierName.Size = new System.Drawing.Size(109, 20);
             CashierName.TabIndex = 2;
@@ -309,21 +292,11 @@
             label13.AutoSize = true;
             label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label13.ForeColor = System.Drawing.Color.White;
-            label13.Location = new System.Drawing.Point(115, 52);
+            label13.Location = new System.Drawing.Point(48, 54);
             label13.Name = "label13";
             label13.Size = new System.Drawing.Size(69, 17);
             label13.TabIndex = 1;
             label13.Text = "Welcome!";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = System.Drawing.Color.Navy;
-            pictureBox1.Location = new System.Drawing.Point(21, 52);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(88, 94);
-            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -359,7 +332,7 @@
             panel4.Controls.Add(label5);
             panel4.Controls.Add(datelb);
             panel4.Controls.Add(label11);
-            panel4.Controls.Add(btn_exit);
+            panel4.Controls.Add(btnExit);
             panel4.Dock = System.Windows.Forms.DockStyle.Top;
             panel4.Location = new System.Drawing.Point(249, 0);
             panel4.Name = "panel4";
@@ -399,17 +372,17 @@
             label11.TabIndex = 27;
             label11.Text = "Cashier Point Of Sale";
             // 
-            // btn_exit
+            // btnExit
             // 
-            btn_exit.FlatAppearance.BorderSize = 0;
-            btn_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btn_exit.Image = (System.Drawing.Image)resources.GetObject("btn_exit.Image");
-            btn_exit.Location = new System.Drawing.Point(948, 11);
-            btn_exit.Name = "btn_exit";
-            btn_exit.Size = new System.Drawing.Size(13, 14);
-            btn_exit.TabIndex = 0;
-            btn_exit.UseVisualStyleBackColor = true;
-            btn_exit.Click += btn_exit_Click;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnExit.Image = (System.Drawing.Image)resources.GetObject("btnExit.Image");
+            btnExit.Location = new System.Drawing.Point(948, 11);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new System.Drawing.Size(13, 14);
+            btnExit.TabIndex = 0;
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // SubMenu_BillDetails
             // 
@@ -438,11 +411,10 @@
             SubMenu_BillDetails.Controls.Add(btn_1);
             SubMenu_BillDetails.Controls.Add(panel9);
             SubMenu_BillDetails.Controls.Add(panel10);
-            SubMenu_BillDetails.Controls.Add(textBox1);
             SubMenu_BillDetails.Controls.Add(radioButton2);
             SubMenu_BillDetails.Controls.Add(txt_memberid);
             SubMenu_BillDetails.Controls.Add(txt_mobilenum);
-            SubMenu_BillDetails.Controls.Add(txt_billid);
+            SubMenu_BillDetails.Controls.Add(txtBillNumber);
             SubMenu_BillDetails.Controls.Add(radioButton1);
             SubMenu_BillDetails.Controls.Add(label3);
             SubMenu_BillDetails.Controls.Add(label2);
@@ -784,14 +756,6 @@
             label12.TabIndex = 27;
             label12.Text = "Grand Total (Rs.)";
             // 
-            // textBox1
-            // 
-            textBox1.Location = new System.Drawing.Point(272, 13);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new System.Drawing.Size(14, 23);
-            textBox1.TabIndex = 30;
-            textBox1.Visible = false;
-            // 
             // radioButton2
             // 
             radioButton2.AutoSize = true;
@@ -825,13 +789,13 @@
             txt_mobilenum.Click += txt_mobilenum_Click;
             txt_mobilenum.TextChanged += txt_mobilenum_TextChanged;
             // 
-            // txt_billid
+            // txtBillNumber
             // 
-            txt_billid.BackColor = System.Drawing.Color.FromArgb(206, 214, 224);
-            txt_billid.Location = new System.Drawing.Point(116, 16);
-            txt_billid.Name = "txt_billid";
-            txt_billid.Size = new System.Drawing.Size(88, 23);
-            txt_billid.TabIndex = 4;
+            txtBillNumber.BackColor = System.Drawing.Color.FromArgb(206, 214, 224);
+            txtBillNumber.Location = new System.Drawing.Point(116, 16);
+            txtBillNumber.Name = "txtBillNumber";
+            txtBillNumber.Size = new System.Drawing.Size(140, 23);
+            txtBillNumber.TabIndex = 4;
             // 
             // radioButton1
             // 
@@ -876,9 +840,9 @@
             label1.ForeColor = System.Drawing.Color.MintCream;
             label1.Location = new System.Drawing.Point(27, 16);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(39, 17);
+            label1.Size = new System.Drawing.Size(69, 17);
             label1.TabIndex = 0;
-            label1.Text = "Bill ID";
+            label1.Text = "Bill Number";
             // 
             // btnCancel
             // 
@@ -911,9 +875,9 @@
             // txtProductQuantity
             // 
             txtProductQuantity.BackColor = System.Drawing.Color.FromArgb(206, 214, 224);
-            txtProductQuantity.Location = new System.Drawing.Point(522, 97);
+            txtProductQuantity.Location = new System.Drawing.Point(504, 97);
             txtProductQuantity.Name = "txtProductQuantity";
-            txtProductQuantity.Size = new System.Drawing.Size(132, 23);
+            txtProductQuantity.Size = new System.Drawing.Size(150, 23);
             txtProductQuantity.TabIndex = 24;
             txtProductQuantity.Text = "0";
             txtProductQuantity.Click += txt_productquantity_Click;
@@ -1177,7 +1141,6 @@
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
@@ -1203,10 +1166,9 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btn_newtransaction;
         private System.Windows.Forms.Button btn_settlepayments;
-        private System.Windows.Forms.Button btn_logout;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btn_exit;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panelslide;
         private System.Windows.Forms.Panel SubMenu_BillDetails;
         private System.Windows.Forms.Label label1;
@@ -1215,7 +1177,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_memberid;
         private System.Windows.Forms.TextBox txt_mobilenum;
-        private System.Windows.Forms.TextBox txt_billid;
+        private System.Windows.Forms.TextBox txtBillNumber;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label4;
@@ -1234,11 +1196,9 @@
         private System.Windows.Forms.Label datelb;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox cmbProductCategory;
         private System.Windows.Forms.Label CashierName;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label us;
         private System.Windows.Forms.Label txt_subtotal;
         private System.Windows.Forms.Label txt_discount2;
         private System.Windows.Forms.Label label14;
