@@ -15,7 +15,7 @@ namespace EasyBuy
         }
         private void btn_products_Click(object sender, EventArgs e)
         {
-            openChildForm(new Product());
+            openChildForm(new Purchase());
         }
 
         private void btn_catogories_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace EasyBuy
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openChildForm(new Product());
+            openChildForm(new Purchase());
         }
         private void btn_dashboard_Click(object sender, EventArgs e)
         {

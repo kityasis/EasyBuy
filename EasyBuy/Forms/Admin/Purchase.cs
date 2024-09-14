@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EasyBuy.Forms.Product_Items
 {
-    public partial class Product : Form
+    public partial class Purchase : Form
     {
         private Int64 _id;
-        public Product()
+        public Purchase()
         {
             InitializeComponent();
         }

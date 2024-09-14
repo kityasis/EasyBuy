@@ -40,6 +40,7 @@
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             Panel_ChildForm = new System.Windows.Forms.Panel();
+            button2 = new System.Windows.Forms.Button();
             SubMenu_Panel.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -47,6 +48,7 @@
             // SubMenu_Panel
             // 
             SubMenu_Panel.AutoScroll = true;
+            SubMenu_Panel.Controls.Add(button2);
             SubMenu_Panel.Controls.Add(button1);
             SubMenu_Panel.Controls.Add(btn_nexus);
             SubMenu_Panel.Controls.Add(btn_Employees);
@@ -94,7 +96,7 @@
             btn_nexus.ForeColor = System.Drawing.Color.DarkGreen;
             btn_nexus.Image = Properties.Resources.icons8_debit_card_24;
             btn_nexus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btn_nexus.Location = new System.Drawing.Point(0, 308);
+            btn_nexus.Location = new System.Drawing.Point(0, 364);
             btn_nexus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btn_nexus.Name = "btn_nexus";
             btn_nexus.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -115,7 +117,7 @@
             btn_Employees.ForeColor = System.Drawing.Color.DarkGreen;
             btn_Employees.Image = Properties.Resources.icons8_administrator_male_24;
             btn_Employees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btn_Employees.Location = new System.Drawing.Point(0, 252);
+            btn_Employees.Location = new System.Drawing.Point(0, 308);
             btn_Employees.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btn_Employees.Name = "btn_Employees";
             btn_Employees.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -136,7 +138,7 @@
             btn_catogories.ForeColor = System.Drawing.Color.DarkGreen;
             btn_catogories.Image = Properties.Resources.icons8_click___collect_24;
             btn_catogories.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btn_catogories.Location = new System.Drawing.Point(0, 196);
+            btn_catogories.Location = new System.Drawing.Point(0, 252);
             btn_catogories.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btn_catogories.Name = "btn_catogories";
             btn_catogories.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -184,9 +186,29 @@
             btn_products.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             btn_products.Size = new System.Drawing.Size(270, 56);
             btn_products.TabIndex = 2;
-            btn_products.Text = "Products";
+            btn_products.Text = "Purchase";
             btn_products.UseVisualStyleBackColor = true;
             btn_products.Click += btn_products_Click;
+            // 
+            // btn_products
+            // 
+            button2.Dock = System.Windows.Forms.DockStyle.Top;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button2.ForeColor = System.Drawing.Color.DarkGreen;
+            button2.Image = Properties.Resources.icons8_sell_stock_24;
+            button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button2.Location = new System.Drawing.Point(0, 420);
+            button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            button2.Name = "btn_products";
+            button2.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            button2.Size = new System.Drawing.Size(270, 56);
+            button2.TabIndex = 11;
+            button2.Text = "Products";
+            button2.UseVisualStyleBackColor = true;
             // 
             // btn_dashboard
             // 
@@ -252,6 +274,7 @@
             Panel_ChildForm.Name = "Panel_ChildForm";
             Panel_ChildForm.Size = new System.Drawing.Size(1513, 753);
             Panel_ChildForm.TabIndex = 1;
+            
             // 
             // Home
             // 
@@ -287,6 +310,7 @@
         private System.Windows.Forms.Button btn_nexus;
         private System.Windows.Forms.Panel Panel_ChildForm;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
