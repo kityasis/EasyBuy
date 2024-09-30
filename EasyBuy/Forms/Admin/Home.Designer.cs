@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             SubMenu_Panel = new System.Windows.Forms.Panel();
+            button2 = new System.Windows.Forms.Button();
             button1 = new System.Windows.Forms.Button();
             btn_nexus = new System.Windows.Forms.Button();
             btn_Employees = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             Panel_ChildForm = new System.Windows.Forms.Panel();
-            button2 = new System.Windows.Forms.Button();
             SubMenu_Panel.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -63,6 +63,27 @@
             SubMenu_Panel.Name = "SubMenu_Panel";
             SubMenu_Panel.Size = new System.Drawing.Size(270, 753);
             SubMenu_Panel.TabIndex = 0;
+            // 
+            // button2
+            // 
+            button2.Dock = System.Windows.Forms.DockStyle.Top;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
+            button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
+            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button2.ForeColor = System.Drawing.Color.DarkGreen;
+            button2.Image = Properties.Resources.icons8_sell_stock_24;
+            button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            button2.Location = new System.Drawing.Point(0, 420);
+            button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            button2.Name = "button2";
+            button2.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            button2.Size = new System.Drawing.Size(270, 56);
+            button2.TabIndex = 11;
+            button2.Text = "Products";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -190,26 +211,6 @@
             btn_products.UseVisualStyleBackColor = true;
             btn_products.Click += btn_products_Click;
             // 
-            // btn_products
-            // 
-            button2.Dock = System.Windows.Forms.DockStyle.Top;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MediumSpringGreen;
-            button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
-            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            button2.ForeColor = System.Drawing.Color.DarkGreen;
-            button2.Image = Properties.Resources.icons8_sell_stock_24;
-            button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            button2.Location = new System.Drawing.Point(0, 420);
-            button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            button2.Name = "btn_products";
-            button2.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            button2.Size = new System.Drawing.Size(270, 56);
-            button2.TabIndex = 11;
-            button2.Text = "Products";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // btn_dashboard
             // 
             btn_dashboard.Dock = System.Windows.Forms.DockStyle.Top;
@@ -274,7 +275,6 @@
             Panel_ChildForm.Name = "Panel_ChildForm";
             Panel_ChildForm.Size = new System.Drawing.Size(1513, 753);
             Panel_ChildForm.TabIndex = 1;
-            
             // 
             // Home
             // 

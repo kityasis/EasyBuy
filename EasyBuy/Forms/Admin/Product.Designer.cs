@@ -34,11 +34,11 @@
             btnPrint = new System.Windows.Forms.Button();
             txtBarcode = new System.Windows.Forms.TextBox();
             groupBox3 = new System.Windows.Forms.GroupBox();
-            textBox1 = new System.Windows.Forms.TextBox();
+            txtCGstAmount = new System.Windows.Forms.TextBox();
             label14 = new System.Windows.Forms.Label();
             txtFinalPrice = new System.Windows.Forms.TextBox();
             label13 = new System.Windows.Forms.Label();
-            txtGstAmount = new System.Windows.Forms.TextBox();
+            txtSGstAmount = new System.Windows.Forms.TextBox();
             label6 = new System.Windows.Forms.Label();
             txtGST = new System.Windows.Forms.TextBox();
             label8 = new System.Windows.Forms.Label();
@@ -48,7 +48,7 @@
             label10 = new System.Windows.Forms.Label();
             txtDiscountAmount = new System.Windows.Forms.TextBox();
             label9 = new System.Windows.Forms.Label();
-            txtTotalPriceAfterDiscount = new System.Windows.Forms.TextBox();
+            txtPriceAfterDiscount = new System.Windows.Forms.TextBox();
             groupBox1 = new System.Windows.Forms.GroupBox();
             label5 = new System.Windows.Forms.Label();
             cmbCategory = new System.Windows.Forms.ComboBox();
@@ -63,7 +63,6 @@
             panel1 = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             ProductDataGridView = new System.Windows.Forms.DataGridView();
-            productBindingSource = new System.Windows.Forms.BindingSource(components);
             idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             catagoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +78,7 @@
             totalPriceIncludingGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            productBindingSource = new System.Windows.Forms.BindingSource(components);
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -93,18 +93,18 @@
             groupBox4.Controls.Add(textNoOfPrint);
             groupBox4.Controls.Add(btnPrint);
             groupBox4.Controls.Add(txtBarcode);
-            groupBox4.Location = new System.Drawing.Point(12, 292);
+            groupBox4.Location = new System.Drawing.Point(1117, 67);
             groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox4.Size = new System.Drawing.Size(728, 77);
+            groupBox4.Size = new System.Drawing.Size(176, 217);
             groupBox4.TabIndex = 65;
             groupBox4.TabStop = false;
             groupBox4.Text = "Barcode";
             // 
             // textNoOfPrint
             // 
-            textNoOfPrint.Location = new System.Drawing.Point(173, 35);
+            textNoOfPrint.Location = new System.Drawing.Point(23, 76);
             textNoOfPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             textNoOfPrint.Name = "textNoOfPrint";
             textNoOfPrint.Size = new System.Drawing.Size(125, 27);
@@ -117,10 +117,10 @@
             btnPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnPrint.Location = new System.Drawing.Point(355, 28);
+            btnPrint.Location = new System.Drawing.Point(23, 157);
             btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new System.Drawing.Size(104, 41);
+            btnPrint.Size = new System.Drawing.Size(131, 41);
             btnPrint.TabIndex = 16;
             btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
@@ -128,20 +128,20 @@
             // txtBarcode
             // 
             txtBarcode.Enabled = false;
-            txtBarcode.Location = new System.Drawing.Point(14, 35);
+            txtBarcode.Location = new System.Drawing.Point(23, 20);
             txtBarcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBarcode.Name = "txtBarcode";
-            txtBarcode.Size = new System.Drawing.Size(125, 27);
+            txtBarcode.Size = new System.Drawing.Size(131, 27);
             txtBarcode.TabIndex = 14;
             txtBarcode.Text = "Barcode";
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(textBox1);
+            groupBox3.Controls.Add(txtCGstAmount);
             groupBox3.Controls.Add(label14);
             groupBox3.Controls.Add(txtFinalPrice);
             groupBox3.Controls.Add(label13);
-            groupBox3.Controls.Add(txtGstAmount);
+            groupBox3.Controls.Add(txtSGstAmount);
             groupBox3.Controls.Add(label6);
             groupBox3.Controls.Add(txtGST);
             groupBox3.Controls.Add(label8);
@@ -154,15 +154,15 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "GST Details";
             // 
-            // textBox1
+            // txtCGstAmount
             // 
-            textBox1.AcceptsReturn = true;
-            textBox1.Location = new System.Drawing.Point(102, 125);
-            textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new System.Drawing.Size(189, 27);
-            textBox1.TabIndex = 856;
+            txtCGstAmount.AcceptsReturn = true;
+            txtCGstAmount.Location = new System.Drawing.Point(102, 125);
+            txtCGstAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCGstAmount.Name = "txtCGstAmount";
+            txtCGstAmount.ReadOnly = true;
+            txtCGstAmount.Size = new System.Drawing.Size(189, 27);
+            txtCGstAmount.TabIndex = 856;
             // 
             // label14
             // 
@@ -193,15 +193,15 @@
             label13.TabIndex = 52;
             label13.Text = "Final Price";
             // 
-            // txtGstAmount
+            // txtSGstAmount
             // 
-            txtGstAmount.AcceptsReturn = true;
-            txtGstAmount.Location = new System.Drawing.Point(102, 76);
-            txtGstAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            txtGstAmount.Name = "txtGstAmount";
-            txtGstAmount.ReadOnly = true;
-            txtGstAmount.Size = new System.Drawing.Size(189, 27);
-            txtGstAmount.TabIndex = 854;
+            txtSGstAmount.AcceptsReturn = true;
+            txtSGstAmount.Location = new System.Drawing.Point(102, 76);
+            txtSGstAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtSGstAmount.Name = "txtSGstAmount";
+            txtSGstAmount.ReadOnly = true;
+            txtSGstAmount.Size = new System.Drawing.Size(189, 27);
+            txtSGstAmount.TabIndex = 854;
             // 
             // label6
             // 
@@ -220,6 +220,8 @@
             txtGST.Name = "txtGST";
             txtGST.Size = new System.Drawing.Size(185, 27);
             txtGST.TabIndex = 7;
+            txtGST.TextChanged += txtGST_TextChanged_1;
+            txtGST.KeyPress += txtGST_KeyPress;
             // 
             // label8
             // 
@@ -238,7 +240,7 @@
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(txtDiscountAmount);
             groupBox2.Controls.Add(label9);
-            groupBox2.Controls.Add(txtTotalPriceAfterDiscount);
+            groupBox2.Controls.Add(txtPriceAfterDiscount);
             groupBox2.Location = new System.Drawing.Point(367, 67);
             groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
@@ -265,6 +267,8 @@
             txtDiscount.Name = "txtDiscount";
             txtDiscount.Size = new System.Drawing.Size(176, 27);
             txtDiscount.TabIndex = 6;
+            txtDiscount.TextChanged += txtDiscount_TextChanged;
+            txtDiscount.KeyPress += txtDiscount_KeyPress;
             // 
             // label10
             // 
@@ -295,14 +299,14 @@
             label9.TabIndex = 44;
             label9.Text = "Price After Discount";
             // 
-            // txtTotalPriceAfterDiscount
+            // txtPriceAfterDiscount
             // 
-            txtTotalPriceAfterDiscount.Location = new System.Drawing.Point(171, 129);
-            txtTotalPriceAfterDiscount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            txtTotalPriceAfterDiscount.Name = "txtTotalPriceAfterDiscount";
-            txtTotalPriceAfterDiscount.ReadOnly = true;
-            txtTotalPriceAfterDiscount.Size = new System.Drawing.Size(177, 27);
-            txtTotalPriceAfterDiscount.TabIndex = 54;
+            txtPriceAfterDiscount.Location = new System.Drawing.Point(171, 129);
+            txtPriceAfterDiscount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtPriceAfterDiscount.Name = "txtPriceAfterDiscount";
+            txtPriceAfterDiscount.ReadOnly = true;
+            txtPriceAfterDiscount.Size = new System.Drawing.Size(177, 27);
+            txtPriceAfterDiscount.TabIndex = 54;
             // 
             // groupBox1
             // 
@@ -378,6 +382,8 @@
             txtQunatity.Name = "txtQunatity";
             txtQunatity.Size = new System.Drawing.Size(201, 27);
             txtQunatity.TabIndex = 5;
+            txtQunatity.TextChanged += txtQunatity_TextChanged;
+            txtQunatity.KeyPress += txtQunatity_KeyPress;
             // 
             // label4
             // 
@@ -396,6 +402,8 @@
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new System.Drawing.Size(201, 27);
             txtPrice.TabIndex = 4;
+            txtPrice.TextChanged += txtPrice_TextChanged;
+            txtPrice.KeyPress += txtPrice_KeyPress;
             // 
             // btnClear
             // 
@@ -403,13 +411,14 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(860, 317);
+            btnClear.Location = new System.Drawing.Point(1299, 236);
             btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
             btnClear.Size = new System.Drawing.Size(96, 41);
             btnClear.TabIndex = 60;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnAdd
             // 
@@ -417,13 +426,14 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(758, 320);
+            btnAdd.Location = new System.Drawing.Point(1299, 178);
             btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new System.Drawing.Size(96, 41);
             btnAdd.TabIndex = 59;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // panel1
             // 
@@ -433,7 +443,7 @@
             panel1.Location = new System.Drawing.Point(0, 0);
             panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(1395, 44);
+            panel1.Size = new System.Drawing.Size(1437, 44);
             panel1.TabIndex = 61;
             // 
             // label1
@@ -456,19 +466,16 @@
             ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, codeDataGridViewTextBoxColumn, catagoryDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, discountDataGridViewTextBoxColumn, discountAmountDataGridViewTextBoxColumn, priceAfterDiscountDataGridViewTextBoxColumn, gSTPercentageDataGridViewTextBoxColumn, sGSTDataGridViewTextBoxColumn, cGSTDataGridViewTextBoxColumn, totalPriceIncludingGSTDataGridViewTextBoxColumn, Edit, Delete });
             ProductDataGridView.DataSource = productBindingSource;
-            ProductDataGridView.Location = new System.Drawing.Point(11, 393);
+            ProductDataGridView.Location = new System.Drawing.Point(11, 292);
             ProductDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             ProductDataGridView.Name = "ProductDataGridView";
             ProductDataGridView.ReadOnly = true;
             ProductDataGridView.RowHeadersVisible = false;
             ProductDataGridView.RowHeadersWidth = 51;
             ProductDataGridView.RowTemplate.Height = 24;
-            ProductDataGridView.Size = new System.Drawing.Size(1340, 376);
+            ProductDataGridView.Size = new System.Drawing.Size(1384, 477);
             ProductDataGridView.TabIndex = 66;
-            // 
-            // productBindingSource
-            // 
-            productBindingSource.DataSource = typeof(Models.Product);
+            ProductDataGridView.CellContentClick += ProductDataGridView_CellContentClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -609,11 +616,15 @@
             Delete.UseColumnTextForButtonValue = true;
             Delete.Width = 125;
             // 
+            // productBindingSource
+            // 
+            productBindingSource.DataSource = typeof(Models.Product);
+            // 
             // Product
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1395, 782);
+            ClientSize = new System.Drawing.Size(1437, 782);
             Controls.Add(ProductDataGridView);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
@@ -625,6 +636,7 @@
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Name = "Product";
             Text = "Product";
+            Load += Product_Load;
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -647,11 +659,11 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtBarcode;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCGstAmount;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtFinalPrice;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtGstAmount;
+        private System.Windows.Forms.TextBox txtSGstAmount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtGST;
         private System.Windows.Forms.Label label8;
@@ -661,7 +673,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtDiscountAmount;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtTotalPriceAfterDiscount;
+        private System.Windows.Forms.TextBox txtPriceAfterDiscount;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbCategory;

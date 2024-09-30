@@ -1,4 +1,5 @@
 ﻿using EasyBuy.Forms;
+using EasyBuy.Forms.Admin;
 using EasyBuy.Forms.Employee_Account;
 using EasyBuy.Forms.Nexus;
 using EasyBuy.Forms.Product_Items;
@@ -66,6 +67,11 @@ namespace EasyBuy
                 x.Show();
                 this.Hide();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Product());
         }
     }
 }
