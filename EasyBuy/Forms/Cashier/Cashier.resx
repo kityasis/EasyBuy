@@ -128,7 +128,7 @@
         7f2S+/MDRNEV0mLo1HrzbKYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btn_canceltransaction.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCancelTransaction.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAW5JREFUSEvt
         lDEvQ2EUhrswdTHrRAd2U38CDb8AYe1GxNRdGbA3MRNGS39DEwsJRROTpIOYxML1vN993fTGbXNTBkOf
@@ -152,7 +152,7 @@
         wWt8xxe8wG3UE/T2y/wjBMEPzHRjDX7fR9YAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btn_settlepayments.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnSettlePayments.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAelJREFUSEvt
         lUsvXVEYhk9IXUIHzMr5GaVaBgaa0kYixMTAQJrGVKN03hkmbr9AJEjV7V9IJSLVxmWuTUqRXmLieN6V
@@ -166,7 +166,7 @@
         qTM+3QszoFZTfgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btn_newtransaction.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnNewTransaction.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAVdJREFUSEvt
         lK1OA0EURteAwqCpIfQRUPAGlMADkPCj6yAEVYJAUAe+LwABiUEjSTA04af0ASoIElOm585+bJjM0kxK
@@ -188,7 +188,7 @@
         8hkPI1yw8xhyCgMBUJp9pmQYjK4RBiAuMAnej562yQMMDABrVfCndTi9cQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btn_membershow.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnMemberShow.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAUZJREFUOE+1
         lL8rhHEcx59uYLOKusIm6xkM6jZKRiYiqVt1403Gm20Ggwx0fwCLlCwy+CMMigwkGdD3Xp/7vp/jPD++
@@ -199,7 +199,7 @@
         XhWNMxxW/HcYqfTmnDtSBFHUBbWdWD5mzd3jAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btn_backspace.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnBackspace.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAMtJREFUSEvt
         lLsNwjAQht0hdmAHGiah5bEIHYiUTECVmiGo2YOWCjqQ+e8lEmELUHIRRT7pk+7O0h/ZSRx6/pMY4wAe
@@ -429,4 +429,7 @@
         wf+0BQAAgAUAAIAFAACAAQAAgAHB/4ABAACAAQAAgAEAALwBAAC8AQAAvAHB/4ABbP///5H/
 </value>
   </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>
