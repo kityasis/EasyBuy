@@ -94,18 +94,22 @@
             label4 = new System.Windows.Forms.Label();
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
-            id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             pnlManualSearch = new System.Windows.Forms.Panel();
             dgv_qtupdate = new System.Windows.Forms.DataGridView();
             Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
+            id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            SGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            CGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            FInalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -133,7 +137,7 @@
             panel1.Location = new System.Drawing.Point(0, 0);
             panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(280, 1000);
+            panel1.Size = new System.Drawing.Size(280, 1102);
             panel1.TabIndex = 0;
             // 
             // button4
@@ -190,7 +194,7 @@
             btnLogout.ForeColor = System.Drawing.Color.Honeydew;
             btnLogout.Image = (System.Drawing.Image)resources.GetObject("btnLogout.Image");
             btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnLogout.Location = new System.Drawing.Point(0, 932);
+            btnLogout.Location = new System.Drawing.Point(0, 1034);
             btnLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnLogout.Name = "btnLogout";
             btnLogout.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -204,7 +208,7 @@
             // panel6
             // 
             panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel6.Location = new System.Drawing.Point(0, 988);
+            panel6.Location = new System.Drawing.Point(0, 1090);
             panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
             panel6.Size = new System.Drawing.Size(280, 12);
@@ -308,7 +312,7 @@
             panel2.Location = new System.Drawing.Point(280, 0);
             panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(5, 1000);
+            panel2.Size = new System.Drawing.Size(5, 1102);
             panel2.TabIndex = 1;
             // 
             // panel7
@@ -341,7 +345,7 @@
             panel4.Location = new System.Drawing.Point(285, 0);
             panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new System.Drawing.Size(1115, 51);
+            panel4.Size = new System.Drawing.Size(1657, 51);
             panel4.TabIndex = 2;
             // 
             // label5
@@ -428,10 +432,10 @@
             SubMenu_BillDetails.Controls.Add(label2);
             SubMenu_BillDetails.Controls.Add(label1);
             SubMenu_BillDetails.Dock = System.Windows.Forms.DockStyle.Right;
-            SubMenu_BillDetails.Location = new System.Drawing.Point(1050, 51);
+            SubMenu_BillDetails.Location = new System.Drawing.Point(1592, 51);
             SubMenu_BillDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             SubMenu_BillDetails.Name = "SubMenu_BillDetails";
-            SubMenu_BillDetails.Size = new System.Drawing.Size(350, 949);
+            SubMenu_BillDetails.Size = new System.Drawing.Size(350, 1051);
             SubMenu_BillDetails.TabIndex = 3;
             // 
             // txtBarecode
@@ -725,7 +729,7 @@
             panel9.Controls.Add(label14);
             panel9.Controls.Add(lblTotalDiscount);
             panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel9.Location = new System.Drawing.Point(0, 789);
+            panel9.Location = new System.Drawing.Point(0, 891);
             panel9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel9.Name = "panel9";
             panel9.Size = new System.Drawing.Size(350, 91);
@@ -777,7 +781,7 @@
             panel10.Controls.Add(lblGrandTotal);
             panel10.Controls.Add(label12);
             panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel10.Location = new System.Drawing.Point(0, 880);
+            panel10.Location = new System.Drawing.Point(0, 982);
             panel10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel10.Name = "panel10";
             panel10.Size = new System.Drawing.Size(350, 69);
@@ -953,10 +957,11 @@
             // 
             dgvItem.AllowUserToAddRows = false;
             dgvItem.AllowUserToDeleteRows = false;
+            dgvItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dgvItem.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Column1, Column2, Column3, Column4, Column5 });
+            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Column1, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5 });
             dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
             dgvItem.Location = new System.Drawing.Point(285, 51);
             dgvItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -965,57 +970,8 @@
             dgvItem.RowHeadersVisible = false;
             dgvItem.RowHeadersWidth = 51;
             dgvItem.RowTemplate.Height = 24;
-            dgvItem.Size = new System.Drawing.Size(765, 692);
+            dgvItem.Size = new System.Drawing.Size(1307, 794);
             dgvItem.TabIndex = 4;
-            // 
-            // id
-            // 
-            id.HeaderText = "id";
-            id.MinimumWidth = 6;
-            id.Name = "id";
-            id.ReadOnly = true;
-            id.Visible = false;
-            id.Width = 125;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "PNO";
-            Column1.MinimumWidth = 40;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 40;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Name";
-            Column2.MinimumWidth = 185;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Width = 185;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Price";
-            Column3.MinimumWidth = 150;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Width = 150;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Qty";
-            Column4.MinimumWidth = 40;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Width = 40;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Total                      (Rs)";
-            Column5.MinimumWidth = 156;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Width = 156;
             // 
             // pnlManualSearch
             // 
@@ -1025,10 +981,10 @@
             pnlManualSearch.Controls.Add(SearchProductGridView);
             pnlManualSearch.Controls.Add(cmbProductCategory);
             pnlManualSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
-            pnlManualSearch.Location = new System.Drawing.Point(285, 743);
+            pnlManualSearch.Location = new System.Drawing.Point(285, 845);
             pnlManualSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlManualSearch.Name = "pnlManualSearch";
-            pnlManualSearch.Size = new System.Drawing.Size(765, 257);
+            pnlManualSearch.Size = new System.Drawing.Size(1307, 257);
             pnlManualSearch.TabIndex = 5;
             // 
             // dgv_qtupdate
@@ -1074,12 +1030,84 @@
             // 
             printDocument1.PrintPage += printDocument1_PrintPage;
             // 
+            // id
+            // 
+            id.HeaderText = "id";
+            id.MinimumWidth = 6;
+            id.Name = "id";
+            id.ReadOnly = true;
+            id.Visible = false;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Sl. NO";
+            Column1.MinimumWidth = 40;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Name";
+            Column2.MinimumWidth = 200;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Price";
+            Column3.MinimumWidth = 125;
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            Discount.HeaderText = "Discount";
+            Discount.MinimumWidth = 100;
+            Discount.Name = "Discount";
+            Discount.ReadOnly = true;
+            // 
+            // SGST
+            // 
+            SGST.HeaderText = "SGST";
+            SGST.MinimumWidth = 50;
+            SGST.Name = "SGST";
+            SGST.ReadOnly = true;
+            // 
+            // CGST
+            // 
+            CGST.HeaderText = "CGST";
+            CGST.MinimumWidth = 50;
+            CGST.Name = "CGST";
+            CGST.ReadOnly = true;
+            // 
+            // FInalPrice
+            // 
+            FInalPrice.HeaderText = "FInal Price";
+            FInalPrice.MinimumWidth = 150;
+            FInalPrice.Name = "FInalPrice";
+            FInalPrice.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Qty";
+            Column4.MinimumWidth = 40;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Total                      (Rs)";
+            Column5.MinimumWidth = 156;
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            // 
             // Cashier
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = System.Drawing.Color.White;
-            ClientSize = new System.Drawing.Size(1400, 1000);
+            ClientSize = new System.Drawing.Size(1942, 1102);
             Controls.Add(dgvItem);
             Controls.Add(dgv_qtupdate);
             Controls.Add(pnlManualSearch);
@@ -1092,6 +1120,7 @@
             Name = "Cashier";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Cashier";
+            WindowState = System.Windows.Forms.FormWindowState.Minimized;
             Load += Cashier_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -1190,6 +1219,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CGST;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FInalPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }

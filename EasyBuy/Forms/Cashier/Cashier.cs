@@ -433,8 +433,8 @@ namespace EasyBuy.Forms.Cashier
         private void FillTotalValue(decimal price, decimal discount)
         {
             var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) + price), 2);
-            var totalDiscount = Math.Round((Convert.ToDecimal(lblTotalDiscount.Text) + price), 2);
-            var grandTotal = totalPrice-totalDiscount;
+            var totalDiscount = Math.Round((Convert.ToDecimal(lblTotalDiscount.Text) + discount), 2);
+            var grandTotal = totalPrice - totalDiscount;
             lblSubTotal.Text = totalPrice.ToString();
             lblTotalDiscount.Text = totalDiscount.ToString();
             lblGrandTotal.Text = grandTotal.ToString();
@@ -452,8 +452,9 @@ namespace EasyBuy.Forms.Cashier
                     foreach (DataGridViewRow row in dgvItem.Rows)
                     {
                         if (Convert.ToInt64(row.Cells[0].Value) == product.Id) {
-                            row.Cells[4].Value = (Convert.ToInt32(row.Cells[4].Value) + 1);                          
-                            row.Cells[5].Value = Math.Round(Convert.ToDecimal(row.Cells[3].Value) * Convert.ToDecimal(row.Cells[4].Value), 2);
+                            row.Cells[8].Value = (Convert.ToInt32(row.Cells[8].Value) + 1);                          
+                            row.Cells[9].Value = Math.Round(Convert.ToDecimal(row.Cells[7].Value) * Convert.ToDecimal(row.Cells[8].Value), 2);
+                            this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                             return;
                         }
                     }
@@ -463,12 +464,16 @@ namespace EasyBuy.Forms.Cashier
                     newRow.Cells[1].Value = slNumber++;
                     newRow.Cells[2].Value = product.Name;
                     newRow.Cells[3].Value = product.Price;
-                    newRow.Cells[4].Value = 1;
-                    newRow.Cells[5].Value = Math.Round(Convert.ToDecimal(product.Price) * Convert.ToDecimal(product.Quantity),2);                    
+                    newRow.Cells[4].Value = product.DiscountAmount;
+                    newRow.Cells[5].Value = product.SGST;
+                    newRow.Cells[6].Value = product.CGST;
+                    newRow.Cells[7].Value = product.PriceAfterDiscount;
+                    newRow.Cells[8].Value = product.Quantity;                    
+                    newRow.Cells[9].Value = Math.Round(Convert.ToDecimal(product.PriceAfterDiscount) * Convert.ToDecimal(product.Quantity), 2);
                     dgvItem.Rows.Add(newRow);
-
+                    this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                 }
-                this.FillTotalValue(product.Price,product.Discount);
+                
 
             }
             catch (Exception ex) { }
