@@ -329,9 +329,9 @@ namespace EasyBuy.Forms.Cashier
                 dis_pt = Convert.ToInt32(txtDiscunt.Text);
                 dis = subtotal * dis_pt / 100;
                 txtDiscountAmount.Text = "Rs. " + dis.ToString();
-                txtTotalDiscount.Text = dis.ToString();
+                lblTotalDiscount.Text = dis.ToString();
                 grandTotal = subtotal - dis;
-                txtGrandTotal.Text = "Rs " + grandTotal.ToString();
+                lblGrandTotal.Text = "Rs " + grandTotal.ToString();
             }
             catch
             {
@@ -430,6 +430,16 @@ namespace EasyBuy.Forms.Cashier
             Refresh();
 
         }
+        private void FillTotalValue(decimal price, decimal discount)
+        {
+            var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) + price), 2);
+            var totalDiscount = Math.Round((Convert.ToDecimal(lblTotalDiscount.Text) + price), 2);
+            var grandTotal = totalPrice-totalDiscount;
+            lblSubTotal.Text = totalPrice.ToString();
+            lblTotalDiscount.Text = totalDiscount.ToString();
+            lblGrandTotal.Text = grandTotal.ToString();
+        }
+        private decimal TotalPrice(decimal price, int qty) => price * qty;
         private async void txtBarecode_TextChanged(object sender, EventArgs e)
         {
             try
@@ -439,16 +449,26 @@ namespace EasyBuy.Forms.Cashier
                 var product = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).FirstOrDefault());
                 if (product != null)
                 {
+                    foreach (DataGridViewRow row in dgvItem.Rows)
+                    {
+                        if (Convert.ToInt64(row.Cells[0].Value) == product.Id) {
+                            row.Cells[4].Value = (Convert.ToInt32(row.Cells[4].Value) + 1);                          
+                            row.Cells[5].Value = Math.Round(Convert.ToDecimal(row.Cells[3].Value) * Convert.ToDecimal(row.Cells[4].Value), 2);
+                            return;
+                        }
+                    }
                     DataGridViewRow newRow = new DataGridViewRow();
                     newRow.CreateCells(dgvItem);
-                    newRow.Cells[0].Value = slNumber++;
-                    newRow.Cells[1].Value = product.Name;
-                    newRow.Cells[2].Value = product.Price;
-                    newRow.Cells[3].Value = product.Quantity;
-                    newRow.Cells[4].Value = Convert.ToDecimal(product.Price) * Convert.ToDecimal(product.Quantity);
+                    newRow.Cells[0].Value = product.Id;
+                    newRow.Cells[1].Value = slNumber++;
+                    newRow.Cells[2].Value = product.Name;
+                    newRow.Cells[3].Value = product.Price;
+                    newRow.Cells[4].Value = 1;
+                    newRow.Cells[5].Value = Math.Round(Convert.ToDecimal(product.Price) * Convert.ToDecimal(product.Quantity),2);                    
                     dgvItem.Rows.Add(newRow);
 
                 }
+                this.FillTotalValue(product.Price,product.Discount);
 
             }
             catch (Exception ex) { }
@@ -456,9 +476,9 @@ namespace EasyBuy.Forms.Cashier
 
             //xy++;
             //subtotal = subtotal + total;
-            txtSubTotal.Text = subtotal.ToString();
+            lblSubTotal.Text = subtotal.ToString();
             grandTotal = subtotal - dis;
-            txtGrandTotal.Text = "Rs " + grandTotal.ToString();
+            lblGrandTotal.Text = "Rs " + grandTotal.ToString();
             textBox2_TextChanged(sender, new EventArgs());
             //int c_ty = Convert.ToInt32(txt_cty.Text);
             //int pty = Convert.ToInt32(txtProductQuantity.Text);
@@ -488,13 +508,14 @@ namespace EasyBuy.Forms.Cashier
                 SearchProductGridView.DataSource = products.Select(x => new { x.Id, x.Name, x.TotalPriceIncludingGST, x.Quantity }).ToList();
                 SearchProductGridView.Columns[0].Width = 80;
                 SearchProductGridView.Columns[1].Width = 67;
-                SearchProductGridView.Columns[2].Width = 60;
+                SearchProductGridView.Columns[2].Width = 60;                
             }
             catch (Exception)
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
         private void btnMemberShow_Click(object sender, EventArgs e)
         {
 
