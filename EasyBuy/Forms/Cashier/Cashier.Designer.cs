@@ -94,12 +94,6 @@
             label4 = new System.Windows.Forms.Label();
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
-            pnlManualSearch = new System.Windows.Forms.Panel();
-            dgv_qtupdate = new System.Windows.Forms.DataGridView();
-            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
             id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,6 +104,13 @@
             FInalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            pnlManualSearch = new System.Windows.Forms.Panel();
+            dgv_qtupdate = new System.Windows.Forms.DataGridView();
+            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -961,7 +962,7 @@
             dgvItem.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Column1, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5 });
+            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Column1, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
             dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
             dgvItem.Location = new System.Drawing.Point(285, 51);
             dgvItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -972,6 +973,88 @@
             dgvItem.RowTemplate.Height = 24;
             dgvItem.Size = new System.Drawing.Size(1307, 794);
             dgvItem.TabIndex = 4;
+            dgvItem.CellContentClick += dgvItem_CellContentClick;
+            // 
+            // id
+            // 
+            id.HeaderText = "id";
+            id.MinimumWidth = 10;
+            id.Name = "id";
+            id.ReadOnly = true;
+            id.Visible = false;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Sl. NO";
+            Column1.MinimumWidth = 40;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Name";
+            Column2.MinimumWidth = 200;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Price";
+            Column3.MinimumWidth = 125;
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            Discount.HeaderText = "Discount";
+            Discount.MinimumWidth = 60;
+            Discount.Name = "Discount";
+            Discount.ReadOnly = true;
+            // 
+            // SGST
+            // 
+            SGST.HeaderText = "SGST";
+            SGST.MinimumWidth = 40;
+            SGST.Name = "SGST";
+            SGST.ReadOnly = true;
+            // 
+            // CGST
+            // 
+            CGST.HeaderText = "CGST";
+            CGST.MinimumWidth = 40;
+            CGST.Name = "CGST";
+            CGST.ReadOnly = true;
+            // 
+            // FInalPrice
+            // 
+            FInalPrice.HeaderText = "FInal Price";
+            FInalPrice.MinimumWidth = 100;
+            FInalPrice.Name = "FInalPrice";
+            FInalPrice.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Qty";
+            Column4.MinimumWidth = 40;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Total(Rs)";
+            Column5.MinimumWidth = 156;
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            // 
+            // remove
+            // 
+            remove.HeaderText = "Remove";
+            remove.MinimumWidth = 6;
+            remove.Name = "remove";
+            remove.ReadOnly = true;
+            remove.Text = "-";
+            remove.ToolTipText = "Remove Item";
+            remove.UseColumnTextForButtonValue = true;
             // 
             // pnlManualSearch
             // 
@@ -1029,77 +1112,6 @@
             // printDocument1
             // 
             printDocument1.PrintPage += printDocument1_PrintPage;
-            // 
-            // id
-            // 
-            id.HeaderText = "id";
-            id.MinimumWidth = 6;
-            id.Name = "id";
-            id.ReadOnly = true;
-            id.Visible = false;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Sl. NO";
-            Column1.MinimumWidth = 40;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Name";
-            Column2.MinimumWidth = 200;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Price";
-            Column3.MinimumWidth = 125;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
-            // Discount
-            // 
-            Discount.HeaderText = "Discount";
-            Discount.MinimumWidth = 100;
-            Discount.Name = "Discount";
-            Discount.ReadOnly = true;
-            // 
-            // SGST
-            // 
-            SGST.HeaderText = "SGST";
-            SGST.MinimumWidth = 50;
-            SGST.Name = "SGST";
-            SGST.ReadOnly = true;
-            // 
-            // CGST
-            // 
-            CGST.HeaderText = "CGST";
-            CGST.MinimumWidth = 50;
-            CGST.Name = "CGST";
-            CGST.ReadOnly = true;
-            // 
-            // FInalPrice
-            // 
-            FInalPrice.HeaderText = "FInal Price";
-            FInalPrice.MinimumWidth = 150;
-            FInalPrice.Name = "FInalPrice";
-            FInalPrice.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Qty";
-            Column4.MinimumWidth = 40;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Total                      (Rs)";
-            Column5.MinimumWidth = 156;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
             // 
             // Cashier
             // 
@@ -1225,5 +1237,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FInalPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewButtonColumn remove;
     }
 }

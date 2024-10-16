@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Collections.Generic;
 using EasyBuy.Models;
+using System.Xml.Linq;
 
 namespace EasyBuy.Forms.Cashier
 {
@@ -29,11 +30,11 @@ namespace EasyBuy.Forms.Cashier
             txtMemberid.Enabled = false;
             label2.Enabled = false;
             label3.Enabled = false;
-            txtBillNumber.ReadOnly = true;           
-            this.radioButton1.Checked = true;           
+            txtBillNumber.ReadOnly = true;
+            this.radioButton1.Checked = true;
             dgvItem.EnableHeadersVisualStyles = false;
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
-            dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;         
+            dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             datelbl.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
             pnlManualSearch.Visible = false;
             GenerateBillNumber();
@@ -51,7 +52,7 @@ namespace EasyBuy.Forms.Cashier
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }           
+        }
         private async void LoadComboBox()
         {
             cmbProductCategory.Items.Clear();
@@ -369,7 +370,7 @@ namespace EasyBuy.Forms.Cashier
             e.Graphics.DrawString("Subtotal - Rs" + subtotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 270));
             e.Graphics.DrawString("Discount - Rs" + dis + "(" + txtDiscunt.Text + "%)", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 290));
 
-        }     
+        }
         private void PrintBill()
         {
 
@@ -451,8 +452,9 @@ namespace EasyBuy.Forms.Cashier
                 {
                     foreach (DataGridViewRow row in dgvItem.Rows)
                     {
-                        if (Convert.ToInt64(row.Cells[0].Value) == product.Id) {
-                            row.Cells[8].Value = (Convert.ToInt32(row.Cells[8].Value) + 1);                          
+                        if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
+                        {
+                            row.Cells[8].Value = (Convert.ToInt32(row.Cells[8].Value) + 1);
                             row.Cells[9].Value = Math.Round(Convert.ToDecimal(row.Cells[7].Value) * Convert.ToDecimal(row.Cells[8].Value), 2);
                             this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                             return;
@@ -468,31 +470,16 @@ namespace EasyBuy.Forms.Cashier
                     newRow.Cells[5].Value = product.SGST;
                     newRow.Cells[6].Value = product.CGST;
                     newRow.Cells[7].Value = product.PriceAfterDiscount;
-                    newRow.Cells[8].Value = product.Quantity;                    
+                    newRow.Cells[8].Value = 1;
                     newRow.Cells[9].Value = Math.Round(Convert.ToDecimal(product.PriceAfterDiscount) * Convert.ToDecimal(product.Quantity), 2);
                     dgvItem.Rows.Add(newRow);
                     this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                 }
-                
+
 
             }
-            catch (Exception ex) { }
-
-
-            //xy++;
-            //subtotal = subtotal + total;
-            lblSubTotal.Text = subtotal.ToString();
-            grandTotal = subtotal - dis;
-            lblGrandTotal.Text = "Rs " + grandTotal.ToString();
-            textBox2_TextChanged(sender, new EventArgs());
-            //int c_ty = Convert.ToInt32(txt_cty.Text);
-            //int pty = Convert.ToInt32(txtProductQuantity.Text);
-            // txt_newqty.Text = (c_ty - pty).ToString();
-            DataGridViewRow newRow1 = new DataGridViewRow();
-            newRow1.CreateCells(dgv_qtupdate);
-            //newRow1.Cells[0].Value = txtProductName.Text;
-            //newRow1.Cells[1].Value = txt_newqty.Text;
-            dgv_qtupdate.Rows.Add(newRow1);
+            catch (Exception) { }          
+            
         }
         private void btnCancelTransaction_Click(object sender, EventArgs e)
         {
@@ -513,17 +500,50 @@ namespace EasyBuy.Forms.Cashier
                 SearchProductGridView.DataSource = products.Select(x => new { x.Id, x.Name, x.TotalPriceIncludingGST, x.Quantity }).ToList();
                 SearchProductGridView.Columns[0].Width = 80;
                 SearchProductGridView.Columns[1].Width = 67;
-                SearchProductGridView.Columns[2].Width = 60;                
+                SearchProductGridView.Columns[2].Width = 60;
             }
             catch (Exception)
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private void btnMemberShow_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (e.ColumnIndex == 10)
+            {
+                if (MessageBox.Show("Are You Sure You Want To Remove", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    var qty = Convert.ToInt32(dgvItem[8, e.RowIndex].Value);
+                    if (qty > 1)
+                    {
+                        dgvItem.Rows[e.RowIndex].Cells[8].Value = qty - 1;
+                        var totalAmount= Math.Round(Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[7].Value) * Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[8].Value));
+                        dgvItem.Rows[e.RowIndex].Cells[9].Value = totalAmount;
+                        RemoveFromTotalValue(totalAmount, Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[5].Value));
+                    }
+                    else
+                    {
+                        dgvItem.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+            }
+
+        }
+        private void RemoveFromTotalValue(decimal price, decimal discount)
+        {
+            var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) - price), 2);
+            var totalDiscount = Math.Round((Convert.ToDecimal(lblTotalDiscount.Text) - discount), 2);
+            var grandTotal = totalPrice - totalDiscount;
+            lblSubTotal.Text = totalPrice.ToString();
+            lblTotalDiscount.Text = totalDiscount.ToString();
+            lblGrandTotal.Text = grandTotal.ToString();
         }
     }
 }
