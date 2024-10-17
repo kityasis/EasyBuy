@@ -1,19 +1,18 @@
-﻿
+﻿using System;
+
 namespace EasyBuy.Models
 {
     public class Sale
     {
         public long Id { get; set; }
-        public string ProductCode { get; set; }     
-        public string ProductName { get; set; }
-        public int ProductQuantity { get; set; }    
-        public decimal BasePrice { get; set; }
-        public decimal TotalBasePrice { get; set; }
-        public decimal DiscountPercentage { get; set; }
-        public decimal TotalDiscountAmount { get; set; }
-        public decimal TotalBasePriceAfterDiscount { get; set; }
-        public decimal GSTPercentage { get; set; }
-        public decimal GstAmount { get; set; }
-        public decimal TotalValueInclGST { get; set; }
+        public required string BillNumber { get; set; }
+        public required DateTime Date { get; set; }
+        public required string PaymentType { get; set; }        
+        public string SellerName { get; set; }
+        public string CustomerType { get; set; }
+        public string MemberId { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal Discount { get; set; }
+        public decimal GrandTotal { get; set; }
     }
 }

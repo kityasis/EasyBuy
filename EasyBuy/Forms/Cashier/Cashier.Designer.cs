@@ -49,6 +49,10 @@
             label11 = new System.Windows.Forms.Label();
             btnExit = new System.Windows.Forms.Button();
             SubMenu_BillDetails = new System.Windows.Forms.Panel();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            rbtnUPI = new System.Windows.Forms.RadioButton();
+            rbtnCard = new System.Windows.Forms.RadioButton();
+            rbtnCash = new System.Windows.Forms.RadioButton();
             txtBarecode = new System.Windows.Forms.TextBox();
             label8 = new System.Windows.Forms.Label();
             btnMemberShow = new System.Windows.Forms.Button();
@@ -81,11 +85,11 @@
             panel10 = new System.Windows.Forms.Panel();
             lblGrandTotal = new System.Windows.Forms.Label();
             label12 = new System.Windows.Forms.Label();
-            radioButton2 = new System.Windows.Forms.RadioButton();
+            rbtnNexusMember = new System.Windows.Forms.RadioButton();
             txtMemberid = new System.Windows.Forms.TextBox();
             txtMobile = new System.Windows.Forms.TextBox();
             txtBillNumber = new System.Windows.Forms.TextBox();
-            radioButton1 = new System.Windows.Forms.RadioButton();
+            rbtnGuestCustomer = new System.Windows.Forms.RadioButton();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
@@ -94,7 +98,14 @@
             label4 = new System.Windows.Forms.Label();
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
+            pnlManualSearch = new System.Windows.Forms.Panel();
+            dgv_qtupdate = new System.Windows.Forms.DataGridView();
+            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
             id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,17 +116,12 @@
             Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             remove = new System.Windows.Forms.DataGridViewButtonColumn();
-            pnlManualSearch = new System.Windows.Forms.Panel();
-            dgv_qtupdate = new System.Windows.Forms.DataGridView();
-            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             SubMenu_BillDetails.SuspendLayout();
+            groupBox1.SuspendLayout();
             panel9.SuspendLayout();
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SearchProductGridView).BeginInit();
@@ -354,7 +360,7 @@
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label5.ForeColor = System.Drawing.Color.White;
-            label5.Location = new System.Drawing.Point(761, 15);
+            label5.Location = new System.Drawing.Point(1255, 15);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(45, 20);
             label5.TabIndex = 30;
@@ -365,7 +371,7 @@
             datelbl.AutoSize = true;
             datelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             datelbl.ForeColor = System.Drawing.Color.White;
-            datelbl.Location = new System.Drawing.Point(813, 15);
+            datelbl.Location = new System.Drawing.Point(1307, 15);
             datelbl.Name = "datelbl";
             datelbl.Size = new System.Drawing.Size(45, 20);
             datelbl.TabIndex = 29;
@@ -387,7 +393,7 @@
             btnExit.FlatAppearance.BorderSize = 0;
             btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnExit.Image = (System.Drawing.Image)resources.GetObject("btnExit.Image");
-            btnExit.Location = new System.Drawing.Point(1083, 15);
+            btnExit.Location = new System.Drawing.Point(1416, 13);
             btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnExit.Name = "btnExit";
             btnExit.Size = new System.Drawing.Size(15, 19);
@@ -398,6 +404,7 @@
             // SubMenu_BillDetails
             // 
             SubMenu_BillDetails.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            SubMenu_BillDetails.Controls.Add(groupBox1);
             SubMenu_BillDetails.Controls.Add(txtBarecode);
             SubMenu_BillDetails.Controls.Add(label8);
             SubMenu_BillDetails.Controls.Add(btnMemberShow);
@@ -424,11 +431,11 @@
             SubMenu_BillDetails.Controls.Add(btn1);
             SubMenu_BillDetails.Controls.Add(panel9);
             SubMenu_BillDetails.Controls.Add(panel10);
-            SubMenu_BillDetails.Controls.Add(radioButton2);
+            SubMenu_BillDetails.Controls.Add(rbtnNexusMember);
             SubMenu_BillDetails.Controls.Add(txtMemberid);
             SubMenu_BillDetails.Controls.Add(txtMobile);
             SubMenu_BillDetails.Controls.Add(txtBillNumber);
-            SubMenu_BillDetails.Controls.Add(radioButton1);
+            SubMenu_BillDetails.Controls.Add(rbtnGuestCustomer);
             SubMenu_BillDetails.Controls.Add(label3);
             SubMenu_BillDetails.Controls.Add(label2);
             SubMenu_BillDetails.Controls.Add(label1);
@@ -438,6 +445,51 @@
             SubMenu_BillDetails.Name = "SubMenu_BillDetails";
             SubMenu_BillDetails.Size = new System.Drawing.Size(350, 1051);
             SubMenu_BillDetails.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rbtnUPI);
+            groupBox1.Controls.Add(rbtnCard);
+            groupBox1.Controls.Add(rbtnCash);
+            groupBox1.Location = new System.Drawing.Point(27, 771);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(298, 73);
+            groupBox1.TabIndex = 63;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Payment";
+            // 
+            // rbtnUPI
+            // 
+            rbtnUPI.AutoSize = true;
+            rbtnUPI.Location = new System.Drawing.Point(118, 32);
+            rbtnUPI.Name = "rbtnUPI";
+            rbtnUPI.Size = new System.Drawing.Size(52, 24);
+            rbtnUPI.TabIndex = 61;
+            rbtnUPI.TabStop = true;
+            rbtnUPI.Text = "UPI";
+            rbtnUPI.UseVisualStyleBackColor = true;
+            // 
+            // rbtnCard
+            // 
+            rbtnCard.AutoSize = true;
+            rbtnCard.Location = new System.Drawing.Point(203, 32);
+            rbtnCard.Name = "rbtnCard";
+            rbtnCard.Size = new System.Drawing.Size(61, 24);
+            rbtnCard.TabIndex = 62;
+            rbtnCard.TabStop = true;
+            rbtnCard.Text = "Card";
+            rbtnCard.UseVisualStyleBackColor = true;
+            // 
+            // rbtnCash
+            // 
+            rbtnCash.AutoSize = true;
+            rbtnCash.Location = new System.Drawing.Point(23, 30);
+            rbtnCash.Name = "rbtnCash";
+            rbtnCash.Size = new System.Drawing.Size(61, 24);
+            rbtnCash.TabIndex = 60;
+            rbtnCash.TabStop = true;
+            rbtnCash.Text = "Cash";
+            rbtnCash.UseVisualStyleBackColor = true;
             // 
             // txtBarecode
             // 
@@ -810,19 +862,19 @@
             label12.TabIndex = 27;
             label12.Text = "Grand Total (Rs.)";
             // 
-            // radioButton2
+            // rbtnNexusMember
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            radioButton2.ForeColor = System.Drawing.Color.MintCream;
-            radioButton2.Location = new System.Drawing.Point(174, 123);
-            radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(134, 26);
-            radioButton2.TabIndex = 7;
-            radioButton2.Text = "Nexus Member";
-            radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            rbtnNexusMember.AutoSize = true;
+            rbtnNexusMember.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            rbtnNexusMember.ForeColor = System.Drawing.Color.MintCream;
+            rbtnNexusMember.Location = new System.Drawing.Point(174, 123);
+            rbtnNexusMember.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            rbtnNexusMember.Name = "rbtnNexusMember";
+            rbtnNexusMember.Size = new System.Drawing.Size(134, 26);
+            rbtnNexusMember.TabIndex = 7;
+            rbtnNexusMember.Text = "Nexus Member";
+            rbtnNexusMember.UseVisualStyleBackColor = true;
+            rbtnNexusMember.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // txtMemberid
             // 
@@ -855,20 +907,20 @@
             txtBillNumber.Size = new System.Drawing.Size(159, 27);
             txtBillNumber.TabIndex = 4;
             // 
-            // radioButton1
+            // rbtnGuestCustomer
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            radioButton1.ForeColor = System.Drawing.Color.MintCream;
-            radioButton1.Location = new System.Drawing.Point(35, 123);
-            radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new System.Drawing.Size(143, 26);
-            radioButton1.TabIndex = 3;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Guest Customer";
-            radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
+            rbtnGuestCustomer.AutoSize = true;
+            rbtnGuestCustomer.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            rbtnGuestCustomer.ForeColor = System.Drawing.Color.MintCream;
+            rbtnGuestCustomer.Location = new System.Drawing.Point(35, 123);
+            rbtnGuestCustomer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            rbtnGuestCustomer.Name = "rbtnGuestCustomer";
+            rbtnGuestCustomer.Size = new System.Drawing.Size(143, 26);
+            rbtnGuestCustomer.TabIndex = 3;
+            rbtnGuestCustomer.TabStop = true;
+            rbtnGuestCustomer.Text = "Guest Customer";
+            rbtnGuestCustomer.UseVisualStyleBackColor = true;
+            rbtnGuestCustomer.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // label3
             // 
@@ -962,7 +1014,7 @@
             dgvItem.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Column1, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
+            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Code, Column1, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
             dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
             dgvItem.Location = new System.Drawing.Point(285, 51);
             dgvItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -975,6 +1027,63 @@
             dgvItem.TabIndex = 4;
             dgvItem.CellContentClick += dgvItem_CellContentClick;
             // 
+            // pnlManualSearch
+            // 
+            pnlManualSearch.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            pnlManualSearch.Controls.Add(label4);
+            pnlManualSearch.Controls.Add(txtSearch);
+            pnlManualSearch.Controls.Add(SearchProductGridView);
+            pnlManualSearch.Controls.Add(cmbProductCategory);
+            pnlManualSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
+            pnlManualSearch.Location = new System.Drawing.Point(285, 845);
+            pnlManualSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pnlManualSearch.Name = "pnlManualSearch";
+            pnlManualSearch.Size = new System.Drawing.Size(1307, 257);
+            pnlManualSearch.TabIndex = 5;
+            // 
+            // dgv_qtupdate
+            // 
+            dgv_qtupdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_qtupdate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Column6, Column7 });
+            dgv_qtupdate.Enabled = false;
+            dgv_qtupdate.Location = new System.Drawing.Point(295, 451);
+            dgv_qtupdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            dgv_qtupdate.Name = "dgv_qtupdate";
+            dgv_qtupdate.RowHeadersWidth = 51;
+            dgv_qtupdate.RowTemplate.Height = 24;
+            dgv_qtupdate.Size = new System.Drawing.Size(366, 229);
+            dgv_qtupdate.TabIndex = 6;
+            dgv_qtupdate.Visible = false;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText = "PName1";
+            Column6.MinimumWidth = 6;
+            Column6.Name = "Column6";
+            Column6.Width = 125;
+            // 
+            // Column7
+            // 
+            Column7.HeaderText = "NewQty";
+            Column7.MinimumWidth = 6;
+            Column7.Name = "Column7";
+            Column7.Width = 125;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (System.Drawing.Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            // 
             // id
             // 
             id.HeaderText = "id";
@@ -982,6 +1091,14 @@
             id.Name = "id";
             id.ReadOnly = true;
             id.Visible = false;
+            // 
+            // Code
+            // 
+            Code.HeaderText = "Code";
+            Code.MinimumWidth = 6;
+            Code.Name = "Code";
+            Code.ReadOnly = true;
+            Code.Visible = false;
             // 
             // Column1
             // 
@@ -1056,63 +1173,6 @@
             remove.ToolTipText = "Remove Item";
             remove.UseColumnTextForButtonValue = true;
             // 
-            // pnlManualSearch
-            // 
-            pnlManualSearch.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
-            pnlManualSearch.Controls.Add(label4);
-            pnlManualSearch.Controls.Add(txtSearch);
-            pnlManualSearch.Controls.Add(SearchProductGridView);
-            pnlManualSearch.Controls.Add(cmbProductCategory);
-            pnlManualSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
-            pnlManualSearch.Location = new System.Drawing.Point(285, 845);
-            pnlManualSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pnlManualSearch.Name = "pnlManualSearch";
-            pnlManualSearch.Size = new System.Drawing.Size(1307, 257);
-            pnlManualSearch.TabIndex = 5;
-            // 
-            // dgv_qtupdate
-            // 
-            dgv_qtupdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_qtupdate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Column6, Column7 });
-            dgv_qtupdate.Enabled = false;
-            dgv_qtupdate.Location = new System.Drawing.Point(295, 451);
-            dgv_qtupdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            dgv_qtupdate.Name = "dgv_qtupdate";
-            dgv_qtupdate.RowHeadersWidth = 51;
-            dgv_qtupdate.RowTemplate.Height = 24;
-            dgv_qtupdate.Size = new System.Drawing.Size(366, 229);
-            dgv_qtupdate.TabIndex = 6;
-            dgv_qtupdate.Visible = false;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "PName1";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.Width = 125;
-            // 
-            // Column7
-            // 
-            Column7.HeaderText = "NewQty";
-            Column7.MinimumWidth = 6;
-            Column7.Name = "Column7";
-            Column7.Width = 125;
-            // 
-            // printPreviewDialog1
-            // 
-            printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Enabled = true;
-            printPreviewDialog1.Icon = (System.Drawing.Icon)resources.GetObject("printPreviewDialog1.Icon");
-            printPreviewDialog1.Name = "printPreviewDialog1";
-            printPreviewDialog1.Visible = false;
-            // 
-            // printDocument1
-            // 
-            printDocument1.PrintPage += printDocument1_PrintPage;
-            // 
             // Cashier
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -1142,6 +1202,8 @@
             panel4.PerformLayout();
             SubMenu_BillDetails.ResumeLayout(false);
             SubMenu_BillDetails.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             panel10.ResumeLayout(false);
@@ -1168,13 +1230,13 @@
         private System.Windows.Forms.Panel panelslide;
         private System.Windows.Forms.Panel SubMenu_BillDetails;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbtnGuestCustomer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtMemberid;
         private System.Windows.Forms.TextBox txtMobile;
         private System.Windows.Forms.TextBox txtBillNumber;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbtnNexusMember;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
@@ -1227,7 +1289,12 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox txtBarecode;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbtnUPI;
+        private System.Windows.Forms.RadioButton rbtnCard;
+        private System.Windows.Forms.RadioButton rbtnCash;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

@@ -8,6 +8,8 @@ using System.Data;
 using System.Collections.Generic;
 using EasyBuy.Models;
 using System.Xml.Linq;
+using System.Security.Cryptography;
+using EasyBuy.Forms.Admin;
 
 namespace EasyBuy.Forms.Cashier
 {
@@ -26,12 +28,13 @@ namespace EasyBuy.Forms.Cashier
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
+            rbtnCash.Checked = true;
+            rbtnGuestCustomer.Checked = true;
             txtMobile.Enabled = false;
             txtMemberid.Enabled = false;
             label2.Enabled = false;
             label3.Enabled = false;
-            txtBillNumber.ReadOnly = true;
-            this.radioButton1.Checked = true;
+            txtBillNumber.ReadOnly = true;           
             dgvItem.EnableHeadersVisualStyles = false;
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
@@ -45,7 +48,7 @@ namespace EasyBuy.Forms.Cashier
             try
             {
                 await using var context = new EasyBuyContext();
-                var billCount = await Task.Run(() => context.Bill.CountAsync());
+                var billCount = await Task.Run(() => context.Sale.CountAsync());
                 txtBillNumber.Text = "EASYBUY-" + (billCount + 1);
             }
             catch (Exception)
@@ -71,7 +74,7 @@ namespace EasyBuy.Forms.Cashier
         {
             try
             {
-                List<Product> products;
+                List<Models.Product> products;
                 await using var context = new EasyBuyContext();
                 if (string.IsNullOrEmpty(txtSearch.Text)) products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(cmbProductCategory.Text)).ToListAsync());
                 else products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(txtSearch.Text) && x.Catagory.Contains(cmbProductCategory.Text)).ToListAsync());
@@ -191,11 +194,63 @@ namespace EasyBuy.Forms.Cashier
         {
             // slide(btn_adddiscont);
         }
-        private void btn_settlepayments_Click(object sender, EventArgs e)
+        private async void btn_settlepayments_Click(object sender, EventArgs e)
         {
             PrintBill();
-            //slide(btn_settlepayments);
-            //OutPutBill();
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var sale = new Sale()
+                {
+                    CustomerType = rbtnGuestCustomer.Checked ? "Guest Customer" : "Nexus Member",
+                    Date = DateTime.Now,
+                    MemberId = txtMemberid.Text,
+                    PaymentType = rbtnCash.Checked ? "Cash" : rbtnUPI.Checked ? "UPI" : "CARD",
+                    BillNumber = txtBillNumber.Text,
+                    SellerName = lblCashierName.Text,
+                    SubTotal = Convert.ToDecimal(lblSubTotal.Text),
+                    Discount = Convert.ToDecimal(lblTotalDiscount.Text),
+                    GrandTotal = Convert.ToDecimal(lblGrandTotal.Text)
+                };
+                var saleDetails = new List<SaleDetails>();
+                foreach (DataGridViewRow row in dgvItem.Rows)
+                {
+                    var saleDetail = new SaleDetails();
+                    saleDetail.ProductCode = row.Cells[1].Value.ToString();
+                    saleDetail.ProductName = row.Cells[3].Value.ToString();
+                    saleDetail.Price = Convert.ToDecimal(row.Cells[4].Value ?? 0);
+                    saleDetail.DiscountAmount = Convert.ToDecimal(row.Cells[5].Value ?? 0);
+                    saleDetail.SGST = Convert.ToDecimal(row.Cells[6].Value ?? 0);
+                    saleDetail.CGST = Convert.ToDecimal(row.Cells[7].Value ?? 0);
+                    saleDetail.PriceAfterDiscount = Convert.ToDecimal(row.Cells[8].Value ?? 0);
+                    saleDetail.ProductQuantity = Convert.ToInt32(row.Cells[9].Value ?? 0);
+                    saleDetail.TotalValueInclGST = Convert.ToDecimal(row.Cells[10].Value ?? 0);
+                    saleDetails.Add(saleDetail);
+                    var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(row.Cells[0].Value)));
+                    product.Quantity = product.Quantity - Convert.ToInt32(row.Cells[9].Value ?? 0);
+                    await Task.Run(() => context.Product.Update(product));
+                }
+                await Task.Run(() => context.Sale.AddAsync(sale));
+                await Task.Run(() => context.SaleDetails.AddRangeAsync(saleDetails));
+                await context.SaveChangesAsync();
+                slide(btnCancelTransaction);
+                var reopen = new Cashier();
+                reopen.ShowDialog();
+                Dispose();
+
+            }
+            catch (FormatException)
+            {
+
+                MessageBox.Show("Please Enter Numbers Only", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (Exception)
+
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -384,7 +439,7 @@ namespace EasyBuy.Forms.Cashier
         }
         private void MemberCheck()
         {
-            if (radioButton2.Checked == true)
+            if (rbtnNexusMember.Checked == true)
             {
                 //using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from Member_Tbl where Member_ID like @a AND TPO like @b", con))
                 //{
@@ -463,15 +518,16 @@ namespace EasyBuy.Forms.Cashier
                     DataGridViewRow newRow = new DataGridViewRow();
                     newRow.CreateCells(dgvItem);
                     newRow.Cells[0].Value = product.Id;
-                    newRow.Cells[1].Value = slNumber++;
-                    newRow.Cells[2].Value = product.Name;
-                    newRow.Cells[3].Value = product.Price;
-                    newRow.Cells[4].Value = product.DiscountAmount;
-                    newRow.Cells[5].Value = product.SGST;
-                    newRow.Cells[6].Value = product.CGST;
-                    newRow.Cells[7].Value = product.PriceAfterDiscount;
-                    newRow.Cells[8].Value = 1;
-                    newRow.Cells[9].Value = Math.Round(Convert.ToDecimal(product.PriceAfterDiscount) * Convert.ToDecimal(product.Quantity), 2);
+                    newRow.Cells[1].Value = product.Code;
+                    newRow.Cells[2].Value = slNumber++;
+                    newRow.Cells[3].Value = product.Name;
+                    newRow.Cells[4].Value = product.Price;
+                    newRow.Cells[5].Value = product.DiscountAmount;
+                    newRow.Cells[6].Value = product.SGST;
+                    newRow.Cells[7].Value = product.CGST;
+                    newRow.Cells[8].Value = product.PriceAfterDiscount;
+                    newRow.Cells[9].Value = 1;
+                    newRow.Cells[10].Value = Math.Round(Convert.ToDecimal(product.PriceAfterDiscount) * Convert.ToDecimal(product.Quantity), 2);                    
                     dgvItem.Rows.Add(newRow);
                     this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                 }
