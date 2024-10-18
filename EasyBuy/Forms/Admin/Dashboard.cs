@@ -98,26 +98,26 @@ namespace EasyBuy.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            report1 x = new report1();
-            x.Show();
+            //report1 x = new report1();
+            //x.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            report2 x = new report2();
-            x.Show();
+            //report2 x = new report2();
+            //x.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            report3 x = new report3();
-            x.Show();
+            //report3 x = new report3();
+            //x.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            report4 x = new report4();
-            x.Show();
+            //report4 x = new report4();
+            //x.Show();
         }
     }
 }

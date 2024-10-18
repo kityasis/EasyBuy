@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Collections.Generic;
 using EasyBuy.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace EasyBuy.Forms.Cashier
 {
@@ -29,6 +30,7 @@ namespace EasyBuy.Forms.Cashier
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
+           // lblCashierName.Text = UserName;
             rbtnCash.Checked = true;
             rbtnGuestCustomer.Checked = true;
             txtMobile.Enabled = false;
