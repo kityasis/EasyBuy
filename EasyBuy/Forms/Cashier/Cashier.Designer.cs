@@ -78,6 +78,8 @@
             btn2 = new System.Windows.Forms.Button();
             btn1 = new System.Windows.Forms.Button();
             panel9 = new System.Windows.Forms.Panel();
+            label10 = new System.Windows.Forms.Label();
+            txtRoundOffAmount = new System.Windows.Forms.TextBox();
             lblSubTotal = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label14 = new System.Windows.Forms.Label();
@@ -98,12 +100,6 @@
             label4 = new System.Windows.Forms.Label();
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
-            pnlManualSearch = new System.Windows.Forms.Panel();
-            dgv_qtupdate = new System.Windows.Forms.DataGridView();
-            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
             id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -116,6 +112,12 @@
             Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            pnlManualSearch = new System.Windows.Forms.Panel();
+            dgv_qtupdate = new System.Windows.Forms.DataGridView();
+            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -451,9 +453,9 @@
             groupBox1.Controls.Add(rbtnUPI);
             groupBox1.Controls.Add(rbtnCard);
             groupBox1.Controls.Add(rbtnCash);
-            groupBox1.Location = new System.Drawing.Point(27, 771);
+            groupBox1.Location = new System.Drawing.Point(27, 757);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(298, 73);
+            groupBox1.Size = new System.Drawing.Size(298, 68);
             groupBox1.TabIndex = 63;
             groupBox1.TabStop = false;
             groupBox1.Text = "Payment";
@@ -777,16 +779,37 @@
             // 
             // panel9
             // 
+            panel9.Controls.Add(label10);
+            panel9.Controls.Add(txtRoundOffAmount);
             panel9.Controls.Add(lblSubTotal);
             panel9.Controls.Add(label6);
             panel9.Controls.Add(label14);
             panel9.Controls.Add(lblTotalDiscount);
             panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel9.Location = new System.Drawing.Point(0, 891);
+            panel9.Location = new System.Drawing.Point(0, 832);
             panel9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel9.Name = "panel9";
-            panel9.Size = new System.Drawing.Size(350, 91);
+            panel9.Size = new System.Drawing.Size(350, 150);
             panel9.TabIndex = 38;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label10.Location = new System.Drawing.Point(17, 95);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(160, 24);
+            label10.TabIndex = 38;
+            label10.Text = "Round Off Amount ";
+            // 
+            // txtRoundOffAmount
+            // 
+            txtRoundOffAmount.Location = new System.Drawing.Point(213, 92);
+            txtRoundOffAmount.Name = "txtRoundOffAmount";
+            txtRoundOffAmount.Size = new System.Drawing.Size(125, 27);
+            txtRoundOffAmount.TabIndex = 37;
+            txtRoundOffAmount.TextChanged += txtRoundOffAmount_TextChanged;
+            txtRoundOffAmount.KeyPress += txtRoundOffAmount_KeyPress;
             // 
             // lblSubTotal
             // 
@@ -1027,63 +1050,6 @@
             dgvItem.TabIndex = 4;
             dgvItem.CellContentClick += dgvItem_CellContentClick;
             // 
-            // pnlManualSearch
-            // 
-            pnlManualSearch.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
-            pnlManualSearch.Controls.Add(label4);
-            pnlManualSearch.Controls.Add(txtSearch);
-            pnlManualSearch.Controls.Add(SearchProductGridView);
-            pnlManualSearch.Controls.Add(cmbProductCategory);
-            pnlManualSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
-            pnlManualSearch.Location = new System.Drawing.Point(285, 845);
-            pnlManualSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            pnlManualSearch.Name = "pnlManualSearch";
-            pnlManualSearch.Size = new System.Drawing.Size(1307, 257);
-            pnlManualSearch.TabIndex = 5;
-            // 
-            // dgv_qtupdate
-            // 
-            dgv_qtupdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_qtupdate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Column6, Column7 });
-            dgv_qtupdate.Enabled = false;
-            dgv_qtupdate.Location = new System.Drawing.Point(295, 451);
-            dgv_qtupdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            dgv_qtupdate.Name = "dgv_qtupdate";
-            dgv_qtupdate.RowHeadersWidth = 51;
-            dgv_qtupdate.RowTemplate.Height = 24;
-            dgv_qtupdate.Size = new System.Drawing.Size(366, 229);
-            dgv_qtupdate.TabIndex = 6;
-            dgv_qtupdate.Visible = false;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "PName1";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.Width = 125;
-            // 
-            // Column7
-            // 
-            Column7.HeaderText = "NewQty";
-            Column7.MinimumWidth = 6;
-            Column7.Name = "Column7";
-            Column7.Width = 125;
-            // 
-            // printPreviewDialog1
-            // 
-            printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Enabled = true;
-            printPreviewDialog1.Icon = (System.Drawing.Icon)resources.GetObject("printPreviewDialog1.Icon");
-            printPreviewDialog1.Name = "printPreviewDialog1";
-            printPreviewDialog1.Visible = false;
-            // 
-            // printDocument1
-            // 
-            printDocument1.PrintPage += printDocument1_PrintPage;
-            // 
             // id
             // 
             id.HeaderText = "id";
@@ -1172,6 +1138,63 @@
             remove.Text = "-";
             remove.ToolTipText = "Remove Item";
             remove.UseColumnTextForButtonValue = true;
+            // 
+            // pnlManualSearch
+            // 
+            pnlManualSearch.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            pnlManualSearch.Controls.Add(label4);
+            pnlManualSearch.Controls.Add(txtSearch);
+            pnlManualSearch.Controls.Add(SearchProductGridView);
+            pnlManualSearch.Controls.Add(cmbProductCategory);
+            pnlManualSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
+            pnlManualSearch.Location = new System.Drawing.Point(285, 845);
+            pnlManualSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pnlManualSearch.Name = "pnlManualSearch";
+            pnlManualSearch.Size = new System.Drawing.Size(1307, 257);
+            pnlManualSearch.TabIndex = 5;
+            // 
+            // dgv_qtupdate
+            // 
+            dgv_qtupdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_qtupdate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Column6, Column7 });
+            dgv_qtupdate.Enabled = false;
+            dgv_qtupdate.Location = new System.Drawing.Point(295, 451);
+            dgv_qtupdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            dgv_qtupdate.Name = "dgv_qtupdate";
+            dgv_qtupdate.RowHeadersWidth = 51;
+            dgv_qtupdate.RowTemplate.Height = 24;
+            dgv_qtupdate.Size = new System.Drawing.Size(366, 229);
+            dgv_qtupdate.TabIndex = 6;
+            dgv_qtupdate.Visible = false;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText = "PName1";
+            Column6.MinimumWidth = 6;
+            Column6.Name = "Column6";
+            Column6.Width = 125;
+            // 
+            // Column7
+            // 
+            Column7.HeaderText = "NewQty";
+            Column7.MinimumWidth = 6;
+            Column7.Name = "Column7";
+            Column7.Width = 125;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (System.Drawing.Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            printDocument1.PrintPage += printDocument1_PrintPage;
             // 
             // Cashier
             // 
@@ -1305,5 +1328,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewButtonColumn remove;
+        private System.Windows.Forms.TextBox txtRoundOffAmount;
+        private System.Windows.Forms.Label label10;
     }
 }

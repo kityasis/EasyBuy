@@ -4,7 +4,7 @@ namespace EasyBuy.Models
 {
     public class Sale
     {
-        public long Id { get; set; }
+        public long Id { get; set; }       
         public required string BillNumber { get; set; }
         public required DateTime Date { get; set; }
         public required string PaymentType { get; set; }        

@@ -7,9 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Collections.Generic;
 using EasyBuy.Models;
-using System.Xml.Linq;
-using System.Security.Cryptography;
-using EasyBuy.Forms.Admin;
 
 namespace EasyBuy.Forms.Cashier
 {
@@ -24,7 +21,11 @@ namespace EasyBuy.Forms.Cashier
         int slNumber = 1;
         decimal subtotal = 0;
         decimal grandTotal = 0;
+        decimal cgst = 0;
+        decimal sgst = 0;
         Bitmap bit;
+        long billCount = 0;
+        int totalItem = 0;
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
@@ -34,7 +35,7 @@ namespace EasyBuy.Forms.Cashier
             txtMemberid.Enabled = false;
             label2.Enabled = false;
             label3.Enabled = false;
-            txtBillNumber.ReadOnly = true;           
+            txtBillNumber.ReadOnly = true;
             dgvItem.EnableHeadersVisualStyles = false;
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
@@ -48,8 +49,9 @@ namespace EasyBuy.Forms.Cashier
             try
             {
                 await using var context = new EasyBuyContext();
-                var billCount = await Task.Run(() => context.Sale.CountAsync());
-                txtBillNumber.Text = "EASYBUY-" + (billCount + 1);
+                billCount = await Task.Run(() => context.Sale.CountAsync());
+                billCount += 1;
+                txtBillNumber.Text = $"EASYBUY-{billCount}";
             }
             catch (Exception)
             {
@@ -196,10 +198,11 @@ namespace EasyBuy.Forms.Cashier
         }
         private async void btn_settlepayments_Click(object sender, EventArgs e)
         {
-            PrintBill();
+            await using var context = new EasyBuyContext();
+            using var transaction = context.Database.BeginTransaction();
             try
             {
-                await using var context = new EasyBuyContext();
+
                 var sale = new Sale()
                 {
                     CustomerType = rbtnGuestCustomer.Checked ? "Guest Customer" : "Nexus Member",
@@ -213,6 +216,7 @@ namespace EasyBuy.Forms.Cashier
                     GrandTotal = Convert.ToDecimal(lblGrandTotal.Text)
                 };
                 var saleDetails = new List<SaleDetails>();
+                await Task.Run(() => context.Sale.AddAsync(sale));
                 foreach (DataGridViewRow row in dgvItem.Rows)
                 {
                     var saleDetail = new SaleDetails();
@@ -225,29 +229,25 @@ namespace EasyBuy.Forms.Cashier
                     saleDetail.PriceAfterDiscount = Convert.ToDecimal(row.Cells[8].Value ?? 0);
                     saleDetail.ProductQuantity = Convert.ToInt32(row.Cells[9].Value ?? 0);
                     saleDetail.TotalValueInclGST = Convert.ToDecimal(row.Cells[10].Value ?? 0);
+                    saleDetail.SaleId = billCount;
                     saleDetails.Add(saleDetail);
                     var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(row.Cells[0].Value)));
                     product.Quantity = product.Quantity - Convert.ToInt32(row.Cells[9].Value ?? 0);
                     await Task.Run(() => context.Product.Update(product));
                 }
-                await Task.Run(() => context.Sale.AddAsync(sale));
                 await Task.Run(() => context.SaleDetails.AddRangeAsync(saleDetails));
                 await context.SaveChangesAsync();
+                transaction.Commit();
                 slide(btnCancelTransaction);
-                var reopen = new Cashier();
-                reopen.ShowDialog();
-                Dispose();
-
-            }
-            catch (FormatException)
-            {
-
-                MessageBox.Show("Please Enter Numbers Only", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PrintBill();
+                Cashier x = new Cashier();
+                x.Show();
+                this.Hide();
 
             }
             catch (Exception)
-
             {
+                transaction.Rollback();
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
@@ -413,18 +413,78 @@ namespace EasyBuy.Forms.Cashier
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("Easy Bye", new Font("Fake Receipt", 20, FontStyle.Regular), Brushes.Black, new Point(285, 20));
-            e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(30, 80));
-            e.Graphics.DrawString("NO. 968 , Mahabage Road , Ragama", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 110));
-            e.Graphics.DrawString("Date - " + DateTime.Now, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 140));
-            e.Graphics.DrawString("Bill ID - " + txtBillNumber.Text + "                                       " + "Cashier Name -" + lblCashierName.Text, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(50, 170));
-            e.Graphics.DrawString("-----------------------------------------------------------------------------------", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(30, 200));
-            e.Graphics.DrawImage(bit, 30, 230);
-            e.Graphics.DrawString("Grand Total - Rs" + grandTotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 240));
-            e.Graphics.DrawString("_________________________________", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(630, 250));
-            e.Graphics.DrawString("Subtotal - Rs" + subtotal, new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 270));
-            e.Graphics.DrawString("Discount - Rs" + dis + "(" + txtDiscunt.Text + "%)", new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(650, 290));
+            e.Graphics.DrawString("EASY BUY STORE", new Font("Fake Receipt", 15, FontStyle.Regular), Brushes.Black, new Point(285, 20));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 50));
+            e.Graphics.DrawString("Ratnagiri, Jajpur, Odisha-754214",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 80));
+            e.Graphics.DrawString("GSTIN :  21BEQPJ5769E1ZB",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 110));
+            e.Graphics.DrawString("CASH MEMO : Retail Invoice",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 140));
+            e.Graphics.DrawString("TAX INVOICE",
+                new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(310, 190));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 220));
+            e.Graphics.DrawString("Item            Qty       MRP       OurPrice         Total",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 240));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, 260));
+            //
+            int i = 260;
+            foreach (DataGridViewRow row in dgvItem.Rows)
+            {
+                totalItem += Convert.ToInt32(row.Cells[9].Value);
+                sgst += Convert.ToDecimal(row.Cells[6].Value);
+                cgst += Convert.ToDecimal(row.Cells[7].Value);
+                i += 12;
+                e.Graphics.DrawString($"{row.Cells[3].Value.ToString()}",
+               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i));
+                i += 12;
+                e.Graphics.DrawString($"            {row.Cells[9].Value.ToString()}       {row.Cells[4].Value.ToString()}       {row.Cells[8].Value.ToString()}         {row.Cells[10].Value.ToString()}",
+               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(265, i));
+            }
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 20));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 40));
 
+            e.Graphics.DrawString("Total Amount : " + lblSubTotal.Text,
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 70));
+            e.Graphics.DrawString("Round Off Amount : " + txtRoundOffAmount.Text,
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 100));
+            e.Graphics.DrawString("Net Amount Due : " + lblGrandTotal.Text,
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 130));
+            e.Graphics.DrawString("Total Item Sold : " + totalItem,
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 160));
+            e.Graphics.DrawString("GST RECEIPT SUMMARY",
+                new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(310, i + 210));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 225));
+            e.Graphics.DrawString("                Tax       Taxable       Tax            Total",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 240));
+            e.Graphics.DrawString("                Rate      Amount       Amount     Amount",
+              new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 255));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 265));
+
+            e.Graphics.DrawString($"                               {lblSubTotal.Text}            {cgst + sgst}         {Convert.ToDecimal(lblSubTotal.Text) + cgst + sgst} ",
+                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 280));
+            e.Graphics.DrawString($"CGST      2.5 %       {cgst}",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 295));
+            e.Graphics.DrawString($"SGST      2.5 %       {sgst}",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 310));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 330));
+            e.Graphics.DrawString("-------------------------------------------------------------------",
+                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 350));
+
+            e.Graphics.DrawString("Date : " + DateTime.Now,
+               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 360));
+            e.Graphics.DrawString("Casher  : " + lblCashierName.Text,
+             new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 380));
+            e.Graphics.DrawString("Bill No : " + txtBillNumber.Text,
+             new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i + 400));
         }
         private void PrintBill()
         {
@@ -509,8 +569,8 @@ namespace EasyBuy.Forms.Cashier
                     {
                         if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
                         {
-                            row.Cells[8].Value = (Convert.ToInt32(row.Cells[8].Value) + 1);
-                            row.Cells[9].Value = Math.Round(Convert.ToDecimal(row.Cells[7].Value) * Convert.ToDecimal(row.Cells[8].Value), 2);
+                            row.Cells[9].Value = (Convert.ToInt32(row.Cells[9].Value) + 1);
+                            row.Cells[10].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[8].Value), Convert.ToDecimal(row.Cells[9].Value));
                             this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                             return;
                         }
@@ -527,16 +587,17 @@ namespace EasyBuy.Forms.Cashier
                     newRow.Cells[7].Value = product.CGST;
                     newRow.Cells[8].Value = product.PriceAfterDiscount;
                     newRow.Cells[9].Value = 1;
-                    newRow.Cells[10].Value = Math.Round(Convert.ToDecimal(product.PriceAfterDiscount) * Convert.ToDecimal(product.Quantity), 2);                    
+                    newRow.Cells[10].Value = GetPriceAfterDiscount(Convert.ToDecimal(product.PriceAfterDiscount), Convert.ToDecimal(newRow.Cells[9].Value));
                     dgvItem.Rows.Add(newRow);
                     this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                 }
 
 
             }
-            catch (Exception) { }          
-            
+            catch (Exception) { }
+
         }
+        private decimal GetPriceAfterDiscount(decimal price, decimal qty) => Math.Round(price * qty, 2);
         private void btnCancelTransaction_Click(object sender, EventArgs e)
         {
             slide(btnCancelTransaction);
@@ -563,12 +624,10 @@ namespace EasyBuy.Forms.Cashier
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnMemberShow_Click(object sender, EventArgs e)
         {
 
         }
-
         private void dgvItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -580,7 +639,7 @@ namespace EasyBuy.Forms.Cashier
                     if (qty > 1)
                     {
                         dgvItem.Rows[e.RowIndex].Cells[8].Value = qty - 1;
-                        var totalAmount= Math.Round(Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[7].Value) * Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[8].Value));
+                        var totalAmount = Math.Round(Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[7].Value) * Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[8].Value));
                         dgvItem.Rows[e.RowIndex].Cells[9].Value = totalAmount;
                         RemoveFromTotalValue(totalAmount, Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[5].Value));
                     }
@@ -600,6 +659,15 @@ namespace EasyBuy.Forms.Cashier
             lblSubTotal.Text = totalPrice.ToString();
             lblTotalDiscount.Text = totalDiscount.ToString();
             lblGrandTotal.Text = grandTotal.ToString();
+        }
+        private void txtRoundOffAmount_TextChanged(object sender, EventArgs e)
+        {
+            lblGrandTotal.Text = Math.Round(Convert.ToDecimal(lblGrandTotal.Text) - Convert.ToDecimal(txtRoundOffAmount.Text), 2).ToString();
+        }
+        private void txtRoundOffAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
     }
 }
