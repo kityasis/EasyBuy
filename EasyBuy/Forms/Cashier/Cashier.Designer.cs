@@ -101,7 +101,7 @@
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
             id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Code = new System.Windows.Forms.DataGridViewTextBoxColumn();            
+            Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -159,7 +159,7 @@
             button4.ForeColor = System.Drawing.Color.Honeydew;
             button4.Image = (System.Drawing.Image)resources.GetObject("button4.Image");
             button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            button4.Location = new System.Drawing.Point(0, 323);
+            button4.Location = new System.Drawing.Point(0, 273);
             button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             button4.Name = "button4";
             button4.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -180,7 +180,7 @@
             btnCancelTransaction.ForeColor = System.Drawing.Color.Honeydew;
             btnCancelTransaction.Image = (System.Drawing.Image)resources.GetObject("btnCancelTransaction.Image");
             btnCancelTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnCancelTransaction.Location = new System.Drawing.Point(0, 267);
+            btnCancelTransaction.Location = new System.Drawing.Point(0, 217);
             btnCancelTransaction.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCancelTransaction.Name = "btnCancelTransaction";
             btnCancelTransaction.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -233,7 +233,7 @@
             btnSettlePayments.ForeColor = System.Drawing.Color.Honeydew;
             btnSettlePayments.Image = (System.Drawing.Image)resources.GetObject("btnSettlePayments.Image");
             btnSettlePayments.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnSettlePayments.Location = new System.Drawing.Point(0, 211);
+            btnSettlePayments.Location = new System.Drawing.Point(0, 161);
             btnSettlePayments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSettlePayments.Name = "btnSettlePayments";
             btnSettlePayments.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -255,7 +255,7 @@
             btnNewTransaction.ForeColor = System.Drawing.Color.Honeydew;
             btnNewTransaction.Image = (System.Drawing.Image)resources.GetObject("btnNewTransaction.Image");
             btnNewTransaction.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnNewTransaction.Location = new System.Drawing.Point(0, 155);
+            btnNewTransaction.Location = new System.Drawing.Point(0, 105);
             btnNewTransaction.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnNewTransaction.Name = "btnNewTransaction";
             btnNewTransaction.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -276,7 +276,7 @@
             panel3.Location = new System.Drawing.Point(0, 0);
             panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new System.Drawing.Size(280, 155);
+            panel3.Size = new System.Drawing.Size(280, 105);
             panel3.TabIndex = 0;
             // 
             // panel8
@@ -294,7 +294,7 @@
             lblCashierName.AutoSize = true;
             lblCashierName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lblCashierName.ForeColor = System.Drawing.Color.White;
-            lblCashierName.Location = new System.Drawing.Point(32, 112);
+            lblCashierName.Location = new System.Drawing.Point(112, 65);
             lblCashierName.Name = "lblCashierName";
             lblCashierName.Size = new System.Drawing.Size(137, 25);
             lblCashierName.TabIndex = 2;
@@ -305,11 +305,11 @@
             label13.AutoSize = true;
             label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label13.ForeColor = System.Drawing.Color.White;
-            label13.Location = new System.Drawing.Point(55, 72);
+            label13.Location = new System.Drawing.Point(22, 65);
             label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(84, 20);
+            label13.Size = new System.Drawing.Size(94, 20);
             label13.TabIndex = 1;
-            label13.Text = "Welcome!";
+            label13.Text = "Welcome : ";
             // 
             // panel2
             // 
@@ -1036,7 +1036,7 @@
             dgvItem.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Code,Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
+            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Code, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
             dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
             dgvItem.Location = new System.Drawing.Point(285, 51);
             dgvItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1063,7 +1063,7 @@
             Code.MinimumWidth = 6;
             Code.Name = "Code";
             Code.ReadOnly = true;
-            Code.Visible = false;           
+            Code.Visible = false;
             // 
             // Column2
             // 

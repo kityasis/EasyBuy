@@ -42,7 +42,6 @@
             lblPoint = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             MemberDataGridView = new System.Windows.Forms.DataGridView();
-            memberBindingSource = new System.Windows.Forms.BindingSource(components);
             idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             memberIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +49,7 @@
             pointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            memberBindingSource = new System.Windows.Forms.BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MemberDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)memberBindingSource).BeginInit();
@@ -57,12 +57,13 @@
             // 
             // panel1
             // 
-            panel1.BackColor = System.Drawing.Color.FromArgb(72, 52, 212);
+            panel1.BackColor = System.Drawing.Color.RoyalBlue;
             panel1.Controls.Add(label1);
             panel1.Dock = System.Windows.Forms.DockStyle.Top;
             panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(861, 33);
+            panel1.Size = new System.Drawing.Size(984, 44);
             panel1.TabIndex = 41;
             // 
             // label1
@@ -70,26 +71,27 @@
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(10, 8);
+            label1.Location = new System.Drawing.Point(11, 11);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(102, 17);
+            label1.Size = new System.Drawing.Size(122, 20);
             label1.TabIndex = 0;
             label1.Text = "Nexus Member";
             // 
             // txtName
             // 
-            txtName.Location = new System.Drawing.Point(137, 93);
+            txtName.Location = new System.Drawing.Point(157, 124);
+            txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new System.Drawing.Size(208, 23);
+            txtName.Size = new System.Drawing.Size(237, 27);
             txtName.TabIndex = 61;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label6.Location = new System.Drawing.Point(22, 97);
+            label6.Location = new System.Drawing.Point(25, 129);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(45, 15);
+            label6.Size = new System.Drawing.Size(52, 18);
             label6.TabIndex = 60;
             label6.Text = "Name";
             // 
@@ -99,9 +101,10 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(450, 122);
+            btnClear.Location = new System.Drawing.Point(514, 163);
+            btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(84, 27);
+            btnClear.Size = new System.Drawing.Size(96, 36);
             btnClear.TabIndex = 59;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -113,9 +116,10 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(349, 122);
+            btnAdd.Location = new System.Drawing.Point(399, 163);
+            btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(84, 27);
+            btnAdd.Size = new System.Drawing.Size(96, 36);
             btnAdd.TabIndex = 58;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -123,26 +127,28 @@
             // 
             // txtContactNumber
             // 
-            txtContactNumber.Location = new System.Drawing.Point(137, 122);
+            txtContactNumber.Location = new System.Drawing.Point(157, 163);
+            txtContactNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtContactNumber.Name = "txtContactNumber";
-            txtContactNumber.Size = new System.Drawing.Size(206, 23);
+            txtContactNumber.Size = new System.Drawing.Size(235, 27);
             txtContactNumber.TabIndex = 57;
             // 
             // txtId
             // 
             txtId.Enabled = false;
-            txtId.Location = new System.Drawing.Point(137, 66);
+            txtId.Location = new System.Drawing.Point(157, 88);
+            txtId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtId.Name = "txtId";
-            txtId.Size = new System.Drawing.Size(208, 23);
+            txtId.Size = new System.Drawing.Size(237, 27);
             txtId.TabIndex = 56;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label3.Location = new System.Drawing.Point(19, 122);
+            label3.Location = new System.Drawing.Point(22, 163);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(103, 15);
+            label3.Size = new System.Drawing.Size(120, 18);
             label3.TabIndex = 55;
             label3.Text = "Phone Number";
             // 
@@ -150,18 +156,18 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label2.Location = new System.Drawing.Point(22, 66);
+            label2.Location = new System.Drawing.Point(25, 88);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(21, 15);
+            label2.Size = new System.Drawing.Size(24, 18);
             label2.TabIndex = 54;
             label2.Text = "ID";
             // 
             // lblPoint
             // 
             lblPoint.AutoSize = true;
-            lblPoint.Location = new System.Drawing.Point(137, 152);
+            lblPoint.Location = new System.Drawing.Point(157, 203);
             lblPoint.Name = "lblPoint";
-            lblPoint.Size = new System.Drawing.Size(13, 15);
+            lblPoint.Size = new System.Drawing.Size(17, 20);
             lblPoint.TabIndex = 62;
             lblPoint.Text = "0";
             // 
@@ -169,9 +175,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label5.Location = new System.Drawing.Point(22, 151);
+            label5.Location = new System.Drawing.Point(25, 201);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(47, 15);
+            label5.Size = new System.Drawing.Size(56, 18);
             label5.TabIndex = 63;
             label5.Text = "Points";
             // 
@@ -184,24 +190,22 @@
             MemberDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             MemberDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, memberIdDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, contactNumberDataGridViewTextBoxColumn, pointsDataGridViewTextBoxColumn, Edit, Delete });
             MemberDataGridView.DataSource = memberBindingSource;
-            MemberDataGridView.Location = new System.Drawing.Point(22, 187);
+            MemberDataGridView.Location = new System.Drawing.Point(25, 249);
+            MemberDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             MemberDataGridView.Name = "MemberDataGridView";
             MemberDataGridView.ReadOnly = true;
             MemberDataGridView.RowHeadersVisible = false;
             MemberDataGridView.RowHeadersWidth = 51;
             MemberDataGridView.RowTemplate.Height = 24;
-            MemberDataGridView.Size = new System.Drawing.Size(785, 297);
+            MemberDataGridView.Size = new System.Drawing.Size(897, 396);
             MemberDataGridView.TabIndex = 64;
             MemberDataGridView.CellContentClick += MemberDataGridView_CellContentClick;
-            // 
-            // memberBindingSource
-            // 
-            memberBindingSource.DataSource = typeof(Models.Member);
             // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             idDataGridViewTextBoxColumn.ReadOnly = true;
             idDataGridViewTextBoxColumn.Visible = false;
@@ -210,6 +214,7 @@
             // 
             memberIdDataGridViewTextBoxColumn.DataPropertyName = "MemberId";
             memberIdDataGridViewTextBoxColumn.HeaderText = "MemberId";
+            memberIdDataGridViewTextBoxColumn.MinimumWidth = 6;
             memberIdDataGridViewTextBoxColumn.Name = "memberIdDataGridViewTextBoxColumn";
             memberIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -217,6 +222,7 @@
             // 
             nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -224,6 +230,7 @@
             // 
             contactNumberDataGridViewTextBoxColumn.DataPropertyName = "ContactNumber";
             contactNumberDataGridViewTextBoxColumn.HeaderText = "ContactNumber";
+            contactNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
             contactNumberDataGridViewTextBoxColumn.Name = "contactNumberDataGridViewTextBoxColumn";
             contactNumberDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -231,6 +238,7 @@
             // 
             pointsDataGridViewTextBoxColumn.DataPropertyName = "Points";
             pointsDataGridViewTextBoxColumn.HeaderText = "Points";
+            pointsDataGridViewTextBoxColumn.MinimumWidth = 6;
             pointsDataGridViewTextBoxColumn.Name = "pointsDataGridViewTextBoxColumn";
             pointsDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -258,11 +266,15 @@
             Delete.ToolTipText = "Delete";
             Delete.UseColumnTextForButtonValue = true;
             // 
+            // memberBindingSource
+            // 
+            memberBindingSource.DataSource = typeof(Models.Member);
+            // 
             // Member
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(861, 528);
+            ClientSize = new System.Drawing.Size(984, 704);
             Controls.Add(MemberDataGridView);
             Controls.Add(label5);
             Controls.Add(lblPoint);
@@ -276,6 +288,7 @@
             Controls.Add(label2);
             Controls.Add(panel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "Member";
             Text = "Member";
             Load += Member_Load;

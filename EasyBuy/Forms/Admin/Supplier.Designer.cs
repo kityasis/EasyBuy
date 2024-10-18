@@ -38,15 +38,15 @@
             btnAdd = new System.Windows.Forms.Button();
             btnClear = new System.Windows.Forms.Button();
             SupplierDataGridView = new System.Windows.Forms.DataGridView();
-            txtContactNumber = new System.Windows.Forms.TextBox();
-            label2 = new System.Windows.Forms.Label();
-            supplierBindingSource = new System.Windows.Forms.BindingSource(components);
             idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             contactNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            supplierBindingSource = new System.Windows.Forms.BindingSource(components);
+            txtContactNumber = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SupplierDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)supplierBindingSource).BeginInit();
@@ -54,7 +54,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = System.Drawing.Color.FromArgb(72, 52, 212);
+            panel1.BackColor = System.Drawing.Color.RoyalBlue;
             panel1.Controls.Add(label1);
             panel1.Dock = System.Windows.Forms.DockStyle.Top;
             panel1.Location = new System.Drawing.Point(0, 0);
@@ -161,29 +161,6 @@
             SupplierDataGridView.TabIndex = 20;
             SupplierDataGridView.CellContentClick += SupplierDataGridView_CellContentClick;
             // 
-            // txtContactNumber
-            // 
-            txtContactNumber.Location = new System.Drawing.Point(130, 108);
-            txtContactNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            txtContactNumber.MaxLength = 10;
-            txtContactNumber.Name = "txtContactNumber";
-            txtContactNumber.Size = new System.Drawing.Size(474, 27);
-            txtContactNumber.TabIndex = 22;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label2.Location = new System.Drawing.Point(22, 112);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(99, 18);
-            label2.TabIndex = 21;
-            label2.Text = "Contact No.";
-            // 
-            // supplierBindingSource
-            // 
-            supplierBindingSource.DataSource = typeof(Models.Supplier);
-            // 
             // idDataGridViewTextBoxColumn
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -239,6 +216,29 @@
             Delete.Text = "Delete";
             Delete.ToolTipText = "Delete";
             Delete.UseColumnTextForButtonValue = true;
+            // 
+            // supplierBindingSource
+            // 
+            supplierBindingSource.DataSource = typeof(Models.Supplier);
+            // 
+            // txtContactNumber
+            // 
+            txtContactNumber.Location = new System.Drawing.Point(130, 108);
+            txtContactNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtContactNumber.MaxLength = 10;
+            txtContactNumber.Name = "txtContactNumber";
+            txtContactNumber.Size = new System.Drawing.Size(474, 27);
+            txtContactNumber.TabIndex = 22;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label2.Location = new System.Drawing.Point(22, 112);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(99, 18);
+            label2.TabIndex = 21;
+            label2.Text = "Contact No.";
             // 
             // Supplier
             // 

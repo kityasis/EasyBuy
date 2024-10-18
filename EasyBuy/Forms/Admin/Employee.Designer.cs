@@ -59,12 +59,13 @@
             // 
             // panel1
             // 
-            panel1.BackColor = System.Drawing.Color.FromArgb(72, 52, 212);
+            panel1.BackColor = System.Drawing.Color.RoyalBlue;
             panel1.Controls.Add(label1);
             panel1.Dock = System.Windows.Forms.DockStyle.Top;
             panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(864, 33);
+            panel1.Size = new System.Drawing.Size(987, 44);
             panel1.TabIndex = 27;
             // 
             // label1
@@ -72,26 +73,27 @@
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(10, 8);
+            label1.Location = new System.Drawing.Point(11, 11);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(70, 17);
+            label1.Size = new System.Drawing.Size(82, 20);
             label1.TabIndex = 0;
             label1.Text = "Employee";
             // 
             // txtPassword
             // 
-            txtPassword.Location = new System.Drawing.Point(219, 118);
+            txtPassword.Location = new System.Drawing.Point(250, 157);
+            txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new System.Drawing.Size(247, 23);
+            txtPassword.Size = new System.Drawing.Size(282, 27);
             txtPassword.TabIndex = 50;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label7.Location = new System.Drawing.Point(35, 122);
+            label7.Location = new System.Drawing.Point(40, 163);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(69, 15);
+            label7.Size = new System.Drawing.Size(83, 18);
             label7.TabIndex = 49;
             label7.Text = "Password";
             // 
@@ -99,17 +101,19 @@
             // 
             cmdRole.FormattingEnabled = true;
             cmdRole.Items.AddRange(new object[] { "Administrator", "Cashier" });
-            cmdRole.Location = new System.Drawing.Point(219, 174);
+            cmdRole.Location = new System.Drawing.Point(250, 232);
+            cmdRole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             cmdRole.Name = "cmdRole";
-            cmdRole.Size = new System.Drawing.Size(247, 23);
+            cmdRole.Size = new System.Drawing.Size(282, 28);
             cmdRole.TabIndex = 48;
             cmdRole.Text = "---Select Role---";
             // 
             // txtUserName
             // 
-            txtUserName.Location = new System.Drawing.Point(219, 90);
+            txtUserName.Location = new System.Drawing.Point(250, 120);
+            txtUserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new System.Drawing.Size(247, 23);
+            txtUserName.Size = new System.Drawing.Size(282, 27);
             txtUserName.TabIndex = 47;
             txtUserName.Leave += txtUserName_Leave;
             // 
@@ -117,9 +121,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label5.Location = new System.Drawing.Point(35, 178);
+            label5.Location = new System.Drawing.Point(40, 237);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(37, 15);
+            label5.Size = new System.Drawing.Size(43, 18);
             label5.TabIndex = 46;
             label5.Text = "Role";
             // 
@@ -127,9 +131,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label6.Location = new System.Drawing.Point(35, 94);
+            label6.Location = new System.Drawing.Point(40, 125);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(79, 15);
+            label6.Size = new System.Drawing.Size(93, 18);
             label6.TabIndex = 45;
             label6.Text = "User Name";
             // 
@@ -139,9 +143,10 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(576, 165);
+            btnClear.Location = new System.Drawing.Point(658, 220);
+            btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(84, 32);
+            btnClear.Size = new System.Drawing.Size(96, 43);
             btnClear.TabIndex = 44;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -153,9 +158,10 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(486, 165);
+            btnAdd.Location = new System.Drawing.Point(555, 220);
+            btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(84, 32);
+            btnAdd.Size = new System.Drawing.Size(96, 43);
             btnAdd.TabIndex = 43;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -163,26 +169,28 @@
             // 
             // txtConfirmPassword
             // 
-            txtConfirmPassword.Location = new System.Drawing.Point(219, 146);
+            txtConfirmPassword.Location = new System.Drawing.Point(250, 195);
+            txtConfirmPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.Size = new System.Drawing.Size(247, 23);
+            txtConfirmPassword.Size = new System.Drawing.Size(282, 27);
             txtConfirmPassword.TabIndex = 42;
             txtConfirmPassword.Leave += txtConfirmPassword_Leave;
             // 
             // txtFullName
             // 
-            txtFullName.Location = new System.Drawing.Point(219, 62);
+            txtFullName.Location = new System.Drawing.Point(250, 83);
+            txtFullName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtFullName.Name = "txtFullName";
-            txtFullName.Size = new System.Drawing.Size(247, 23);
+            txtFullName.Size = new System.Drawing.Size(282, 27);
             txtFullName.TabIndex = 41;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label3.Location = new System.Drawing.Point(35, 150);
+            label3.Location = new System.Drawing.Point(40, 200);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(126, 15);
+            label3.Size = new System.Drawing.Size(151, 18);
             label3.TabIndex = 40;
             label3.Text = "Re-Type Password";
             // 
@@ -190,9 +198,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label2.Location = new System.Drawing.Point(35, 66);
+            label2.Location = new System.Drawing.Point(40, 88);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(73, 15);
+            label2.Size = new System.Drawing.Size(84, 18);
             label2.TabIndex = 39;
             label2.Text = "Full Name";
             // 
@@ -205,13 +213,14 @@
             EmployeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             EmployeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, userNameDataGridViewTextBoxColumn, passwordDataGridViewTextBoxColumn, roleDataGridViewTextBoxColumn, Edit, Delete });
             EmployeeDataGridView.DataSource = employeeBindingSource;
-            EmployeeDataGridView.Location = new System.Drawing.Point(21, 230);
+            EmployeeDataGridView.Location = new System.Drawing.Point(24, 307);
+            EmployeeDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             EmployeeDataGridView.Name = "EmployeeDataGridView";
             EmployeeDataGridView.ReadOnly = true;
             EmployeeDataGridView.RowHeadersVisible = false;
             EmployeeDataGridView.RowHeadersWidth = 51;
             EmployeeDataGridView.RowTemplate.Height = 24;
-            EmployeeDataGridView.Size = new System.Drawing.Size(820, 297);
+            EmployeeDataGridView.Size = new System.Drawing.Size(937, 396);
             EmployeeDataGridView.TabIndex = 51;
             EmployeeDataGridView.CellContentClick += EmployeeDataGridView_CellContentClick;
             // 
@@ -219,6 +228,7 @@
             // 
             idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             idDataGridViewTextBoxColumn.ReadOnly = true;
             idDataGridViewTextBoxColumn.Visible = false;
@@ -227,6 +237,7 @@
             // 
             nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -234,6 +245,7 @@
             // 
             userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
             userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            userNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
             userNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -241,6 +253,7 @@
             // 
             passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
             passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            passwordDataGridViewTextBoxColumn.MinimumWidth = 6;
             passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             passwordDataGridViewTextBoxColumn.ReadOnly = true;
             passwordDataGridViewTextBoxColumn.Visible = false;
@@ -249,6 +262,7 @@
             // 
             roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
             roleDataGridViewTextBoxColumn.HeaderText = "Role";
+            roleDataGridViewTextBoxColumn.MinimumWidth = 6;
             roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
             roleDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -282,9 +296,9 @@
             // 
             // Employee
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(864, 562);
+            ClientSize = new System.Drawing.Size(987, 749);
             Controls.Add(EmployeeDataGridView);
             Controls.Add(txtPassword);
             Controls.Add(label7);
@@ -300,6 +314,7 @@
             Controls.Add(label2);
             Controls.Add(panel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "Employee";
             Text = "Employee";
             Load += Employee_Load;
