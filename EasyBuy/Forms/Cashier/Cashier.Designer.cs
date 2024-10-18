@@ -101,8 +101,7 @@
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
             id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Code = new System.Windows.Forms.DataGridViewTextBoxColumn();            
             Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1037,7 +1036,7 @@
             dgvItem.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Code, Column1, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
+            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Code,Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
             dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
             dgvItem.Location = new System.Drawing.Point(285, 51);
             dgvItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1064,14 +1063,7 @@
             Code.MinimumWidth = 6;
             Code.Name = "Code";
             Code.ReadOnly = true;
-            Code.Visible = false;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Sl. NO";
-            Column1.MinimumWidth = 40;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
+            Code.Visible = false;           
             // 
             // Column2
             // 
@@ -1317,8 +1309,7 @@
         private System.Windows.Forms.RadioButton rbtnCard;
         private System.Windows.Forms.RadioButton rbtnCash;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Code;      
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;

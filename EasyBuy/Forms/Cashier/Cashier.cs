@@ -107,67 +107,7 @@ namespace EasyBuy.Forms.Cashier
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-
-
-                //int x_quantity = 13;// Convert.ToInt32(textBox1.Text);
-
-
-                //int y = Convert.ToInt32(txtProductQuantity.Text);
-
-                //if (txtProductName.Text.Length == 0 || txtProductPrice.Text.Length == 0)
-                //{
-                //    MessageBox.Show("Please Search A Product First To Enter Detials Into The Bill", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else if (txtProductQuantity.Text.Any(Char.IsLetter))
-                //{
-                //    MessageBox.Show("Product Quantity Must Be In Numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else if (y <= 0)
-                //{
-                //    MessageBox.Show("Product Qunatity Must Be Atleast 1 or Higher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else if (y >= x_quantity)
-                //{
-                //    MessageBox.Show("Reached The Maximum Available Product Quantity", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //else
-                //{
-
-                //    int total = Convert.ToInt32(txtProductPrice.Text) * Convert.ToInt32(txtProductQuantity.Text);
-                //    DataGridViewRow newRow = new DataGridViewRow();
-                //    newRow.CreateCells(dataGridView2);
-                //    newRow.Cells[0].Value = n++;
-                //    newRow.Cells[1].Value = txtProductName.Text;
-                //    newRow.Cells[2].Value = txtProductPrice.Text;
-                //    newRow.Cells[3].Value = txtProductQuantity.Text;
-                //    newRow.Cells[4].Value = Convert.ToInt32(txtProductPrice.Text) * Convert.ToInt32(txtProductQuantity.Text);
-                //    dataGridView2.Rows.Add(newRow);
-                //    xy++;
-                //    subtotal = subtotal + total;
-                //    txt_subtotal.Text = subtotal.ToString();
-                //    grandtotal = subtotal - dis;
-                //    txt_grandtotal.Text = "Rs " + grandtotal.ToString();
-                //    textBox2_TextChanged(sender, new EventArgs());
-                //    int c_ty = Convert.ToInt32(txt_cty.Text);
-                //    int pty = Convert.ToInt32(txtProductQuantity.Text);
-                //    txt_newqty.Text = (c_ty - pty).ToString();
-                //    DataGridViewRow newRow1 = new DataGridViewRow();
-                //    newRow1.CreateCells(dgv_qtupdate);
-                //    newRow1.Cells[0].Value = txtProductName.Text;
-                //    newRow1.Cells[1].Value = txt_newqty.Text;
-                //    dgv_qtupdate.Rows.Add(newRow1);
-                //}
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Searched Product Not Found or Product Quantity Must Be In Numbers", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
         private void btnExit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are You Sure You Want To Exit", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -431,14 +371,14 @@ namespace EasyBuy.Forms.Cashier
             int i = 260;
             foreach (DataGridViewRow row in dgvItem.Rows)
             {
-                totalItem += Convert.ToInt32(row.Cells[9].Value);
-                sgst += Convert.ToDecimal(row.Cells[6].Value);
-                cgst += Convert.ToDecimal(row.Cells[7].Value);
+                totalItem += Convert.ToInt32(row.Cells[8].Value);
+                sgst += Convert.ToDecimal(row.Cells[5].Value);
+                cgst += Convert.ToDecimal(row.Cells[6].Value);
                 i += 12;
-                e.Graphics.DrawString($"{row.Cells[3].Value.ToString()}",
+                e.Graphics.DrawString($"{row.Cells[2].Value.ToString()}",
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(240, i));
                 i += 12;
-                e.Graphics.DrawString($"            {row.Cells[9].Value.ToString()}       {row.Cells[4].Value.ToString()}       {row.Cells[8].Value.ToString()}         {row.Cells[10].Value.ToString()}",
+                e.Graphics.DrawString($"            {row.Cells[8].Value.ToString()}       {row.Cells[3].Value.ToString()}       {row.Cells[7].Value.ToString()}         {row.Cells[9].Value.ToString()}",
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(265, i));
             }
             e.Graphics.DrawString("-------------------------------------------------------------------",
@@ -566,8 +506,8 @@ namespace EasyBuy.Forms.Cashier
                     {
                         if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
                         {
-                            row.Cells[9].Value = (Convert.ToInt32(row.Cells[9].Value) + 1);
-                            row.Cells[10].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[8].Value), Convert.ToDecimal(row.Cells[9].Value));
+                            row.Cells[8].Value = (Convert.ToInt32(row.Cells[8].Value) + 1);
+                            row.Cells[9].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[7].Value), Convert.ToDecimal(row.Cells[8].Value));
                             this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                             return;
                         }
@@ -575,16 +515,15 @@ namespace EasyBuy.Forms.Cashier
                     DataGridViewRow newRow = new DataGridViewRow();
                     newRow.CreateCells(dgvItem);
                     newRow.Cells[0].Value = product.Id;
-                    newRow.Cells[1].Value = product.Code;
-                    newRow.Cells[2].Value = slNumber++;
-                    newRow.Cells[3].Value = product.Name;
-                    newRow.Cells[4].Value = product.Price;
-                    newRow.Cells[5].Value = product.DiscountAmount;
-                    newRow.Cells[6].Value = product.SGST;
-                    newRow.Cells[7].Value = product.CGST;
-                    newRow.Cells[8].Value = product.PriceAfterDiscount;
-                    newRow.Cells[9].Value = 1;
-                    newRow.Cells[10].Value = GetPriceAfterDiscount(Convert.ToDecimal(product.PriceAfterDiscount), Convert.ToDecimal(newRow.Cells[9].Value));
+                    newRow.Cells[1].Value = product.Code;                   
+                    newRow.Cells[2].Value = product.Name;
+                    newRow.Cells[3].Value = product.Price;
+                    newRow.Cells[4].Value = product.DiscountAmount;
+                    newRow.Cells[5].Value = product.SGST;
+                    newRow.Cells[6].Value = product.CGST;
+                    newRow.Cells[7].Value = product.PriceAfterDiscount;
+                    newRow.Cells[8].Value = 1;
+                    newRow.Cells[9].Value = GetPriceAfterDiscount(Convert.ToDecimal(product.PriceAfterDiscount), Convert.ToDecimal(newRow.Cells[8].Value));
                     dgvItem.Rows.Add(newRow);
                     this.FillTotalValue(product.PriceAfterDiscount, product.Discount);
                 }
