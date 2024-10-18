@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
+using EasyBuy.Utility;
 
 namespace EasyBuy
 {
@@ -11,8 +12,7 @@ namespace EasyBuy
         public Login()
         {
             InitializeComponent();
-        }
-        public static string UserName;        
+        }             
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -42,7 +42,7 @@ namespace EasyBuy
                         var employee = await Task.Run(() => context.Employee.FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password && x.Role ==role));
                         if (employee !=null)
                         {
-                            UserName = userName;
+                            UserInfo.UserName = userName;
                             if (comboBox1.SelectedIndex == 0)
                             {                                
                                 Home home = new Home();

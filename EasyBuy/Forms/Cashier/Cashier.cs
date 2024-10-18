@@ -8,6 +8,7 @@ using System.Data;
 using System.Collections.Generic;
 using EasyBuy.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using EasyBuy.Utility;
 
 namespace EasyBuy.Forms.Cashier
 {
@@ -30,7 +31,7 @@ namespace EasyBuy.Forms.Cashier
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
-           // lblCashierName.Text = UserName;
+            lblCashierName.Text =UserInfo.UserName;
             rbtnCash.Checked = true;
             rbtnGuestCustomer.Checked = true;
             txtMobile.Enabled = false;
@@ -183,16 +184,10 @@ namespace EasyBuy.Forms.Cashier
         }
         private void btn_newtransaction_Click(object sender, EventArgs e)
         {
-            slide(btnNewTransaction);
-            //showSubMenu(Panel_Bill);
-
-            //var reopen = new Cashier();
-            //reopen.ShowDialog();
-            //Dispose();
+            slide(btnNewTransaction);           
             Cashier x = new Cashier();
             x.Show();
             this.Hide();
-
         }
         private void btn_adddiscont_Click(object sender, EventArgs e)
         {
