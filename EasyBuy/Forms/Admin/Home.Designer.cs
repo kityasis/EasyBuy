@@ -48,6 +48,7 @@
             // SubMenu_Panel
             // 
             SubMenu_Panel.AutoScroll = true;
+            SubMenu_Panel.BackColor = System.Drawing.Color.RoyalBlue;
             SubMenu_Panel.Controls.Add(button2);
             SubMenu_Panel.Controls.Add(button1);
             SubMenu_Panel.Controls.Add(btn_nexus);

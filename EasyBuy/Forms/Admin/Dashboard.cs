@@ -73,16 +73,11 @@ namespace EasyBuy.Forms
             //panel2.Visible = false;
         }
 
-       private void HideSubMenu()
-        {
-            if (panel2.Visible == true)
-                panel2.Visible = false;
-        }
+      
         private void showSubMenu(Panel SubMenu)
         {
             if (SubMenu.Visible == false)
-            {
-                HideSubMenu();
+            {                
                 SubMenu.Visible = true;
             }
             else
@@ -93,7 +88,7 @@ namespace EasyBuy.Forms
 
         private void btn_catogories_Click(object sender, EventArgs e)
         {
-            showSubMenu(panel2);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
