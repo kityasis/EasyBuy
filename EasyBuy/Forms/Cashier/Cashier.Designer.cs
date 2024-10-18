@@ -134,7 +134,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            panel1.BackColor = System.Drawing.Color.RoyalBlue;
             panel1.Controls.Add(button4);
             panel1.Controls.Add(btnCancelTransaction);
             panel1.Controls.Add(btnLogout);
@@ -269,7 +269,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            panel3.BackColor = System.Drawing.Color.RoyalBlue;
             panel3.Controls.Add(panel8);
             panel3.Controls.Add(lblCashierName);
             panel3.Controls.Add(label13);
@@ -405,7 +405,7 @@
             // 
             // SubMenu_BillDetails
             // 
-            SubMenu_BillDetails.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            SubMenu_BillDetails.BackColor = System.Drawing.Color.RoyalBlue;
             SubMenu_BillDetails.Controls.Add(groupBox1);
             SubMenu_BillDetails.Controls.Add(txtBarecode);
             SubMenu_BillDetails.Controls.Add(label8);
@@ -1141,7 +1141,7 @@
             // 
             // pnlManualSearch
             // 
-            pnlManualSearch.BackColor = System.Drawing.Color.FromArgb(55, 66, 250);
+            pnlManualSearch.BackColor = System.Drawing.Color.RoyalBlue;
             pnlManualSearch.Controls.Add(label4);
             pnlManualSearch.Controls.Add(txtSearch);
             pnlManualSearch.Controls.Add(SearchProductGridView);
