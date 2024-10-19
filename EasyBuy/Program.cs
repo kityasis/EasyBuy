@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasyBuy.Forms.Admin;
+using EasyBuy.Forms.Cashier;
+using System;
 using System.Windows.Forms;
 
 namespace EasyBuy
@@ -10,7 +12,7 @@ namespace EasyBuy
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Home());
+            Application.Run(new Login());
         }
     }
 }

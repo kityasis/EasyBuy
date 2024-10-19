@@ -158,18 +158,18 @@ namespace EasyBuy.Forms.Cashier
                 {
                     var saleDetail = new SaleDetails();
                     saleDetail.ProductCode = row.Cells[1].Value.ToString();
-                    saleDetail.ProductName = row.Cells[3].Value.ToString();
-                    saleDetail.Price = Convert.ToDecimal(row.Cells[4].Value ?? 0);
-                    saleDetail.DiscountAmount = Convert.ToDecimal(row.Cells[5].Value ?? 0);
-                    saleDetail.SGST = Convert.ToDecimal(row.Cells[6].Value ?? 0);
-                    saleDetail.CGST = Convert.ToDecimal(row.Cells[7].Value ?? 0);
-                    saleDetail.PriceAfterDiscount = Convert.ToDecimal(row.Cells[8].Value ?? 0);
-                    saleDetail.ProductQuantity = Convert.ToInt32(row.Cells[9].Value ?? 0);
-                    saleDetail.TotalValueInclGST = Convert.ToDecimal(row.Cells[10].Value ?? 0);
+                    saleDetail.ProductName = row.Cells[2].Value.ToString();
+                    saleDetail.Price = Convert.ToDecimal(row.Cells[3].Value ?? 0);
+                    saleDetail.DiscountAmount = Convert.ToDecimal(row.Cells[4].Value ?? 0);
+                    saleDetail.SGST = Convert.ToDecimal(row.Cells[5].Value ?? 0);
+                    saleDetail.CGST = Convert.ToDecimal(row.Cells[6].Value ?? 0);
+                    saleDetail.PriceAfterDiscount = Convert.ToDecimal(row.Cells[7].Value ?? 0);
+                    saleDetail.ProductQuantity = Convert.ToInt32(row.Cells[8].Value ?? 0);
+                    saleDetail.TotalValueInclGST = Convert.ToDecimal(row.Cells[9].Value ?? 0);
                     saleDetail.SaleId = billCount;
                     saleDetails.Add(saleDetail);
                     var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(row.Cells[0].Value)));
-                    product.Quantity = product.Quantity - Convert.ToInt32(row.Cells[9].Value ?? 0);
+                    product.Quantity = product.Quantity - Convert.ToInt32(row.Cells[8].Value ?? 0);
                     await Task.Run(() => context.Product.Update(product));
                 }
                 await Task.Run(() => context.SaleDetails.AddRangeAsync(saleDetails));

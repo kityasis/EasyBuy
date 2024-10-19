@@ -256,10 +256,10 @@ namespace EasyBuy.Forms.Admin
         {
             if (txtPriceAfterDiscount.Text.Length == 0 && txtPrice.Text.Length == 0) return;
             if (txtGST.Text.Length == 0) return;           
-            var gstAmount = ((Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(txtGST.Text)) / 100) / 2;
+            var gstAmount = ((Convert.ToDouble(txtPriceAfterDiscount.Text) * Convert.ToDouble(txtGST.Text)) / 100) / 2;
             txtSGstAmount.Text = Math.Round(gstAmount, 2).ToString();
             txtCGstAmount.Text = Math.Round(gstAmount, 2).ToString();
-            txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPrice.Text) + Convert.ToDouble(gstAmount)), 2).ToString();
+            txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPriceAfterDiscount.Text) + Convert.ToDouble(gstAmount * 2)), 2).ToString();
         }
     }
 }
