@@ -79,6 +79,8 @@
             Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             productBindingSource = new System.Windows.Forms.BindingSource(components);
+            label2 = new System.Windows.Forms.Label();
+            label12 = new System.Windows.Forms.Label();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -90,6 +92,8 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(label12);
+            groupBox4.Controls.Add(label2);
             groupBox4.Controls.Add(textNoOfPrint);
             groupBox4.Controls.Add(btnPrint);
             groupBox4.Controls.Add(txtBarcode);
@@ -104,12 +108,11 @@
             // 
             // textNoOfPrint
             // 
-            textNoOfPrint.Location = new System.Drawing.Point(23, 76);
+            textNoOfPrint.Location = new System.Drawing.Point(23, 111);
             textNoOfPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             textNoOfPrint.Name = "textNoOfPrint";
             textNoOfPrint.Size = new System.Drawing.Size(125, 27);
             textNoOfPrint.TabIndex = 15;
-            textNoOfPrint.Text = "No. of Print";
             // 
             // btnPrint
             // 
@@ -127,13 +130,11 @@
             // 
             // txtBarcode
             // 
-            txtBarcode.Enabled = false;
-            txtBarcode.Location = new System.Drawing.Point(23, 20);
+            txtBarcode.Location = new System.Drawing.Point(23, 57);
             txtBarcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBarcode.Name = "txtBarcode";
             txtBarcode.Size = new System.Drawing.Size(131, 27);
             txtBarcode.TabIndex = 14;
-            txtBarcode.Text = "Barcode";
             // 
             // groupBox3
             // 
@@ -620,6 +621,24 @@
             // 
             productBindingSource.DataSource = typeof(Models.Product);
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(23, 33);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(64, 20);
+            label2.TabIndex = 17;
+            label2.Text = "Barcode";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new System.Drawing.Point(23, 88);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(86, 20);
+            label12.TabIndex = 18;
+            label12.Text = "No. Of Print";
+            // 
             // Product
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -713,5 +732,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceIncludingGSTDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label2;
     }
 }

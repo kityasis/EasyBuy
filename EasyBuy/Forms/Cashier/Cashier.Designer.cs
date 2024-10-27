@@ -82,8 +82,6 @@
             txtRoundOffAmount = new System.Windows.Forms.TextBox();
             lblSubTotal = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
-            label14 = new System.Windows.Forms.Label();
-            lblTotalDiscount = new System.Windows.Forms.Label();
             panel10 = new System.Windows.Forms.Panel();
             lblGrandTotal = new System.Windows.Forms.Label();
             label12 = new System.Windows.Forms.Label();
@@ -101,16 +99,18 @@
             txtSearch = new System.Windows.Forms.TextBox();
             dgvItem = new System.Windows.Forms.DataGridView();
             id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            SGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            CGST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            FInalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            remove = new System.Windows.Forms.DataGridViewButtonColumn();
+            Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column10 = new System.Windows.Forms.DataGridViewButtonColumn();
             pnlManualSearch = new System.Windows.Forms.Panel();
             dgv_qtupdate = new System.Windows.Forms.DataGridView();
             Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -782,8 +782,6 @@
             panel9.Controls.Add(txtRoundOffAmount);
             panel9.Controls.Add(lblSubTotal);
             panel9.Controls.Add(label6);
-            panel9.Controls.Add(label14);
-            panel9.Controls.Add(lblTotalDiscount);
             panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             panel9.Location = new System.Drawing.Point(0, 832);
             panel9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -803,10 +801,11 @@
             // 
             // txtRoundOffAmount
             // 
-            txtRoundOffAmount.Location = new System.Drawing.Point(213, 92);
+            txtRoundOffAmount.Location = new System.Drawing.Point(200, 92);
             txtRoundOffAmount.Name = "txtRoundOffAmount";
             txtRoundOffAmount.Size = new System.Drawing.Size(125, 27);
             txtRoundOffAmount.TabIndex = 37;
+            txtRoundOffAmount.Text = "0";
             txtRoundOffAmount.TextChanged += txtRoundOffAmount_TextChanged;
             txtRoundOffAmount.KeyPress += txtRoundOffAmount_KeyPress;
             // 
@@ -814,7 +813,7 @@
             // 
             lblSubTotal.AutoSize = true;
             lblSubTotal.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            lblSubTotal.Location = new System.Drawing.Point(269, 11);
+            lblSubTotal.Location = new System.Drawing.Point(256, 43);
             lblSubTotal.Name = "lblSubTotal";
             lblSubTotal.Size = new System.Drawing.Size(69, 24);
             lblSubTotal.TabIndex = 35;
@@ -824,31 +823,11 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label6.Location = new System.Drawing.Point(18, 11);
+            label6.Location = new System.Drawing.Point(17, 43);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(84, 24);
             label6.TabIndex = 12;
             label6.Text = "Sub Total";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label14.Location = new System.Drawing.Point(18, 49);
-            label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(79, 24);
-            label14.TabIndex = 33;
-            label14.Text = "Discount";
-            // 
-            // lblTotalDiscount
-            // 
-            lblTotalDiscount.AutoSize = true;
-            lblTotalDiscount.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            lblTotalDiscount.Location = new System.Drawing.Point(269, 49);
-            lblTotalDiscount.Name = "lblTotalDiscount";
-            lblTotalDiscount.Size = new System.Drawing.Size(69, 24);
-            lblTotalDiscount.TabIndex = 34;
-            lblTotalDiscount.Text = "0000.00";
             // 
             // panel10
             // 
@@ -1036,7 +1015,7 @@
             dgvItem.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, Code, Column2, Column3, Discount, SGST, CGST, FInalPrice, Column4, Column5, remove });
+            dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { id, name, price, Column12, Column1, Column2, Column11, Column3, Column4, Column5, Column8, Column9, Column10 });
             dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
             dgvItem.Location = new System.Drawing.Point(285, 51);
             dgvItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1051,85 +1030,99 @@
             // 
             // id
             // 
-            id.HeaderText = "id";
-            id.MinimumWidth = 10;
+            id.HeaderText = "Id";
+            id.MinimumWidth = 6;
             id.Name = "id";
             id.ReadOnly = true;
             id.Visible = false;
             // 
-            // Code
+            // name
             // 
-            Code.HeaderText = "Code";
-            Code.MinimumWidth = 6;
-            Code.Name = "Code";
-            Code.ReadOnly = true;
-            Code.Visible = false;
+            name.HeaderText = "Name";
+            name.MinimumWidth = 6;
+            name.Name = "name";
+            name.ReadOnly = true;
+            // 
+            // price
+            // 
+            price.HeaderText = "Price";
+            price.MinimumWidth = 6;
+            price.Name = "price";
+            price.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            Column12.HeaderText = "Dis(%)";
+            Column12.MinimumWidth = 6;
+            Column12.Name = "Column12";
+            Column12.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Dis";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
             // 
             // Column2
             // 
-            Column2.HeaderText = "Name";
-            Column2.MinimumWidth = 200;
+            Column2.HeaderText = "PAD";
+            Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
             Column2.ReadOnly = true;
             // 
+            // Column11
+            // 
+            Column11.HeaderText = "GST(%)";
+            Column11.MinimumWidth = 6;
+            Column11.Name = "Column11";
+            Column11.ReadOnly = true;
+            // 
             // Column3
             // 
-            Column3.HeaderText = "Price";
-            Column3.MinimumWidth = 125;
+            Column3.HeaderText = "SGST";
+            Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
             Column3.ReadOnly = true;
             // 
-            // Discount
-            // 
-            Discount.HeaderText = "Discount";
-            Discount.MinimumWidth = 60;
-            Discount.Name = "Discount";
-            Discount.ReadOnly = true;
-            // 
-            // SGST
-            // 
-            SGST.HeaderText = "SGST";
-            SGST.MinimumWidth = 40;
-            SGST.Name = "SGST";
-            SGST.ReadOnly = true;
-            // 
-            // CGST
-            // 
-            CGST.HeaderText = "CGST";
-            CGST.MinimumWidth = 40;
-            CGST.Name = "CGST";
-            CGST.ReadOnly = true;
-            // 
-            // FInalPrice
-            // 
-            FInalPrice.HeaderText = "FInal Price";
-            FInalPrice.MinimumWidth = 100;
-            FInalPrice.Name = "FInalPrice";
-            FInalPrice.ReadOnly = true;
-            // 
             // Column4
             // 
-            Column4.HeaderText = "Qty";
-            Column4.MinimumWidth = 40;
+            Column4.HeaderText = "CGST";
+            Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
             Column4.ReadOnly = true;
             // 
             // Column5
             // 
-            Column5.HeaderText = "Total(Rs)";
-            Column5.MinimumWidth = 156;
+            Column5.HeaderText = "Final Price";
+            Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
             Column5.ReadOnly = true;
             // 
-            // remove
+            // Column8
             // 
-            remove.HeaderText = "Remove";
-            remove.MinimumWidth = 6;
-            remove.Name = "remove";
-            remove.ReadOnly = true;
-            remove.Text = "-";
-            remove.ToolTipText = "Remove Item";
-            remove.UseColumnTextForButtonValue = true;
+            Column8.HeaderText = "Qty";
+            Column8.MinimumWidth = 6;
+            Column8.Name = "Column8";
+            Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            Column9.HeaderText = "Total Price";
+            Column9.MinimumWidth = 6;
+            Column9.Name = "Column9";
+            Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            Column10.HeaderText = "Remove";
+            Column10.MinimumWidth = 6;
+            Column10.Name = "Column10";
+            Column10.ReadOnly = true;
+            Column10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            Column10.Text = "-";
+            Column10.UseColumnTextForButtonValue = true;
             // 
             // pnlManualSearch
             // 
@@ -1265,8 +1258,6 @@
         private System.Windows.Forms.Label lblCashierName;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblSubTotal;
-        private System.Windows.Forms.Label lblTotalDiscount;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblGrandTotal;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlManualSearch;
@@ -1308,18 +1299,20 @@
         private System.Windows.Forms.RadioButton rbtnUPI;
         private System.Windows.Forms.RadioButton rbtnCard;
         private System.Windows.Forms.RadioButton rbtnCash;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Code;      
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SGST;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CGST;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FInalPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewButtonColumn remove;
         private System.Windows.Forms.TextBox txtRoundOffAmount;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewButtonColumn Column10;
     }
 }
