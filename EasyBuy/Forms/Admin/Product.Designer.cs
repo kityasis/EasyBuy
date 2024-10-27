@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
             groupBox4 = new System.Windows.Forms.GroupBox();
-            textNoOfPrint = new System.Windows.Forms.TextBox();
+            label12 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            txtNoOfPrint = new System.Windows.Forms.TextBox();
             btnPrint = new System.Windows.Forms.Button();
             txtBarcode = new System.Windows.Forms.TextBox();
             groupBox3 = new System.Windows.Forms.GroupBox();
@@ -79,8 +82,8 @@
             Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             productBindingSource = new System.Windows.Forms.BindingSource(components);
-            label2 = new System.Windows.Forms.Label();
-            label12 = new System.Windows.Forms.Label();
+            printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -94,7 +97,7 @@
             // 
             groupBox4.Controls.Add(label12);
             groupBox4.Controls.Add(label2);
-            groupBox4.Controls.Add(textNoOfPrint);
+            groupBox4.Controls.Add(txtNoOfPrint);
             groupBox4.Controls.Add(btnPrint);
             groupBox4.Controls.Add(txtBarcode);
             groupBox4.Location = new System.Drawing.Point(1117, 67);
@@ -106,13 +109,31 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Barcode";
             // 
-            // textNoOfPrint
+            // label12
             // 
-            textNoOfPrint.Location = new System.Drawing.Point(23, 111);
-            textNoOfPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            textNoOfPrint.Name = "textNoOfPrint";
-            textNoOfPrint.Size = new System.Drawing.Size(125, 27);
-            textNoOfPrint.TabIndex = 15;
+            label12.AutoSize = true;
+            label12.Location = new System.Drawing.Point(23, 88);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(86, 20);
+            label12.TabIndex = 18;
+            label12.Text = "No. Of Print";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(23, 33);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(64, 20);
+            label2.TabIndex = 17;
+            label2.Text = "Barcode";
+            // 
+            // txtNoOfPrint
+            // 
+            txtNoOfPrint.Location = new System.Drawing.Point(23, 111);
+            txtNoOfPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtNoOfPrint.Name = "txtNoOfPrint";
+            txtNoOfPrint.Size = new System.Drawing.Size(125, 27);
+            txtNoOfPrint.TabIndex = 15;
             // 
             // btnPrint
             // 
@@ -127,6 +148,7 @@
             btnPrint.TabIndex = 16;
             btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_Click;
             // 
             // txtBarcode
             // 
@@ -621,23 +643,20 @@
             // 
             productBindingSource.DataSource = typeof(Models.Product);
             // 
-            // label2
+            // printPreviewDialog1
             // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(23, 33);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(64, 20);
-            label2.TabIndex = 17;
-            label2.Text = "Barcode";
+            printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (System.Drawing.Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
             // 
-            // label12
+            // printDocument1
             // 
-            label12.AutoSize = true;
-            label12.Location = new System.Drawing.Point(23, 88);
-            label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(86, 20);
-            label12.TabIndex = 18;
-            label12.Text = "No. Of Print";
+            printDocument1.PrintPage += printDocument1_PrintPage;
             // 
             // Product
             // 
@@ -674,7 +693,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textNoOfPrint;
+        private System.Windows.Forms.TextBox txtNoOfPrint;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtBarcode;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -734,5 +753,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

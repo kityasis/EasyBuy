@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace EasyBuy.Forms.Admin
 {
@@ -255,11 +256,35 @@ namespace EasyBuy.Forms.Admin
         private void txtGST_TextChanged_1(object sender, EventArgs e)
         {
             if (txtPriceAfterDiscount.Text.Length == 0 && txtPrice.Text.Length == 0) return;
-            if (txtGST.Text.Length == 0) return;           
+            if (txtGST.Text.Length == 0) return;
             var gstAmount = ((Convert.ToDouble(txtPriceAfterDiscount.Text) * Convert.ToDouble(txtGST.Text)) / 100) / 2;
             txtSGstAmount.Text = Math.Round(gstAmount, 2).ToString();
             txtCGstAmount.Text = Math.Round(gstAmount, 2).ToString();
             txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPriceAfterDiscount.Text) + Convert.ToDouble(gstAmount * 2)), 2).ToString();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            
+            Bitmap bit = new Bitmap(100,100);
+           
+            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog1.ShowDialog();
+           
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var noOfCount = Convert.ToInt32(txtNoOfPrint.Text);
+            int y = 10;
+            for (int i = 0; i <= noOfCount; i++)
+            {
+              
+                e.Graphics.DrawString(txtBarcode.Text, new Font("Fake Receipt", 15, FontStyle.Regular), Brushes.Black, new Point(55, y));
+                y += 30;
+            }
+
+
         }
     }
 }
