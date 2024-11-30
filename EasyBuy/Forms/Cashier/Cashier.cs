@@ -365,7 +365,7 @@ namespace EasyBuy.Forms.Cashier
                 new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(80, 140));
             e.Graphics.DrawString("-------------------------------------------------------------------",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 160));
-            e.Graphics.DrawString("Qty   Price  OurPrice  GST(%)   C/S GST     Total",
+            e.Graphics.DrawString("Qty   OurPrice     GST(%)      C/S GST        Total",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 180));
             e.Graphics.DrawString("-------------------------------------------------------------------",
                  new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 200));
@@ -383,12 +383,12 @@ namespace EasyBuy.Forms.Cashier
                 e.Graphics.DrawString($"{row.Cells[1].Value.ToString()}",
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i));
                 i += 12;
-                e.Graphics.DrawString($" {row.Cells[10].Value.ToString()}    {row.Cells[2].Value.ToString()}   {row.Cells[5].Value.ToString()}     {row.Cells[6].Value.ToString()}  {row.Cells[7].Value.ToString()}  {row.Cells[8].Value.ToString()}     {row.Cells[11].Value.ToString()}",
+                e.Graphics.DrawString($" {row.Cells[10].Value.ToString()}    {row.Cells[5].Value.ToString()}           {row.Cells[6].Value.ToString()}        {row.Cells[7].Value.ToString()}{"/"}{row.Cells[8].Value.ToString()}       {row.Cells[11].Value.ToString()}",
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i));
             }
             e.Graphics.DrawString("-------------------------------------------------------------------",
                  new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 20));
-            e.Graphics.DrawString($"       {totalPrice}  {totalPriceAfterDiscount}           {totalSGST}   {totalCGST}    {totalFinalPrice} ",
+            e.Graphics.DrawString($"        {totalPriceAfterDiscount}                     {totalSGST}{"/"}{totalCGST}       {totalFinalPrice} ",
                 new Font("Fake Receipt", 10, FontStyle.Bold), Brushes.Black, new Point(10, i + 35));
             e.Graphics.DrawString("-------------------------------------------------------------------",
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 50));
