@@ -88,6 +88,7 @@
             txtSearch = new System.Windows.Forms.TextBox();
             groupBox5 = new System.Windows.Forms.GroupBox();
             label15 = new System.Windows.Forms.Label();
+            btnRefresh = new System.Windows.Forms.Button();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -149,7 +150,7 @@
             btnPrint.Location = new System.Drawing.Point(223, 45);
             btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new System.Drawing.Size(95, 34);
+            btnPrint.Size = new System.Drawing.Size(76, 34);
             btnPrint.TabIndex = 16;
             btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
@@ -440,10 +441,10 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(1220, 247);
+            btnClear.Location = new System.Drawing.Point(1274, 247);
             btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(143, 37);
+            btnClear.Size = new System.Drawing.Size(96, 37);
             btnClear.TabIndex = 60;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -458,7 +459,7 @@
             btnAdd.Location = new System.Drawing.Point(1071, 247);
             btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(143, 37);
+            btnAdd.Size = new System.Drawing.Size(93, 37);
             btnAdd.TabIndex = 59;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -657,7 +658,7 @@
             btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnSearch.Location = new System.Drawing.Point(242, 24);
+            btnSearch.Location = new System.Drawing.Point(223, 24);
             btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new System.Drawing.Size(76, 34);
@@ -697,11 +698,27 @@
             label15.TabIndex = 69;
             label15.Text = "Name";
             // 
+            // btnRefresh
+            // 
+            btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnRefresh.Location = new System.Drawing.Point(1173, 247);
+            btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new System.Drawing.Size(90, 37);
+            btnRefresh.TabIndex = 67;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // Product
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1437, 782);
+            Controls.Add(btnRefresh);
             Controls.Add(groupBox5);
             Controls.Add(ProductDataGridView);
             Controls.Add(groupBox4);
@@ -801,5 +818,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

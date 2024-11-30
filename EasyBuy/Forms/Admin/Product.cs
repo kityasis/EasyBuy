@@ -111,7 +111,6 @@ namespace EasyBuy.Forms.Admin
 
                 }
                 catch (Exception)
-
                 {
                     MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -254,12 +253,17 @@ namespace EasyBuy.Forms.Admin
 
         private void txtGST_TextChanged_1(object sender, EventArgs e)
         {
-            if (txtPriceAfterDiscount.Text.Length == 0 && txtPrice.Text.Length == 0) return;
-            if (txtGST.Text.Length == 0) return;
-            var gstAmount = ((Convert.ToDouble(txtPriceAfterDiscount.Text) * Convert.ToDouble(txtGST.Text)) / 100) / 2;
-            txtSGstAmount.Text = Math.Round(gstAmount, 2).ToString();
-            txtCGstAmount.Text = Math.Round(gstAmount, 2).ToString();
-            txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPriceAfterDiscount.Text) + Convert.ToDouble(gstAmount * 2)), 2).ToString();
+            try
+            {
+                if (txtPriceAfterDiscount.Text.Length == 0 && txtPrice.Text.Length == 0) return;
+                if (txtGST.Text.Length == 0) return;
+                var gstAmount = ((Convert.ToDouble(txtPriceAfterDiscount.Text) * Convert.ToDouble(txtGST.Text)) / 100) / 2;
+                txtSGstAmount.Text = Math.Round(gstAmount, 2).ToString();
+                txtCGstAmount.Text = Math.Round(gstAmount, 2).ToString();
+                txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPriceAfterDiscount.Text) + Convert.ToDouble(gstAmount * 2)), 2).ToString();
+            }
+            catch { }
+           
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -288,7 +292,7 @@ namespace EasyBuy.Forms.Admin
 
         private async void txtName_TextChanged(object sender, EventArgs e)
         {
-            if (txtName.Text.Length < 3 || btnAdd.Text == "Update") return;
+            if (txtName.Text.Length < 3) return;
             try
             {
                 await using var context = new EasyBuyContext();
@@ -307,7 +311,7 @@ namespace EasyBuy.Forms.Admin
         {
             try
             {
-                await using var context = new EasyBuyContext();               
+                await using var context = new EasyBuyContext();
                 var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(txtSearch.Text)).ToListAsync());
                 ProductDataGridView.DataSource = products;
                 txtSearch.Clear();
@@ -317,6 +321,11 @@ namespace EasyBuy.Forms.Admin
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.RefreshData();
         }
     }
 }
