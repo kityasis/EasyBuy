@@ -31,7 +31,7 @@ namespace EasyBuy.Forms.Cashier
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
-            lblCashierName.Text =UserInfo.UserName;
+            lblCashierName.Text = UserInfo.UserName;
             rbtnCash.Checked = true;
             rbtnGuestCustomer.Checked = true;
             txtMobile.Enabled = false;
@@ -107,7 +107,7 @@ namespace EasyBuy.Forms.Cashier
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are You Sure You Want To Exit", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -124,7 +124,7 @@ namespace EasyBuy.Forms.Cashier
         }
         private void btn_newtransaction_Click(object sender, EventArgs e)
         {
-            slide(btnNewTransaction);           
+            slide(btnNewTransaction);
             Cashier x = new Cashier();
             x.Show();
             this.Hide();
@@ -148,7 +148,7 @@ namespace EasyBuy.Forms.Cashier
                     PaymentType = rbtnCash.Checked ? "Cash" : rbtnUPI.Checked ? "UPI" : "CARD",
                     BillNumber = txtBillNumber.Text,
                     SellerName = lblCashierName.Text,
-                    SubTotal = Convert.ToDecimal(lblSubTotal.Text),                   
+                    SubTotal = Convert.ToDecimal(lblSubTotal.Text),
                     GrandTotal = Convert.ToDecimal(lblGrandTotal.Text)
                 };
                 var saleDetails = new List<SaleDetails>();
@@ -349,7 +349,7 @@ namespace EasyBuy.Forms.Cashier
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("EASY BUY STORE", 
+            e.Graphics.DrawString("EASY BUY STORE",
                 new Font("Fake Receipt", 15, FontStyle.Regular), Brushes.Black, new Point(55, 10));
             e.Graphics.DrawString("-------------------------------------------------------------------",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 30));
@@ -404,7 +404,7 @@ namespace EasyBuy.Forms.Cashier
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 130));
             e.Graphics.DrawString("Net Taxable Amount : " + lblGrandTotal.Text,
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 150));
-            e.Graphics.DrawString("Tax Amount : " + Math.Round(totalCGST + totalSGST,2),
+            e.Graphics.DrawString("Tax Amount : " + Math.Round(totalCGST + totalSGST, 2),
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 170));
             e.Graphics.DrawString("Total Amount Due : " + totalFinalPrice,
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 190));
@@ -414,10 +414,10 @@ namespace EasyBuy.Forms.Cashier
               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 230));
             e.Graphics.DrawString("-------------------------------------------------------------------",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 240));
-            
+
             e.Graphics.DrawString("THANK YOU VISIT AGAIN",
                new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(45, i + 260));
-            e.Graphics.DrawString("Cashier : "+ lblCashierName.Text,
+            e.Graphics.DrawString("Cashier : " + lblCashierName.Text,
               new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(10, i + 280));
 
         }
@@ -483,57 +483,12 @@ namespace EasyBuy.Forms.Cashier
         }
         private void FillTotalValue(decimal amount)
         {
-            var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) + amount), 2); 
-            lblSubTotal.Text = totalPrice.ToString();            
+            var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) + amount), 2);
+            lblSubTotal.Text = totalPrice.ToString();
             lblGrandTotal.Text = totalPrice.ToString();
         }
         private decimal TotalPrice(decimal price, int qty) => price * qty;
-        private async void txtBarecode_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-                await using var context = new EasyBuyContext();
-                var product = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).FirstOrDefault());
-                if (product != null)
-                {
-                    foreach (DataGridViewRow row in dgvItem.Rows)
-                    {
-                        if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
-                        {
-                            row.Cells[10].Value = (Convert.ToInt32(row.Cells[10].Value) + 1);
-                            row.Cells[11].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[10].Value), Convert.ToDecimal(row.Cells[9].Value));
-                            this.FillTotalValue(product.TotalPriceIncludingGST);
-                            txtBarecode.Text = "";
-                            txtBarecode.Focus();
-                            return;
-                        }
-                    }
-                    DataGridViewRow newRow = new DataGridViewRow();
-                    newRow.CreateCells(dgvItem);
-                    newRow.Cells[0].Value = product.Id;
-                    newRow.Cells[1].Value = product.Name;                   
-                    newRow.Cells[2].Value = product.Price;
-                    newRow.Cells[3].Value = product.Discount;
-                    newRow.Cells[4].Value = product.DiscountAmount;
-                    newRow.Cells[5].Value = product.PriceAfterDiscount;
-                    newRow.Cells[6].Value = product.GSTPercentage;
-                    newRow.Cells[7].Value = product.SGST;
-                    newRow.Cells[8].Value = product.CGST;
-                    newRow.Cells[9].Value = product.TotalPriceIncludingGST;
-                    newRow.Cells[10].Value = 1;
-                    newRow.Cells[11].Value = product.TotalPriceIncludingGST;
-                    dgvItem.Rows.Add(newRow);
-                    this.FillTotalValue(product.TotalPriceIncludingGST);
-                    txtBarecode.Text = "";
-                    txtBarecode.Focus();
-                }
-
-
-            }
-            catch (Exception) { }
-
-        }
+        
         private decimal GetPriceAfterDiscount(decimal price, decimal qty) => Math.Round(price * qty, 2);
         private void btnCancelTransaction_Click(object sender, EventArgs e)
         {
@@ -576,7 +531,7 @@ namespace EasyBuy.Forms.Cashier
                     if (qty > 1)
                     {
                         dgvItem.Rows[e.RowIndex].Cells[10].Value = qty - 1;
-                        var totalAmount = Math.Round(Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[9].Value) * Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[10].Value),2);
+                        var totalAmount = Math.Round(Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[9].Value) * Convert.ToDecimal(dgvItem.Rows[e.RowIndex].Cells[10].Value), 2);
                         dgvItem.Rows[e.RowIndex].Cells[11].Value = totalAmount;
                         RemoveFromTotalValue(totalAmount);
                     }
@@ -590,8 +545,8 @@ namespace EasyBuy.Forms.Cashier
         }
         private void RemoveFromTotalValue(decimal price)
         {
-            var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) - price), 2); 
-            lblSubTotal.Text = totalPrice.ToString();           
+            var totalPrice = Math.Round((Convert.ToDecimal(lblSubTotal.Text) - price), 2);
+            lblSubTotal.Text = totalPrice.ToString();
             lblGrandTotal.Text = totalPrice.ToString();
         }
         private void txtRoundOffAmount_TextChanged(object sender, EventArgs e)
@@ -602,6 +557,58 @@ namespace EasyBuy.Forms.Cashier
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
+        }
+
+        private async void txtBarecode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+
+                    await using var context = new EasyBuyContext();
+                    var product = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).FirstOrDefault());
+                    if (product != null)
+                    {
+                        foreach (DataGridViewRow row in dgvItem.Rows)
+                        {
+                            if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
+                            {
+                                row.Cells[10].Value = (Convert.ToInt32(row.Cells[10].Value) + 1);
+                                row.Cells[11].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[10].Value), Convert.ToDecimal(row.Cells[9].Value));
+                                this.FillTotalValue(product.TotalPriceIncludingGST);
+                                txtBarecode.Text = "";
+                                txtBarecode.Focus();
+                                return;
+                            }
+                        }
+                        DataGridViewRow newRow = new DataGridViewRow();
+                        newRow.CreateCells(dgvItem);
+                        newRow.Cells[0].Value = product.Id;
+                        newRow.Cells[1].Value = product.Name;
+                        newRow.Cells[2].Value = product.Price;
+                        newRow.Cells[3].Value = product.Discount;
+                        newRow.Cells[4].Value = product.DiscountAmount;
+                        newRow.Cells[5].Value = product.PriceAfterDiscount;
+                        newRow.Cells[6].Value = product.GSTPercentage;
+                        newRow.Cells[7].Value = product.SGST;
+                        newRow.Cells[8].Value = product.CGST;
+                        newRow.Cells[9].Value = product.TotalPriceIncludingGST;
+                        newRow.Cells[10].Value = 1;
+                        newRow.Cells[11].Value = product.TotalPriceIncludingGST;
+                        dgvItem.Rows.Add(newRow);
+                        this.FillTotalValue(product.TotalPriceIncludingGST);
+                        txtBarecode.Text = "";
+                        txtBarecode.Focus();
+                    }
+
+
+                }
+                catch (Exception) { }
+            }
+
+              
+
         }
     }
 }

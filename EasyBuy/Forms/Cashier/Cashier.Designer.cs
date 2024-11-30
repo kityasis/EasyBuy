@@ -499,8 +499,8 @@
             txtBarecode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBarecode.Name = "txtBarecode";
             txtBarecode.Size = new System.Drawing.Size(159, 27);
-            txtBarecode.TabIndex = 59;
-            txtBarecode.TextChanged += txtBarecode_TextChanged;
+            txtBarecode.TabIndex = 59;           
+            txtBarecode.KeyDown += txtBarecode_KeyDown;
             // 
             // label8
             // 
