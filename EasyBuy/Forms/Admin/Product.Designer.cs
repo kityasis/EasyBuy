@@ -84,6 +84,10 @@
             productBindingSource = new System.Windows.Forms.BindingSource(components);
             printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
+            btnSearch = new System.Windows.Forms.Button();
+            txtSearch = new System.Windows.Forms.TextBox();
+            groupBox5 = new System.Windows.Forms.GroupBox();
+            label15 = new System.Windows.Forms.Label();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -91,6 +95,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ProductDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
+            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox4
@@ -100,11 +105,11 @@
             groupBox4.Controls.Add(txtNoOfPrint);
             groupBox4.Controls.Add(btnPrint);
             groupBox4.Controls.Add(txtBarcode);
-            groupBox4.Location = new System.Drawing.Point(1117, 67);
+            groupBox4.Location = new System.Drawing.Point(1071, 67);
             groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
             groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox4.Size = new System.Drawing.Size(176, 217);
+            groupBox4.Size = new System.Drawing.Size(324, 94);
             groupBox4.TabIndex = 65;
             groupBox4.TabStop = false;
             groupBox4.Text = "Barcode";
@@ -112,7 +117,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new System.Drawing.Point(23, 88);
+            label12.Location = new System.Drawing.Point(131, 28);
             label12.Name = "label12";
             label12.Size = new System.Drawing.Size(86, 20);
             label12.TabIndex = 18;
@@ -121,7 +126,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(23, 33);
+            label2.Location = new System.Drawing.Point(6, 28);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(64, 20);
             label2.TabIndex = 17;
@@ -129,10 +134,10 @@
             // 
             // txtNoOfPrint
             // 
-            txtNoOfPrint.Location = new System.Drawing.Point(23, 111);
+            txtNoOfPrint.Location = new System.Drawing.Point(131, 52);
             txtNoOfPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtNoOfPrint.Name = "txtNoOfPrint";
-            txtNoOfPrint.Size = new System.Drawing.Size(125, 27);
+            txtNoOfPrint.Size = new System.Drawing.Size(86, 27);
             txtNoOfPrint.TabIndex = 15;
             // 
             // btnPrint
@@ -141,10 +146,10 @@
             btnPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnPrint.Location = new System.Drawing.Point(23, 157);
+            btnPrint.Location = new System.Drawing.Point(223, 45);
             btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new System.Drawing.Size(131, 41);
+            btnPrint.Size = new System.Drawing.Size(95, 34);
             btnPrint.TabIndex = 16;
             btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
@@ -152,11 +157,11 @@
             // 
             // txtBarcode
             // 
-            txtBarcode.Location = new System.Drawing.Point(23, 57);
+            txtBarcode.Location = new System.Drawing.Point(6, 52);
             txtBarcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBarcode.Name = "txtBarcode";
             txtBarcode.ReadOnly = true;
-            txtBarcode.Size = new System.Drawing.Size(131, 27);
+            txtBarcode.Size = new System.Drawing.Size(115, 27);
             txtBarcode.TabIndex = 14;
             // 
             // groupBox3
@@ -169,11 +174,11 @@
             groupBox3.Controls.Add(label6);
             groupBox3.Controls.Add(txtGST);
             groupBox3.Controls.Add(label8);
-            groupBox3.Location = new System.Drawing.Point(758, 67);
+            groupBox3.Location = new System.Drawing.Point(743, 67);
             groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox3.Size = new System.Drawing.Size(337, 217);
+            groupBox3.Size = new System.Drawing.Size(310, 217);
             groupBox3.TabIndex = 64;
             groupBox3.TabStop = false;
             groupBox3.Text = "GST Details";
@@ -269,7 +274,7 @@
             groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox2.Size = new System.Drawing.Size(373, 217);
+            groupBox2.Size = new System.Drawing.Size(360, 217);
             groupBox2.TabIndex = 63;
             groupBox2.TabStop = false;
             groupBox2.Text = "Discount Details";
@@ -406,7 +411,7 @@
             txtQunatity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtQunatity.Name = "txtQunatity";
             txtQunatity.Size = new System.Drawing.Size(201, 27);
-            txtQunatity.TabIndex = 5;            
+            txtQunatity.TabIndex = 5;
             txtQunatity.KeyPress += txtQunatity_KeyPress;
             // 
             // label4
@@ -435,10 +440,10 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(1299, 236);
+            btnClear.Location = new System.Drawing.Point(1220, 247);
             btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(96, 41);
+            btnClear.Size = new System.Drawing.Size(143, 37);
             btnClear.TabIndex = 60;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -450,10 +455,10 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(1299, 178);
+            btnAdd.Location = new System.Drawing.Point(1071, 247);
             btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(96, 41);
+            btnAdd.Size = new System.Drawing.Size(143, 37);
             btnAdd.TabIndex = 59;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -486,11 +491,13 @@
             ProductDataGridView.AllowUserToAddRows = false;
             ProductDataGridView.AllowUserToDeleteRows = false;
             ProductDataGridView.AutoGenerateColumns = false;
+            ProductDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            ProductDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             ProductDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, codeDataGridViewTextBoxColumn, catagoryDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, discountDataGridViewTextBoxColumn, discountAmountDataGridViewTextBoxColumn, priceAfterDiscountDataGridViewTextBoxColumn, gSTPercentageDataGridViewTextBoxColumn, sGSTDataGridViewTextBoxColumn, cGSTDataGridViewTextBoxColumn, totalPriceIncludingGSTDataGridViewTextBoxColumn, Edit, Delete });
             ProductDataGridView.DataSource = productBindingSource;
-            ProductDataGridView.Location = new System.Drawing.Point(11, 292);
+            ProductDataGridView.Location = new System.Drawing.Point(11, 299);
             ProductDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             ProductDataGridView.Name = "ProductDataGridView";
             ProductDataGridView.ReadOnly = true;
@@ -509,7 +516,6 @@
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             idDataGridViewTextBoxColumn.ReadOnly = true;
             idDataGridViewTextBoxColumn.Visible = false;
-            idDataGridViewTextBoxColumn.Width = 125;
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -519,7 +525,6 @@
             codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
             codeDataGridViewTextBoxColumn.ReadOnly = true;
             codeDataGridViewTextBoxColumn.Visible = false;
-            codeDataGridViewTextBoxColumn.Width = 125;
             // 
             // catagoryDataGridViewTextBoxColumn
             // 
@@ -528,7 +533,6 @@
             catagoryDataGridViewTextBoxColumn.MinimumWidth = 6;
             catagoryDataGridViewTextBoxColumn.Name = "catagoryDataGridViewTextBoxColumn";
             catagoryDataGridViewTextBoxColumn.ReadOnly = true;
-            catagoryDataGridViewTextBoxColumn.Width = 125;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -537,7 +541,6 @@
             nameDataGridViewTextBoxColumn.MinimumWidth = 6;
             nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             nameDataGridViewTextBoxColumn.ReadOnly = true;
-            nameDataGridViewTextBoxColumn.Width = 125;
             // 
             // priceDataGridViewTextBoxColumn
             // 
@@ -546,7 +549,6 @@
             priceDataGridViewTextBoxColumn.MinimumWidth = 6;
             priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             priceDataGridViewTextBoxColumn.ReadOnly = true;
-            priceDataGridViewTextBoxColumn.Width = 125;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
@@ -555,7 +557,6 @@
             quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
             quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
             quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            quantityDataGridViewTextBoxColumn.Width = 125;
             // 
             // discountDataGridViewTextBoxColumn
             // 
@@ -564,7 +565,6 @@
             discountDataGridViewTextBoxColumn.MinimumWidth = 6;
             discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
             discountDataGridViewTextBoxColumn.ReadOnly = true;
-            discountDataGridViewTextBoxColumn.Width = 125;
             // 
             // discountAmountDataGridViewTextBoxColumn
             // 
@@ -573,7 +573,6 @@
             discountAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
             discountAmountDataGridViewTextBoxColumn.Name = "discountAmountDataGridViewTextBoxColumn";
             discountAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            discountAmountDataGridViewTextBoxColumn.Width = 125;
             // 
             // priceAfterDiscountDataGridViewTextBoxColumn
             // 
@@ -582,7 +581,6 @@
             priceAfterDiscountDataGridViewTextBoxColumn.MinimumWidth = 6;
             priceAfterDiscountDataGridViewTextBoxColumn.Name = "priceAfterDiscountDataGridViewTextBoxColumn";
             priceAfterDiscountDataGridViewTextBoxColumn.ReadOnly = true;
-            priceAfterDiscountDataGridViewTextBoxColumn.Width = 125;
             // 
             // gSTPercentageDataGridViewTextBoxColumn
             // 
@@ -591,7 +589,6 @@
             gSTPercentageDataGridViewTextBoxColumn.MinimumWidth = 6;
             gSTPercentageDataGridViewTextBoxColumn.Name = "gSTPercentageDataGridViewTextBoxColumn";
             gSTPercentageDataGridViewTextBoxColumn.ReadOnly = true;
-            gSTPercentageDataGridViewTextBoxColumn.Width = 125;
             // 
             // sGSTDataGridViewTextBoxColumn
             // 
@@ -600,7 +597,6 @@
             sGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
             sGSTDataGridViewTextBoxColumn.Name = "sGSTDataGridViewTextBoxColumn";
             sGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            sGSTDataGridViewTextBoxColumn.Width = 125;
             // 
             // cGSTDataGridViewTextBoxColumn
             // 
@@ -609,7 +605,6 @@
             cGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
             cGSTDataGridViewTextBoxColumn.Name = "cGSTDataGridViewTextBoxColumn";
             cGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            cGSTDataGridViewTextBoxColumn.Width = 125;
             // 
             // totalPriceIncludingGSTDataGridViewTextBoxColumn
             // 
@@ -618,7 +613,6 @@
             totalPriceIncludingGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
             totalPriceIncludingGSTDataGridViewTextBoxColumn.Name = "totalPriceIncludingGSTDataGridViewTextBoxColumn";
             totalPriceIncludingGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            totalPriceIncludingGSTDataGridViewTextBoxColumn.Width = 125;
             // 
             // Edit
             // 
@@ -628,7 +622,6 @@
             Edit.ReadOnly = true;
             Edit.Text = "Edit";
             Edit.UseColumnTextForButtonValue = true;
-            Edit.Width = 125;
             // 
             // Delete
             // 
@@ -638,7 +631,6 @@
             Delete.ReadOnly = true;
             Delete.Text = "Delete";
             Delete.UseColumnTextForButtonValue = true;
-            Delete.Width = 125;
             // 
             // productBindingSource
             // 
@@ -659,18 +651,65 @@
             // 
             printDocument1.PrintPage += printDocument1_PrintPage;
             // 
+            // btnSearch
+            // 
+            btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnSearch.Location = new System.Drawing.Point(242, 24);
+            btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new System.Drawing.Size(76, 34);
+            btnSearch.TabIndex = 67;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new System.Drawing.Point(61, 28);
+            txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new System.Drawing.Size(156, 27);
+            txtSearch.TabIndex = 68;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(label15);
+            groupBox5.Controls.Add(txtSearch);
+            groupBox5.Controls.Add(btnSearch);
+            groupBox5.Location = new System.Drawing.Point(1071, 178);
+            groupBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox5.Size = new System.Drawing.Size(324, 67);
+            groupBox5.TabIndex = 66;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Barcode";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new System.Drawing.Point(6, 35);
+            label15.Name = "label15";
+            label15.Size = new System.Drawing.Size(49, 20);
+            label15.TabIndex = 69;
+            label15.Text = "Name";
+            // 
             // Product
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1437, 782);
+            Controls.Add(groupBox5);
             Controls.Add(ProductDataGridView);
             Controls.Add(groupBox4);
+            Controls.Add(btnAdd);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(btnClear);
-            Controls.Add(btnAdd);
             Controls.Add(panel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Name = "Product";
@@ -688,6 +727,8 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ProductDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -756,5 +797,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label15;
     }
 }

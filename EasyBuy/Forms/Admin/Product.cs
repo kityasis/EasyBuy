@@ -194,8 +194,8 @@ namespace EasyBuy.Forms.Admin
                         txtCGstAmount.Text = product.CGST.ToString();
                         txtFinalPrice.Text = product.TotalPriceIncludingGST.ToString();
                         cmbCategory.Text = product.Catagory;
-                        txtBarcode.Text=product.Code;
-                        this._id = product.Id;                        
+                        txtBarcode.Text = product.Code;
+                        this._id = product.Id;
                     }
                     catch (Exception)
                     {
@@ -232,7 +232,7 @@ namespace EasyBuy.Forms.Admin
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
-        {          
+        {
             if (txtDiscount.Text.Length == 0) return;
             txtDiscountAmount.Text = Math.Round(((Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(txtDiscount.Text)) / 100), 2).ToString();
             txtPriceAfterDiscount.Text = Math.Round((Convert.ToDouble(txtPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)), 2).ToString();
@@ -241,9 +241,15 @@ namespace EasyBuy.Forms.Admin
 
         private void txtPrice_TextChanged(object sender, EventArgs e)
         {
-            if (txtQunatity.Text.Length == 0) return;
+            //if (txtQunatity.Text.Length == 0) return;
             if (txtPrice.Text.Length == 0) return;
-            txtFinalPrice.Text = (Convert.ToDouble(txtQunatity.Text) * Convert.ToDouble(txtPrice.Text)).ToString();
+            txtFinalPrice.Text = txtPrice.Text;
+            txtDiscount.Clear();
+            txtDiscountAmount.Clear();
+            txtPriceAfterDiscount.Clear();
+            txtGST.Clear();
+            txtSGstAmount.Clear();
+            txtCGstAmount.Clear();
         }
 
         private void txtGST_TextChanged_1(object sender, EventArgs e)
@@ -294,7 +300,23 @@ namespace EasyBuy.Forms.Admin
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
+        }
+
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                await using var context = new EasyBuyContext();               
+                var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(txtSearch.Text)).ToListAsync());
+                ProductDataGridView.DataSource = products;
+                txtSearch.Clear();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }
