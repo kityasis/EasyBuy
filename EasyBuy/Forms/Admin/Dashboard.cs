@@ -81,6 +81,129 @@ namespace EasyBuy.Forms
             LoadCustomerComboBox();
             LoadProductComboBox();
             LoadSupplierComboBox();
+            rbtnPurchase.Checked = true;
+            cmbCustomer.Visible = false;
+            dgvGST.Visible = false;
+            dgvPurchage.Visible = false;
+            dgvSale.Visible = false;
+            dgvStock.Visible = false;
+        }
+
+        private void rbtnSale_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbCustomer.Visible = true;
+            cmbSupplier.Visible = false;
+        }
+
+        private void rbtnPurchase_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbCustomer.Visible = false;
+            cmbSupplier.Visible = true;
+        }
+
+        private void rbtnStock_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbCustomer.Visible = false;
+            cmbSupplier.Visible = false;
+        }
+
+        private void rbtnGst_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbCustomer.Visible = false;
+            cmbSupplier.Visible = false;
+            cmbCategory.Visible = false;
+            cmbProduct.Visible = false;
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            if (rbtnPurchase.Checked)
+            {
+                dgvGST.Visible = false;               
+                dgvSale.Visible = false;
+                dgvStock.Visible = false;
+                PurchaseReport();
+            }
+            else if (rbtnSale.Checked)
+            {
+                dgvGST.Visible = false;
+                dgvPurchage.Visible = false;               
+                dgvStock.Visible = false;
+                SaleReport();
+
+            }
+            else if (rbtnStock.Checked)
+            {
+                dgvGST.Visible = false;
+                dgvPurchage.Visible = false;
+                dgvSale.Visible = false;                
+                StockReport();
+            }
+            else if (rbtnGst.Checked)
+            {               
+                dgvPurchage.Visible = false;
+                dgvSale.Visible = false;
+                dgvStock.Visible = false;
+                GSTReport();
+            }
+            else { MessageBox.Show("Please select report"); }
+
+        }
+        private async void PurchaseReport()
+        {
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.Purchase.ToListAsync());
+                dgvPurchage.DataSource = products;
+                dgvPurchage.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void SaleReport()
+        {
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.SaleDetails.ToListAsync());
+                dgvSale.DataSource = products;
+                dgvSale.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void StockReport()
+        {
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.Product.ToListAsync());
+                dgvStock.DataSource = products;
+                dgvStock.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private async void GSTReport()
+        {
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var products = await Task.Run(() => context.Sale.ToListAsync());
+                dgvGST.DataSource = products;
+                dgvGST.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -155,6 +155,7 @@
             txtBarcode.Location = new System.Drawing.Point(23, 57);
             txtBarcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBarcode.Name = "txtBarcode";
+            txtBarcode.ReadOnly = true;
             txtBarcode.Size = new System.Drawing.Size(131, 27);
             txtBarcode.TabIndex = 14;
             // 
@@ -387,6 +388,7 @@
             txtName.Name = "txtName";
             txtName.Size = new System.Drawing.Size(201, 27);
             txtName.TabIndex = 3;
+            txtName.TextChanged += txtName_TextChanged;
             // 
             // label7
             // 
@@ -404,8 +406,7 @@
             txtQunatity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtQunatity.Name = "txtQunatity";
             txtQunatity.Size = new System.Drawing.Size(201, 27);
-            txtQunatity.TabIndex = 5;
-            txtQunatity.TextChanged += txtQunatity_TextChanged;
+            txtQunatity.TabIndex = 5;            
             txtQunatity.KeyPress += txtQunatity_KeyPress;
             // 
             // label4

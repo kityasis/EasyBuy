@@ -180,6 +180,7 @@ namespace EasyBuy.Forms.Admin
                 {
                     try
                     {
+                        btnAdd.Text = "Update";
                         await using var context = new EasyBuyContext();
                         var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == id));
                         txtName.Text = product.Name;
@@ -193,8 +194,8 @@ namespace EasyBuy.Forms.Admin
                         txtCGstAmount.Text = product.CGST.ToString();
                         txtFinalPrice.Text = product.TotalPriceIncludingGST.ToString();
                         cmbCategory.Text = product.Catagory;
-                        this._id = product.Id;
-                        btnAdd.Text = "Update";
+                        txtBarcode.Text=product.Code;
+                        this._id = product.Id;                        
                     }
                     catch (Exception)
                     {
@@ -230,16 +231,8 @@ namespace EasyBuy.Forms.Admin
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
 
-        private void txtQunatity_TextChanged(object sender, EventArgs e)
-        {
-            if (txtQunatity.Text.Length == 0) return;
-            if (txtPrice.Text.Length == 0) return;
-            txtFinalPrice.Text = (Convert.ToDouble(txtQunatity.Text) * Convert.ToDouble(txtPrice.Text)).ToString();
-        }
-
         private void txtDiscount_TextChanged(object sender, EventArgs e)
-        {
-            if (txtFinalPrice.Text.Length == 0) return;
+        {          
             if (txtDiscount.Text.Length == 0) return;
             txtDiscountAmount.Text = Math.Round(((Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(txtDiscount.Text)) / 100), 2).ToString();
             txtPriceAfterDiscount.Text = Math.Round((Convert.ToDouble(txtPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)), 2).ToString();
@@ -265,12 +258,12 @@ namespace EasyBuy.Forms.Admin
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            
-            Bitmap bit = new Bitmap(100,100);
-           
+
+            Bitmap bit = new Bitmap(100, 100);
+
             printPreviewDialog1.PrintPreviewControl.Zoom = 1;
             printPreviewDialog1.ShowDialog();
-           
+
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -279,12 +272,29 @@ namespace EasyBuy.Forms.Admin
             int y = 10;
             for (int i = 0; i <= noOfCount; i++)
             {
-              
+
                 e.Graphics.DrawString(txtBarcode.Text, new Font("Fake Receipt", 15, FontStyle.Regular), Brushes.Black, new Point(55, y));
                 y += 30;
             }
 
 
+        }
+
+        private async void txtName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtName.Text.Length < 3 || btnAdd.Text == "Update") return;
+            try
+            {
+                await using var context = new EasyBuyContext();
+                var productCount = await Task.Run(() => context.Product.Count());
+                txtBarcode.Text = txtName.Text.Substring(0, 3) + (productCount + 1).ToString();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

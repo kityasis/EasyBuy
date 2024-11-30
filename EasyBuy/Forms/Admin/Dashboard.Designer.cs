@@ -43,15 +43,15 @@
             rbtnGst = new System.Windows.Forms.RadioButton();
             rbtnStock = new System.Windows.Forms.RadioButton();
             rbtnSale = new System.Windows.Forms.RadioButton();
-            dataGridView1 = new System.Windows.Forms.DataGridView();
-            dataGridView2 = new System.Windows.Forms.DataGridView();
-            dataGridView3 = new System.Windows.Forms.DataGridView();
-            dataGridView4 = new System.Windows.Forms.DataGridView();
+            dgvPurchage = new System.Windows.Forms.DataGridView();
+            dgvSale = new System.Windows.Forms.DataGridView();
+            dgvStock = new System.Windows.Forms.DataGridView();
+            dgvGST = new System.Windows.Forms.DataGridView();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPurchage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSale).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvStock).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvGST).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -78,17 +78,18 @@
             // 
             // btnShow
             // 
-            btnShow.Location = new System.Drawing.Point(692, 122);
+            btnShow.Location = new System.Drawing.Point(394, 69);
             btnShow.Name = "btnShow";
-            btnShow.Size = new System.Drawing.Size(69, 29);
+            btnShow.Size = new System.Drawing.Size(78, 47);
             btnShow.TabIndex = 7;
             btnShow.Text = "show";
             btnShow.UseVisualStyleBackColor = true;
+            btnShow.Click += btnShow_Click;
             // 
             // cmbCategory
             // 
             cmbCategory.FormattingEnabled = true;
-            cmbCategory.Location = new System.Drawing.Point(645, 77);
+            cmbCategory.Location = new System.Drawing.Point(641, 119);
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new System.Drawing.Size(250, 28);
             cmbCategory.TabIndex = 6;
@@ -97,7 +98,7 @@
             // cmbSupplier
             // 
             cmbSupplier.FormattingEnabled = true;
-            cmbSupplier.Location = new System.Drawing.Point(1157, 77);
+            cmbSupplier.Location = new System.Drawing.Point(1162, 119);
             cmbSupplier.Name = "cmbSupplier";
             cmbSupplier.Size = new System.Drawing.Size(250, 28);
             cmbSupplier.TabIndex = 5;
@@ -106,7 +107,7 @@
             // cmbProduct
             // 
             cmbProduct.FormattingEnabled = true;
-            cmbProduct.Location = new System.Drawing.Point(901, 78);
+            cmbProduct.Location = new System.Drawing.Point(900, 119);
             cmbProduct.Name = "cmbProduct";
             cmbProduct.Size = new System.Drawing.Size(250, 28);
             cmbProduct.TabIndex = 4;
@@ -114,14 +115,14 @@
             // 
             // dtpTo
             // 
-            dtpTo.Location = new System.Drawing.Point(389, 78);
+            dtpTo.Location = new System.Drawing.Point(382, 120);
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new System.Drawing.Size(250, 27);
             dtpTo.TabIndex = 3;
             // 
             // dtpFrom
             // 
-            dtpFrom.Location = new System.Drawing.Point(90, 80);
+            dtpFrom.Location = new System.Drawing.Point(95, 122);
             dtpFrom.Name = "dtpFrom";
             dtpFrom.Size = new System.Drawing.Size(250, 27);
             dtpFrom.TabIndex = 2;
@@ -129,7 +130,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(353, 85);
+            label3.Location = new System.Drawing.Point(348, 127);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(32, 20);
             label3.TabIndex = 1;
@@ -138,7 +139,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(35, 85);
+            label2.Location = new System.Drawing.Point(40, 127);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(50, 20);
             label2.TabIndex = 0;
@@ -147,7 +148,7 @@
             // cmbCustomer
             // 
             cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new System.Drawing.Point(90, 123);
+            cmbCustomer.Location = new System.Drawing.Point(1162, 119);
             cmbCustomer.Name = "cmbCustomer";
             cmbCustomer.Size = new System.Drawing.Size(250, 28);
             cmbCustomer.TabIndex = 29;
@@ -156,91 +157,96 @@
             // rbtnPurchase
             // 
             rbtnPurchase.AutoSize = true;
-            rbtnPurchase.Location = new System.Drawing.Point(353, 124);
+            rbtnPurchase.Location = new System.Drawing.Point(40, 77);
             rbtnPurchase.Name = "rbtnPurchase";
             rbtnPurchase.Size = new System.Drawing.Size(88, 24);
             rbtnPurchase.TabIndex = 30;
             rbtnPurchase.TabStop = true;
             rbtnPurchase.Text = "Purchase";
             rbtnPurchase.UseVisualStyleBackColor = true;
+            rbtnPurchase.CheckedChanged += rbtnPurchase_CheckedChanged;
             // 
             // rbtnGst
             // 
             rbtnGst.AutoSize = true;
-            rbtnGst.Location = new System.Drawing.Point(619, 127);
+            rbtnGst.Location = new System.Drawing.Point(306, 80);
             rbtnGst.Name = "rbtnGst";
             rbtnGst.Size = new System.Drawing.Size(56, 24);
             rbtnGst.TabIndex = 31;
             rbtnGst.TabStop = true;
             rbtnGst.Text = "GST";
             rbtnGst.UseVisualStyleBackColor = true;
+            rbtnGst.CheckedChanged += rbtnGst_CheckedChanged;
             // 
             // rbtnStock
             // 
             rbtnStock.AutoSize = true;
-            rbtnStock.Location = new System.Drawing.Point(535, 127);
+            rbtnStock.Location = new System.Drawing.Point(222, 80);
             rbtnStock.Name = "rbtnStock";
             rbtnStock.Size = new System.Drawing.Size(66, 24);
             rbtnStock.TabIndex = 32;
             rbtnStock.TabStop = true;
             rbtnStock.Text = "Stock";
             rbtnStock.UseVisualStyleBackColor = true;
+            rbtnStock.CheckedChanged += rbtnStock_CheckedChanged;
             // 
             // rbtnSale
             // 
             rbtnSale.AutoSize = true;
-            rbtnSale.Location = new System.Drawing.Point(447, 127);
+            rbtnSale.Location = new System.Drawing.Point(134, 80);
             rbtnSale.Name = "rbtnSale";
-            rbtnSale.Size = new System.Drawing.Size(17, 16);
+            rbtnSale.Size = new System.Drawing.Size(58, 24);
             rbtnSale.TabIndex = 33;
             rbtnSale.TabStop = true;
+            rbtnSale.Text = "Sale";
             rbtnSale.UseVisualStyleBackColor = true;
+            rbtnSale.CheckedChanged += rbtnSale_CheckedChanged;
             // 
-            // dataGridView1
+            // dgvPurchage
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new System.Drawing.Point(35, 176);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new System.Drawing.Size(1372, 188);
-            dataGridView1.TabIndex = 34;
+            dgvPurchage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPurchage.Location = new System.Drawing.Point(40, 165);
+            dgvPurchage.Name = "dgvPurchage";
+            dgvPurchage.RowHeadersWidth = 51;
+            dgvPurchage.Size = new System.Drawing.Size(1372, 188);
+            dgvPurchage.TabIndex = 34;
             // 
-            // dataGridView2
+            // dgvSale
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new System.Drawing.Point(35, 197);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new System.Drawing.Size(1372, 188);
-            dataGridView2.TabIndex = 35;
+            dgvSale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSale.Location = new System.Drawing.Point(40, 186);
+            dgvSale.Name = "dgvSale";
+            dgvSale.RowHeadersWidth = 51;
+            dgvSale.Size = new System.Drawing.Size(1372, 188);
+            dgvSale.TabIndex = 35;
             // 
-            // dataGridView3
+            // dgvStock
             // 
-            dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new System.Drawing.Point(35, 214);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.RowHeadersWidth = 51;
-            dataGridView3.Size = new System.Drawing.Size(1372, 188);
-            dataGridView3.TabIndex = 36;
+            dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStock.Location = new System.Drawing.Point(40, 203);
+            dgvStock.Name = "dgvStock";
+            dgvStock.RowHeadersWidth = 51;
+            dgvStock.Size = new System.Drawing.Size(1372, 188);
+            dgvStock.TabIndex = 36;
             // 
-            // dataGridView4
+            // dgvGST
             // 
-            dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Location = new System.Drawing.Point(35, 235);
-            dataGridView4.Name = "dataGridView4";
-            dataGridView4.RowHeadersWidth = 51;
-            dataGridView4.Size = new System.Drawing.Size(1372, 188);
-            dataGridView4.TabIndex = 37;
+            dgvGST.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvGST.Location = new System.Drawing.Point(40, 224);
+            dgvGST.Name = "dgvGST";
+            dgvGST.RowHeadersWidth = 51;
+            dgvGST.Size = new System.Drawing.Size(1372, 188);
+            dgvGST.TabIndex = 37;
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1437, 782);
-            Controls.Add(dataGridView4);
-            Controls.Add(dataGridView3);
-            Controls.Add(dataGridView2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvGST);
+            Controls.Add(dgvStock);
+            Controls.Add(dgvSale);
+            Controls.Add(dgvPurchage);
             Controls.Add(rbtnSale);
             Controls.Add(rbtnStock);
             Controls.Add(rbtnGst);
@@ -262,10 +268,10 @@
             Load += Dashboard_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPurchage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSale).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvStock).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvGST).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -287,9 +293,9 @@
         private System.Windows.Forms.RadioButton rbtnGst;
         private System.Windows.Forms.RadioButton rbtnStock;
         private System.Windows.Forms.RadioButton rbtnSale;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dgvPurchage;
+        private System.Windows.Forms.DataGridView dgvSale;
+        private System.Windows.Forms.DataGridView dgvStock;
+        private System.Windows.Forms.DataGridView dgvGST;
     }
 }
