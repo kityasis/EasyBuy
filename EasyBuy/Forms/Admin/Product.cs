@@ -132,7 +132,7 @@ namespace EasyBuy.Forms.Admin
             txtSGstAmount.Clear();
             txtCGstAmount.Clear();
             txtFinalPrice.Clear();
-            cmbCategory.SelectedIndex = -1;
+            cmbCategory.Text = "---Select---";
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -293,7 +293,7 @@ namespace EasyBuy.Forms.Admin
         private async void txtName_TextChanged(object sender, EventArgs e)
         {
             if (txtName.Text.Length < 3) return;
-            if(cmbCategory.Text== "---Select---")
+            if (cmbCategory.Text == "---Select---" && btnAdd.Text != "Update")
             {
                 MessageBox.Show("Please Select Category", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtName.Clear();

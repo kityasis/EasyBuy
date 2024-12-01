@@ -47,7 +47,6 @@
             label5 = new System.Windows.Forms.Label();
             datelbl = new System.Windows.Forms.Label();
             label11 = new System.Windows.Forms.Label();
-            btnExit = new System.Windows.Forms.Button();
             SubMenu_BillDetails = new System.Windows.Forms.Panel();
             groupBox1 = new System.Windows.Forms.GroupBox();
             rbtnUPI = new System.Windows.Forms.RadioButton();
@@ -348,7 +347,6 @@
             panel4.Controls.Add(label5);
             panel4.Controls.Add(datelbl);
             panel4.Controls.Add(label11);
-            panel4.Controls.Add(btnExit);
             panel4.Dock = System.Windows.Forms.DockStyle.Top;
             panel4.Location = new System.Drawing.Point(285, 0);
             panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -388,7 +386,6 @@
             label11.Size = new System.Drawing.Size(171, 20);
             label11.TabIndex = 27;
             label11.Text = "Cashier Point Of Sale";
-           
             // 
             // SubMenu_BillDetails
             // 
@@ -1221,7 +1218,6 @@
         private System.Windows.Forms.Button btnSettlePayments;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panelslide;
         private System.Windows.Forms.Panel SubMenu_BillDetails;
         private System.Windows.Forms.Label label1;
