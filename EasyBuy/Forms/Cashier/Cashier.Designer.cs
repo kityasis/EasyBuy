@@ -145,7 +145,7 @@
             panel1.Location = new System.Drawing.Point(0, 0);
             panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(280, 1102);
+            panel1.Size = new System.Drawing.Size(280, 1055);
             panel1.TabIndex = 0;
             // 
             // button4
@@ -202,7 +202,7 @@
             btnLogout.ForeColor = System.Drawing.Color.Honeydew;
             btnLogout.Image = (System.Drawing.Image)resources.GetObject("btnLogout.Image");
             btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnLogout.Location = new System.Drawing.Point(0, 1034);
+            btnLogout.Location = new System.Drawing.Point(0, 987);
             btnLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnLogout.Name = "btnLogout";
             btnLogout.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
@@ -216,7 +216,7 @@
             // panel6
             // 
             panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel6.Location = new System.Drawing.Point(0, 1090);
+            panel6.Location = new System.Drawing.Point(0, 1043);
             panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
             panel6.Size = new System.Drawing.Size(280, 12);
@@ -320,7 +320,7 @@
             panel2.Location = new System.Drawing.Point(280, 0);
             panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(5, 1102);
+            panel2.Size = new System.Drawing.Size(5, 1055);
             panel2.TabIndex = 1;
             // 
             // panel7
@@ -353,7 +353,7 @@
             panel4.Location = new System.Drawing.Point(285, 0);
             panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new System.Drawing.Size(1657, 51);
+            panel4.Size = new System.Drawing.Size(1639, 51);
             panel4.TabIndex = 2;
             // 
             // label5
@@ -388,19 +388,7 @@
             label11.Size = new System.Drawing.Size(171, 20);
             label11.TabIndex = 27;
             label11.Text = "Cashier Point Of Sale";
-            // 
-            // btnExit
-            // 
-            btnExit.FlatAppearance.BorderSize = 0;
-            btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnExit.Image = (System.Drawing.Image)resources.GetObject("btnExit.Image");
-            btnExit.Location = new System.Drawing.Point(1416, 13);
-            btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new System.Drawing.Size(15, 19);
-            btnExit.TabIndex = 0;
-            btnExit.UseVisualStyleBackColor = true;
-            btnExit.Click += btnExit_Click;
+           
             // 
             // SubMenu_BillDetails
             // 
@@ -441,10 +429,10 @@
             SubMenu_BillDetails.Controls.Add(label2);
             SubMenu_BillDetails.Controls.Add(label1);
             SubMenu_BillDetails.Dock = System.Windows.Forms.DockStyle.Right;
-            SubMenu_BillDetails.Location = new System.Drawing.Point(1592, 51);
+            SubMenu_BillDetails.Location = new System.Drawing.Point(1574, 51);
             SubMenu_BillDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             SubMenu_BillDetails.Name = "SubMenu_BillDetails";
-            SubMenu_BillDetails.Size = new System.Drawing.Size(350, 1051);
+            SubMenu_BillDetails.Size = new System.Drawing.Size(350, 1004);
             SubMenu_BillDetails.TabIndex = 3;
             // 
             // groupBox1
@@ -499,7 +487,7 @@
             txtBarecode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBarecode.Name = "txtBarecode";
             txtBarecode.Size = new System.Drawing.Size(159, 27);
-            txtBarecode.TabIndex = 59;           
+            txtBarecode.TabIndex = 59;
             txtBarecode.KeyDown += txtBarecode_KeyDown;
             // 
             // label8
@@ -783,7 +771,7 @@
             panel9.Controls.Add(lblSubTotal);
             panel9.Controls.Add(label6);
             panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel9.Location = new System.Drawing.Point(0, 832);
+            panel9.Location = new System.Drawing.Point(0, 785);
             panel9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel9.Name = "panel9";
             panel9.Size = new System.Drawing.Size(350, 150);
@@ -835,7 +823,7 @@
             panel10.Controls.Add(lblGrandTotal);
             panel10.Controls.Add(label12);
             panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel10.Location = new System.Drawing.Point(0, 982);
+            panel10.Location = new System.Drawing.Point(0, 935);
             panel10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel10.Name = "panel10";
             panel10.Size = new System.Drawing.Size(350, 69);
@@ -1024,7 +1012,7 @@
             dgvItem.RowHeadersVisible = false;
             dgvItem.RowHeadersWidth = 51;
             dgvItem.RowTemplate.Height = 24;
-            dgvItem.Size = new System.Drawing.Size(1307, 794);
+            dgvItem.Size = new System.Drawing.Size(1289, 747);
             dgvItem.TabIndex = 4;
             dgvItem.CellContentClick += dgvItem_CellContentClick;
             // 
@@ -1132,10 +1120,10 @@
             pnlManualSearch.Controls.Add(SearchProductGridView);
             pnlManualSearch.Controls.Add(cmbProductCategory);
             pnlManualSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
-            pnlManualSearch.Location = new System.Drawing.Point(285, 845);
+            pnlManualSearch.Location = new System.Drawing.Point(285, 798);
             pnlManualSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlManualSearch.Name = "pnlManualSearch";
-            pnlManualSearch.Size = new System.Drawing.Size(1307, 257);
+            pnlManualSearch.Size = new System.Drawing.Size(1289, 257);
             pnlManualSearch.TabIndex = 5;
             // 
             // dgv_qtupdate
@@ -1187,7 +1175,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             BackColor = System.Drawing.Color.White;
-            ClientSize = new System.Drawing.Size(1942, 1102);
+            ClientSize = new System.Drawing.Size(1924, 1055);
             Controls.Add(dgvItem);
             Controls.Add(dgv_qtupdate);
             Controls.Add(pnlManualSearch);
@@ -1195,12 +1183,11 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "Cashier";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Cashier";
-            WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Load += Cashier_Load;
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);

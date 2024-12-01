@@ -17,17 +17,9 @@ namespace EasyBuy.Forms.Cashier
         {
             InitializeComponent();
         }
-        TextBox SelectedTextBox = null;
-        decimal dis = 0;
+        TextBox SelectedTextBox = null;       
         int slNumber = 1;
-        decimal totalPrice = 0;
-        decimal totalPriceAfterDiscount = 0;
-        decimal totalFinalPrice = 0;
-        decimal totalCGST = 0;
-        decimal totalSGST = 0;
-        Bitmap bit;
-        long billCount = 0;
-        int totalItem = 0;
+        long billCount = 0;        
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
@@ -43,9 +35,10 @@ namespace EasyBuy.Forms.Cashier
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             datelbl.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
-            pnlManualSearch.Visible = false;
+            pnlManualSearch.Visible = false;            
             GenerateBillNumber();
             LoadComboBox();
+            txtBarecode.Focus();
         }
         private async void GenerateBillNumber()
         {
@@ -107,15 +100,7 @@ namespace EasyBuy.Forms.Cashier
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Are You Sure You Want To Exit", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
-                Application.Exit();
-            }
-        }
+       
         private void slide(Button button)
         {
             panelslide.Height = button.Height;
@@ -175,7 +160,7 @@ namespace EasyBuy.Forms.Cashier
                 await context.SaveChangesAsync();
                 transaction.Commit();
                 slide(btnCancelTransaction);
-                PrintBill();
+                printPreviewDialog1.ShowDialog();
                 Cashier x = new Cashier();
                 x.Show();
                 this.Hide();
@@ -333,22 +318,15 @@ namespace EasyBuy.Forms.Cashier
         private void textBox2_Click(object sender, EventArgs e)
         {
             SelectedTextBox = sender as TextBox;
-        }
-        private void UpdateQTY()
-        {
-            for (int x = 0; x < dgv_qtupdate.Rows.Count - 1; x++)
-            {
-                //con.Open();
-                //cmd = new SqlCommand("Update Product_Table set Prodcut_Quantity =@qty where Product_Name=@name", con);
-
-                //cmd.Parameters.AddWithValue("name", dgv_qtupdate.Rows[x].Cells[0].Value);
-                //cmd.Parameters.AddWithValue("qty", dgv_qtupdate.Rows[x].Cells[1].Value);
-                //cmd.ExecuteNonQuery();
-                //con.Close();
-            }
-        }
+        }       
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            decimal totalPrice = 0;
+            decimal totalPriceAfterDiscount = 0;
+            decimal totalFinalPrice = 0;
+            decimal totalCGST = 0;
+            decimal totalSGST = 0;
+            int totalItem = 0;
             e.Graphics.DrawString("EASY BUY STORE",
                 new Font("Fake Receipt", 15, FontStyle.Regular), Brushes.Black, new Point(55, 10));
             e.Graphics.DrawString("-------------------------------------------------------------------",
@@ -419,18 +397,6 @@ namespace EasyBuy.Forms.Cashier
                new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(45, i + 260));
             e.Graphics.DrawString("Cashier : " + lblCashierName.Text,
               new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(10, i + 280));
-
-        }
-        private void PrintBill()
-        {
-
-            int h = dgvItem.Height;
-            dgvItem.Height = dgvItem.RowCount * dgvItem.RowTemplate.Height * 2;
-            bit = new Bitmap(dgvItem.Width, dgvItem.Height);
-            dgvItem.DrawToBitmap(bit, new Rectangle(0, 0, dgvItem.Width, dgvItem.Height));
-            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
-            printPreviewDialog1.ShowDialog();
-            dgvItem.Height = h;
         }
         private void MemberCheck()
         {

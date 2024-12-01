@@ -291,6 +291,7 @@
             Name = "Home";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Home";
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             SubMenu_Panel.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

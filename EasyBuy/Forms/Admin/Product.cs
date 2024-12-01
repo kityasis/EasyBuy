@@ -293,10 +293,18 @@ namespace EasyBuy.Forms.Admin
         private async void txtName_TextChanged(object sender, EventArgs e)
         {
             if (txtName.Text.Length < 3) return;
+            if(cmbCategory.Text== "---Select---")
+            {
+                MessageBox.Show("Please Select Category", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtName.Clear();
+                txtName.Focus();
+                return;
+            }
             try
             {
+                string category = cmbCategory.Text;
                 await using var context = new EasyBuyContext();
-                var productCount = await Task.Run(() => context.Product.Count());
+                var productCount = await Task.Run(() => context.Product.Where(x => x.Catagory == category).CountAsync());
                 txtBarcode.Text = txtName.Text.Substring(0, 3) + (productCount + 1).ToString();
 
             }
