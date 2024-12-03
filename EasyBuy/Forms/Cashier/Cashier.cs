@@ -318,7 +318,7 @@ namespace EasyBuy.Forms.Cashier
         private void textBox2_Click(object sender, EventArgs e)
         {
             SelectedTextBox = sender as TextBox;
-        }       
+        }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             decimal totalPrice = 0;
@@ -329,7 +329,7 @@ namespace EasyBuy.Forms.Cashier
             int totalItem = 0;
             e.Graphics.DrawString("EASY BUY STORE",
                 new Font("Fake Receipt", 15, FontStyle.Regular), Brushes.Black, new Point(55, 10));
-            e.Graphics.DrawString("-------------------------------------------------------------------",
+            e.Graphics.DrawString("-----------------------------------------------------------------",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 30));
             e.Graphics.DrawString("Ratnagiri, Jajpur, Odisha-754214",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 50));
@@ -340,13 +340,13 @@ namespace EasyBuy.Forms.Cashier
             e.Graphics.DrawString("Date : " + DateTime.Now,
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 110));
             e.Graphics.DrawString("TAX INVOICE",
-                new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(80, 140));
-            e.Graphics.DrawString("-------------------------------------------------------------------",
-                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 160));
+                new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(80, 140));
+            e.Graphics.DrawString("-----------------------------------------------------------------",
+                new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, 160));
             e.Graphics.DrawString("Qty   OurPrice     GST(%)      C/S GST        Total",
-                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 180));
-            e.Graphics.DrawString("-------------------------------------------------------------------",
-                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 200));
+                new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, 180));
+            e.Graphics.DrawString("-----------------------------------------------------------------",
+                 new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, 200));
             //
             int i = 200;
             foreach (DataGridViewRow row in dgvItem.Rows)
@@ -359,21 +359,21 @@ namespace EasyBuy.Forms.Cashier
                 totalCGST += Convert.ToDecimal(row.Cells[8].Value);
                 i += 20;
                 e.Graphics.DrawString($"{row.Cells[1].Value.ToString()}",
-               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i));
+               new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, i));
                 i += 12;
                 e.Graphics.DrawString($" {row.Cells[10].Value.ToString()}    {row.Cells[5].Value.ToString()}           {row.Cells[6].Value.ToString()}        {row.Cells[7].Value.ToString()}{"/"}{row.Cells[8].Value.ToString()}       {row.Cells[11].Value.ToString()}",
-               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i));
+               new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, i));
             }
-            e.Graphics.DrawString("-------------------------------------------------------------------",
-                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 20));
+            e.Graphics.DrawString("-----------------------------------------------------------------",
+                 new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, i + 20));
             e.Graphics.DrawString($"        {totalPriceAfterDiscount}                     {totalSGST}{"/"}{totalCGST}       {totalFinalPrice} ",
-                new Font("Fake Receipt", 10, FontStyle.Bold), Brushes.Black, new Point(10, i + 35));
-            e.Graphics.DrawString("-------------------------------------------------------------------",
-               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 50));
+                new Font("Fake Receipt", 8, FontStyle.Bold), Brushes.Black, new Point(10, i + 35));
+            e.Graphics.DrawString("-----------------------------------------------------------------",
+               new Font("Fake Receipt", 8, FontStyle.Regular), Brushes.Black, new Point(10, i + 50));
 
             e.Graphics.DrawString("GST RECEIPT SUMMARY",
                 new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(45, i + 70));
-            e.Graphics.DrawString("-------------------------------------------------------------------",
+            e.Graphics.DrawString("-----------------------------------------------------------------",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 90));
 
             e.Graphics.DrawString("Total Taxable Amount : " + lblSubTotal.Text,
@@ -390,7 +390,7 @@ namespace EasyBuy.Forms.Cashier
               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 210));
             e.Graphics.DrawString("Total Amount Saved : " + Math.Round(totalPrice - totalPriceAfterDiscount, 2),
               new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 230));
-            e.Graphics.DrawString("-------------------------------------------------------------------",
+            e.Graphics.DrawString("-----------------------------------------------------------------",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, i + 240));
 
             e.Graphics.DrawString("THANK YOU VISIT AGAIN",
