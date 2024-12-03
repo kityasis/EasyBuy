@@ -320,9 +320,9 @@ namespace EasyBuy.Forms.Admin
             try
             {
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(txtSearch.Text)).ToListAsync());
+                var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(txtSearchName.Text)).ToListAsync());
                 ProductDataGridView.DataSource = products;
-                txtSearch.Clear();
+                txtSearchName.Clear();
             }
             catch (Exception)
             {

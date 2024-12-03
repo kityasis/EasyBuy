@@ -31,20 +31,18 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
             groupBox4 = new System.Windows.Forms.GroupBox();
-            label12 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
             txtNoOfPrint = new System.Windows.Forms.TextBox();
             btnPrint = new System.Windows.Forms.Button();
             txtBarcode = new System.Windows.Forms.TextBox();
             groupBox3 = new System.Windows.Forms.GroupBox();
             txtCGstAmount = new System.Windows.Forms.TextBox();
             label14 = new System.Windows.Forms.Label();
-            txtFinalPrice = new System.Windows.Forms.TextBox();
-            label13 = new System.Windows.Forms.Label();
             txtSGstAmount = new System.Windows.Forms.TextBox();
             label6 = new System.Windows.Forms.Label();
             txtGST = new System.Windows.Forms.TextBox();
             label8 = new System.Windows.Forms.Label();
+            txtFinalPrice = new System.Windows.Forms.TextBox();
+            label13 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
             label11 = new System.Windows.Forms.Label();
             txtDiscount = new System.Windows.Forms.TextBox();
@@ -85,10 +83,19 @@
             printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
             btnSearch = new System.Windows.Forms.Button();
-            txtSearch = new System.Windows.Forms.TextBox();
+            txtSearchName = new System.Windows.Forms.TextBox();
             groupBox5 = new System.Windows.Forms.GroupBox();
             label15 = new System.Windows.Forms.Label();
+            label16 = new System.Windows.Forms.Label();
+            cmbSearchCategory = new System.Windows.Forms.ComboBox();
             btnRefresh = new System.Windows.Forms.Button();
+            btnFirst = new System.Windows.Forms.Button();
+            button1 = new System.Windows.Forms.Button();
+            button2 = new System.Windows.Forms.Button();
+            button3 = new System.Windows.Forms.Button();
+            txtRecordNumber = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
+            groupBox6 = new System.Windows.Forms.GroupBox();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -97,48 +104,26 @@
             ((System.ComponentModel.ISupportInitialize)ProductDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
             groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(label12);
-            groupBox4.Controls.Add(label2);
             groupBox4.Controls.Add(txtNoOfPrint);
             groupBox4.Controls.Add(btnPrint);
             groupBox4.Controls.Add(txtBarcode);
-            groupBox4.Location = new System.Drawing.Point(1071, 67);
-            groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox4.Location = new System.Drawing.Point(902, 50);
             groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox4.Size = new System.Drawing.Size(324, 94);
+            groupBox4.Size = new System.Drawing.Size(321, 53);
             groupBox4.TabIndex = 65;
             groupBox4.TabStop = false;
             groupBox4.Text = "Barcode";
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new System.Drawing.Point(131, 28);
-            label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(86, 20);
-            label12.TabIndex = 18;
-            label12.Text = "No. Of Print";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(6, 28);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(64, 20);
-            label2.TabIndex = 17;
-            label2.Text = "Barcode";
-            // 
             // txtNoOfPrint
             // 
-            txtNoOfPrint.Location = new System.Drawing.Point(131, 52);
-            txtNoOfPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtNoOfPrint.Location = new System.Drawing.Point(153, 16);
             txtNoOfPrint.Name = "txtNoOfPrint";
-            txtNoOfPrint.Size = new System.Drawing.Size(86, 27);
+            txtNoOfPrint.Size = new System.Drawing.Size(71, 23);
             txtNoOfPrint.TabIndex = 15;
             // 
             // btnPrint
@@ -147,10 +132,9 @@
             btnPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnPrint.Location = new System.Drawing.Point(223, 45);
-            btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnPrint.Location = new System.Drawing.Point(236, 16);
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new System.Drawing.Size(76, 34);
+            btnPrint.Size = new System.Drawing.Size(66, 26);
             btnPrint.TabIndex = 16;
             btnPrint.Text = "Print";
             btnPrint.UseVisualStyleBackColor = true;
@@ -158,28 +142,23 @@
             // 
             // txtBarcode
             // 
-            txtBarcode.Location = new System.Drawing.Point(6, 52);
-            txtBarcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtBarcode.Location = new System.Drawing.Point(13, 16);
             txtBarcode.Name = "txtBarcode";
             txtBarcode.ReadOnly = true;
-            txtBarcode.Size = new System.Drawing.Size(115, 27);
+            txtBarcode.Size = new System.Drawing.Size(122, 23);
             txtBarcode.TabIndex = 14;
             // 
             // groupBox3
             // 
             groupBox3.Controls.Add(txtCGstAmount);
             groupBox3.Controls.Add(label14);
-            groupBox3.Controls.Add(txtFinalPrice);
-            groupBox3.Controls.Add(label13);
             groupBox3.Controls.Add(txtSGstAmount);
             groupBox3.Controls.Add(label6);
             groupBox3.Controls.Add(txtGST);
             groupBox3.Controls.Add(label8);
-            groupBox3.Location = new System.Drawing.Point(743, 67);
-            groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox3.Location = new System.Drawing.Point(805, 109);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox3.Size = new System.Drawing.Size(310, 217);
+            groupBox3.Size = new System.Drawing.Size(418, 53);
             groupBox3.TabIndex = 64;
             groupBox3.TabStop = false;
             groupBox3.Text = "GST Details";
@@ -187,68 +166,46 @@
             // txtCGstAmount
             // 
             txtCGstAmount.AcceptsReturn = true;
-            txtCGstAmount.Location = new System.Drawing.Point(102, 125);
-            txtCGstAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCGstAmount.Location = new System.Drawing.Point(327, 21);
             txtCGstAmount.Name = "txtCGstAmount";
             txtCGstAmount.ReadOnly = true;
-            txtCGstAmount.Size = new System.Drawing.Size(189, 27);
+            txtCGstAmount.Size = new System.Drawing.Size(72, 23);
             txtCGstAmount.TabIndex = 856;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label14.Location = new System.Drawing.Point(37, 129);
+            label14.Location = new System.Drawing.Point(274, 25);
             label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(59, 18);
+            label14.Size = new System.Drawing.Size(47, 15);
             label14.TabIndex = 855;
             label14.Text = "C GST";
-            // 
-            // txtFinalPrice
-            // 
-            txtFinalPrice.Location = new System.Drawing.Point(102, 171);
-            txtFinalPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            txtFinalPrice.Name = "txtFinalPrice";
-            txtFinalPrice.ReadOnly = true;
-            txtFinalPrice.Size = new System.Drawing.Size(189, 27);
-            txtFinalPrice.TabIndex = 54;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label13.Location = new System.Drawing.Point(8, 180);
-            label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(88, 18);
-            label13.TabIndex = 52;
-            label13.Text = "Final Price";
             // 
             // txtSGstAmount
             // 
             txtSGstAmount.AcceptsReturn = true;
-            txtSGstAmount.Location = new System.Drawing.Point(102, 76);
-            txtSGstAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtSGstAmount.Location = new System.Drawing.Point(192, 23);
             txtSGstAmount.Name = "txtSGstAmount";
             txtSGstAmount.ReadOnly = true;
-            txtSGstAmount.Size = new System.Drawing.Size(189, 27);
+            txtSGstAmount.Size = new System.Drawing.Size(67, 23);
             txtSGstAmount.TabIndex = 854;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label6.Location = new System.Drawing.Point(38, 85);
+            label6.Location = new System.Drawing.Point(139, 25);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(58, 18);
+            label6.Size = new System.Drawing.Size(47, 15);
             label6.TabIndex = 33;
             label6.Text = "S GST";
             // 
             // txtGST
             // 
-            txtGST.Location = new System.Drawing.Point(102, 20);
-            txtGST.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtGST.Location = new System.Drawing.Point(62, 23);
             txtGST.Name = "txtGST";
-            txtGST.Size = new System.Drawing.Size(185, 27);
+            txtGST.Size = new System.Drawing.Size(66, 23);
             txtGST.TabIndex = 7;
             txtGST.TextChanged += txtGST_TextChanged_1;
             txtGST.KeyPress += txtGST_KeyPress;
@@ -257,11 +214,29 @@
             // 
             label8.AutoSize = true;
             label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label8.Location = new System.Drawing.Point(25, 25);
+            label8.Location = new System.Drawing.Point(11, 25);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(56, 18);
+            label8.Size = new System.Drawing.Size(46, 15);
             label8.TabIndex = 42;
             label8.Text = "GST%";
+            // 
+            // txtFinalPrice
+            // 
+            txtFinalPrice.Location = new System.Drawing.Point(92, 22);
+            txtFinalPrice.Name = "txtFinalPrice";
+            txtFinalPrice.ReadOnly = true;
+            txtFinalPrice.Size = new System.Drawing.Size(166, 23);
+            txtFinalPrice.TabIndex = 54;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label13.Location = new System.Drawing.Point(10, 24);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(76, 15);
+            label13.TabIndex = 52;
+            label13.Text = "Final Price";
             // 
             // groupBox2
             // 
@@ -271,11 +246,9 @@
             groupBox2.Controls.Add(txtDiscountAmount);
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(txtPriceAfterDiscount);
-            groupBox2.Location = new System.Drawing.Point(367, 67);
-            groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox2.Location = new System.Drawing.Point(10, 109);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox2.Size = new System.Drawing.Size(360, 217);
+            groupBox2.Size = new System.Drawing.Size(789, 53);
             groupBox2.TabIndex = 63;
             groupBox2.TabStop = false;
             groupBox2.Text = "Discount Details";
@@ -284,18 +257,17 @@
             // 
             label11.AutoSize = true;
             label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label11.Location = new System.Drawing.Point(59, 24);
+            label11.Location = new System.Drawing.Point(10, 19);
             label11.Name = "label11";
-            label11.Size = new System.Drawing.Size(106, 18);
+            label11.Size = new System.Drawing.Size(89, 15);
             label11.TabIndex = 48;
             label11.Text = "Discount (%)";
             // 
             // txtDiscount
             // 
-            txtDiscount.Location = new System.Drawing.Point(171, 20);
-            txtDiscount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtDiscount.Location = new System.Drawing.Point(104, 16);
             txtDiscount.Name = "txtDiscount";
-            txtDiscount.Size = new System.Drawing.Size(176, 27);
+            txtDiscount.Size = new System.Drawing.Size(65, 23);
             txtDiscount.TabIndex = 6;
             txtDiscount.TextChanged += txtDiscount_TextChanged;
             txtDiscount.KeyPress += txtDiscount_KeyPress;
@@ -304,38 +276,36 @@
             // 
             label10.AutoSize = true;
             label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label10.Location = new System.Drawing.Point(100, 80);
+            label10.Location = new System.Drawing.Point(182, 23);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(65, 18);
+            label10.Size = new System.Drawing.Size(55, 15);
             label10.TabIndex = 46;
             label10.Text = "Amount";
             // 
             // txtDiscountAmount
             // 
-            txtDiscountAmount.Location = new System.Drawing.Point(171, 76);
-            txtDiscountAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtDiscountAmount.Location = new System.Drawing.Point(261, 17);
             txtDiscountAmount.Name = "txtDiscountAmount";
             txtDiscountAmount.ReadOnly = true;
-            txtDiscountAmount.Size = new System.Drawing.Size(177, 27);
+            txtDiscountAmount.Size = new System.Drawing.Size(134, 23);
             txtDiscountAmount.TabIndex = 745;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label9.Location = new System.Drawing.Point(6, 129);
+            label9.Location = new System.Drawing.Point(415, 23);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(159, 18);
+            label9.Size = new System.Drawing.Size(133, 15);
             label9.TabIndex = 44;
             label9.Text = "Price After Discount";
             // 
             // txtPriceAfterDiscount
             // 
-            txtPriceAfterDiscount.Location = new System.Drawing.Point(171, 129);
-            txtPriceAfterDiscount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtPriceAfterDiscount.Location = new System.Drawing.Point(557, 17);
             txtPriceAfterDiscount.Name = "txtPriceAfterDiscount";
             txtPriceAfterDiscount.ReadOnly = true;
-            txtPriceAfterDiscount.Size = new System.Drawing.Size(177, 27);
+            txtPriceAfterDiscount.Size = new System.Drawing.Size(134, 23);
             txtPriceAfterDiscount.TabIndex = 54;
             // 
             // groupBox1
@@ -348,11 +318,9 @@
             groupBox1.Controls.Add(txtQunatity);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(txtPrice);
-            groupBox1.Location = new System.Drawing.Point(12, 67);
-            groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox1.Location = new System.Drawing.Point(10, 50);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox1.Size = new System.Drawing.Size(336, 217);
+            groupBox1.Size = new System.Drawing.Size(875, 53);
             groupBox1.TabIndex = 62;
             groupBox1.TabStop = false;
             groupBox1.Text = "Product Details";
@@ -361,19 +329,18 @@
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label5.Location = new System.Drawing.Point(11, 25);
+            label5.Location = new System.Drawing.Point(10, 19);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(76, 18);
+            label5.Size = new System.Drawing.Size(63, 15);
             label5.TabIndex = 34;
             label5.Text = "Category";
             // 
             // cmbCategory
             // 
             cmbCategory.FormattingEnabled = true;
-            cmbCategory.Location = new System.Drawing.Point(97, 20);
-            cmbCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            cmbCategory.Location = new System.Drawing.Point(85, 15);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new System.Drawing.Size(201, 28);
+            cmbCategory.Size = new System.Drawing.Size(176, 23);
             cmbCategory.TabIndex = 2;
             cmbCategory.Text = "---Select---";
             // 
@@ -381,18 +348,17 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label3.Location = new System.Drawing.Point(35, 76);
+            label3.Location = new System.Drawing.Point(273, 19);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(52, 18);
+            label3.Size = new System.Drawing.Size(45, 15);
             label3.TabIndex = 28;
             label3.Text = "Name";
             // 
             // txtName
             // 
-            txtName.Location = new System.Drawing.Point(97, 76);
-            txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtName.Location = new System.Drawing.Point(324, 17);
             txtName.Name = "txtName";
-            txtName.Size = new System.Drawing.Size(201, 27);
+            txtName.Size = new System.Drawing.Size(212, 23);
             txtName.TabIndex = 3;
             txtName.TextChanged += txtName_TextChanged;
             // 
@@ -400,18 +366,17 @@
             // 
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label7.Location = new System.Drawing.Point(17, 180);
+            label7.Location = new System.Drawing.Point(704, 19);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(70, 18);
+            label7.Size = new System.Drawing.Size(59, 15);
             label7.TabIndex = 37;
             label7.Text = "Quantity";
             // 
             // txtQunatity
             // 
-            txtQunatity.Location = new System.Drawing.Point(97, 176);
-            txtQunatity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtQunatity.Location = new System.Drawing.Point(772, 16);
             txtQunatity.Name = "txtQunatity";
-            txtQunatity.Size = new System.Drawing.Size(201, 27);
+            txtQunatity.Size = new System.Drawing.Size(78, 23);
             txtQunatity.TabIndex = 5;
             txtQunatity.KeyPress += txtQunatity_KeyPress;
             // 
@@ -419,18 +384,17 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            label4.Location = new System.Drawing.Point(40, 129);
+            label4.Location = new System.Drawing.Point(536, 22);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(47, 18);
+            label4.Size = new System.Drawing.Size(40, 15);
             label4.TabIndex = 40;
             label4.Text = "Price";
             // 
             // txtPrice
             // 
-            txtPrice.Location = new System.Drawing.Point(97, 129);
-            txtPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtPrice.Location = new System.Drawing.Point(584, 17);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new System.Drawing.Size(201, 27);
+            txtPrice.Size = new System.Drawing.Size(115, 23);
             txtPrice.TabIndex = 4;
             txtPrice.TextChanged += txtPrice_TextChanged;
             txtPrice.KeyPress += txtPrice_KeyPress;
@@ -441,10 +405,9 @@
             btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnClear.Location = new System.Drawing.Point(1274, 247);
-            btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnClear.Location = new System.Drawing.Point(466, 15);
             btnClear.Name = "btnClear";
-            btnClear.Size = new System.Drawing.Size(96, 37);
+            btnClear.Size = new System.Drawing.Size(85, 28);
             btnClear.TabIndex = 60;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -456,10 +419,9 @@
             btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnAdd.Location = new System.Drawing.Point(1071, 247);
-            btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnAdd.Location = new System.Drawing.Point(290, 15);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new System.Drawing.Size(93, 37);
+            btnAdd.Size = new System.Drawing.Size(82, 28);
             btnAdd.TabIndex = 59;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -471,9 +433,8 @@
             panel1.Controls.Add(label1);
             panel1.Dock = System.Windows.Forms.DockStyle.Top;
             panel1.Location = new System.Drawing.Point(0, 0);
-            panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(1437, 44);
+            panel1.Size = new System.Drawing.Size(1255, 33);
             panel1.TabIndex = 61;
             // 
             // label1
@@ -481,9 +442,9 @@
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(11, 11);
+            label1.Location = new System.Drawing.Point(10, 8);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(67, 20);
+            label1.Size = new System.Drawing.Size(57, 17);
             label1.TabIndex = 0;
             label1.Text = "Product";
             // 
@@ -498,14 +459,13 @@
             ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             ProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { idDataGridViewTextBoxColumn, codeDataGridViewTextBoxColumn, catagoryDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, priceDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, discountDataGridViewTextBoxColumn, discountAmountDataGridViewTextBoxColumn, priceAfterDiscountDataGridViewTextBoxColumn, gSTPercentageDataGridViewTextBoxColumn, sGSTDataGridViewTextBoxColumn, cGSTDataGridViewTextBoxColumn, totalPriceIncludingGSTDataGridViewTextBoxColumn, Edit, Delete });
             ProductDataGridView.DataSource = productBindingSource;
-            ProductDataGridView.Location = new System.Drawing.Point(11, 299);
-            ProductDataGridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            ProductDataGridView.Location = new System.Drawing.Point(10, 244);
             ProductDataGridView.Name = "ProductDataGridView";
             ProductDataGridView.ReadOnly = true;
             ProductDataGridView.RowHeadersVisible = false;
             ProductDataGridView.RowHeadersWidth = 51;
             ProductDataGridView.RowTemplate.Height = 24;
-            ProductDataGridView.Size = new System.Drawing.Size(1384, 477);
+            ProductDataGridView.Size = new System.Drawing.Size(1213, 310);
             ProductDataGridView.TabIndex = 66;
             ProductDataGridView.CellContentClick += ProductDataGridView_CellContentClick;
             // 
@@ -658,45 +618,64 @@
             btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnSearch.Location = new System.Drawing.Point(223, 24);
-            btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnSearch.Location = new System.Drawing.Point(470, 18);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new System.Drawing.Size(76, 34);
+            btnSearch.Size = new System.Drawing.Size(66, 26);
             btnSearch.TabIndex = 67;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
-            // txtSearch
+            // txtSearchName
             // 
-            txtSearch.Location = new System.Drawing.Point(61, 28);
-            txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new System.Drawing.Size(156, 27);
-            txtSearch.TabIndex = 68;
+            txtSearchName.Location = new System.Drawing.Point(327, 18);
+            txtSearchName.Name = "txtSearchName";
+            txtSearchName.Size = new System.Drawing.Size(137, 23);
+            txtSearchName.TabIndex = 68;
             // 
             // groupBox5
             // 
+            groupBox5.BackColor = System.Drawing.SystemColors.ActiveCaption;
             groupBox5.Controls.Add(label15);
-            groupBox5.Controls.Add(txtSearch);
+            groupBox5.Controls.Add(label16);
+            groupBox5.Controls.Add(cmbSearchCategory);
+            groupBox5.Controls.Add(txtSearchName);
             groupBox5.Controls.Add(btnSearch);
-            groupBox5.Location = new System.Drawing.Point(1071, 178);
-            groupBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            groupBox5.Location = new System.Drawing.Point(668, 171);
             groupBox5.Name = "groupBox5";
-            groupBox5.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            groupBox5.Size = new System.Drawing.Size(324, 67);
+            groupBox5.Size = new System.Drawing.Size(555, 53);
             groupBox5.TabIndex = 66;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Barcode";
+            groupBox5.Text = "Search....";
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new System.Drawing.Point(6, 35);
+            label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label15.Location = new System.Drawing.Point(276, 21);
             label15.Name = "label15";
-            label15.Size = new System.Drawing.Size(49, 20);
-            label15.TabIndex = 69;
+            label15.Size = new System.Drawing.Size(45, 15);
+            label15.TabIndex = 72;
             label15.Text = "Name";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label16.Location = new System.Drawing.Point(8, 20);
+            label16.Name = "label16";
+            label16.Size = new System.Drawing.Size(63, 15);
+            label16.TabIndex = 71;
+            label16.Text = "Category";
+            // 
+            // cmbSearchCategory
+            // 
+            cmbSearchCategory.FormattingEnabled = true;
+            cmbSearchCategory.Location = new System.Drawing.Point(83, 16);
+            cmbSearchCategory.Name = "cmbSearchCategory";
+            cmbSearchCategory.Size = new System.Drawing.Size(176, 23);
+            cmbSearchCategory.TabIndex = 70;
+            cmbSearchCategory.Text = "---Select---";
             // 
             // btnRefresh
             // 
@@ -704,31 +683,125 @@
             btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
             btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            btnRefresh.Location = new System.Drawing.Point(1173, 247);
-            btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnRefresh.Location = new System.Drawing.Point(378, 15);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new System.Drawing.Size(90, 37);
+            btnRefresh.Size = new System.Drawing.Size(82, 28);
             btnRefresh.TabIndex = 67;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
             btnRefresh.Click += btnRefresh_Click;
             // 
+            // btnFirst
+            // 
+            btnFirst.CausesValidation = false;
+            btnFirst.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            btnFirst.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnFirst.Location = new System.Drawing.Point(895, 560);
+            btnFirst.Name = "btnFirst";
+            btnFirst.Size = new System.Drawing.Size(28, 28);
+            btnFirst.TabIndex = 68;
+            btnFirst.Text = "|<";
+            btnFirst.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.CausesValidation = false;
+            button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button1.Location = new System.Drawing.Point(1195, 560);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(28, 28);
+            button1.TabIndex = 69;
+            button1.Text = ">|";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.CausesValidation = false;
+            button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button2.Location = new System.Drawing.Point(1161, 560);
+            button2.Name = "button2";
+            button2.Size = new System.Drawing.Size(28, 28);
+            button2.TabIndex = 70;
+            button2.Text = ">";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.CausesValidation = false;
+            button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(128, 255, 128);
+            button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(192, 255, 192);
+            button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            button3.Location = new System.Drawing.Point(929, 560);
+            button3.Name = "button3";
+            button3.Size = new System.Drawing.Size(28, 28);
+            button3.TabIndex = 71;
+            button3.Text = "|<";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // txtRecordNumber
+            // 
+            txtRecordNumber.Location = new System.Drawing.Point(1033, 565);
+            txtRecordNumber.Name = "txtRecordNumber";
+            txtRecordNumber.ReadOnly = true;
+            txtRecordNumber.Size = new System.Drawing.Size(115, 23);
+            txtRecordNumber.TabIndex = 72;
+            txtRecordNumber.Text = "0/0";
+            txtRecordNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            label2.Location = new System.Drawing.Point(963, 567);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(62, 15);
+            label2.TabIndex = 73;
+            label2.Text = "Showing";
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(txtFinalPrice);
+            groupBox6.Controls.Add(label13);
+            groupBox6.Controls.Add(btnAdd);
+            groupBox6.Controls.Add(btnClear);
+            groupBox6.Controls.Add(btnRefresh);
+            groupBox6.Location = new System.Drawing.Point(10, 171);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new System.Drawing.Size(576, 53);
+            groupBox6.TabIndex = 74;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Final";
+            // 
             // Product
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1437, 782);
-            Controls.Add(btnRefresh);
+            ClientSize = new System.Drawing.Size(1255, 598);
+            Controls.Add(groupBox6);
+            Controls.Add(label2);
+            Controls.Add(txtRecordNumber);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(btnFirst);
             Controls.Add(groupBox5);
             Controls.Add(ProductDataGridView);
             Controls.Add(groupBox4);
-            Controls.Add(btnAdd);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(btnClear);
             Controls.Add(panel1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "Product";
             Text = "Product";
             Load += Product_Load;
@@ -746,7 +819,10 @@
             ((System.ComponentModel.ISupportInitialize)productBindingSource).EndInit();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -810,14 +886,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceIncludingGSTDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtSearchName;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cmbSearchCategory;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox txtRecordNumber;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }
