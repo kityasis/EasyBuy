@@ -1,28 +1,39 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace EasyBuy.Forms.Admin
 {
     public partial class Product : Form
     {
+        private int totalRecords=0;
+        private int pageSize = 15;
+        private int pageCount = 0;
+        private int currentPage = 1;
+
         private Int64 _id;
         public Product()
         {
             InitializeComponent();
         }
-        private async void RefreshData()
+        private async void LoadProducts()
         {
             try
             {
+               
+
+                int skip = 0;
+                skip = (this.currentPage * this.pageSize);
+              
                 await using var context = new EasyBuyContext();
-                var productes = await Task.Run(() => context.Product.ToListAsync());
+                var productes = await Task.Run(() => context.Product.Skip(skip).Take(pageSize).ToListAsync());
                 ProductDataGridView.DataSource = productes;
+                this.txtRecordNumber.Text = (this.currentPage + 1).ToString() + "/" + this.pageCount.ToString();
             }
             catch (Exception)
             {
@@ -30,14 +41,31 @@ namespace EasyBuy.Forms.Admin
             }
 
         }
+        private static async Task<int> LoadTotalProductCount()
+        {
+            try
+            {
+
+                await using var context = new EasyBuyContext();
+                return await Task.Run(() => context.Product.CountAsync());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return 0;
+
+        }
         private async void LoadCategoryComboBox()
         {
             cmbCategory.Items.Clear();
+            cmbSearchCategory.Items.Clear();
             try
             {
                 await using var context = new EasyBuyContext();
                 var categories = await Task.Run(() => context.Category.ToListAsync());
                 cmbCategory.Items.AddRange(categories.Select(x => x.Name).ToArray());
+                cmbSearchCategory.Items.AddRange(categories.Select(x => x.Name).ToArray());
             }
             catch (Exception ex)
             {
@@ -45,18 +73,21 @@ namespace EasyBuy.Forms.Admin
             }
 
         }
-
-        private void Product_Load(object sender, EventArgs e)
-        {
+        private async void Product_Load(object sender, EventArgs e)
+        {            
             ProductDataGridView.EnableHeadersVisualStyles = false;
             ProductDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
             ProductDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             ProductDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
+            this.totalRecords = await LoadTotalProductCount();
+            this.pageCount = this.totalRecords / this.pageSize;
+            if (this.totalRecords % this.pageSize > 0)
+                this.pageCount++;
+            this.currentPage = 0;
 
-            RefreshData();
+            LoadProducts();
             LoadCategoryComboBox();
         }
-
         private async void btnAdd_Click(object sender, EventArgs e)
         {
 
@@ -115,7 +146,7 @@ namespace EasyBuy.Forms.Admin
                     MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-                RefreshData();
+                LoadProducts();
 
             }
         }
@@ -133,14 +164,12 @@ namespace EasyBuy.Forms.Admin
             txtCGstAmount.Clear();
             txtFinalPrice.Clear();
             cmbCategory.Text = "---Select---";
+            btnAdd.Text = "Add";
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             this.Clear();
         }
-
-
         private void txtGST_TextChanged(object sender, EventArgs e)
         {
             if (txtPriceAfterDiscount.Text.Length == 0 && txtPrice.Text.Length == 0) return;
@@ -151,7 +180,6 @@ namespace EasyBuy.Forms.Admin
             txtCGstAmount.Text = Math.Round(gstAmount, 2).ToString();
             txtFinalPrice.Text = Math.Round((Convert.ToDouble(price) + Convert.ToDouble(txtSGstAmount.Text)), 2).ToString();
         }
-
         private async void ProductDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -201,35 +229,29 @@ namespace EasyBuy.Forms.Admin
                         MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                RefreshData();
-
+                LoadProducts();
             }
         }
-
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
-
         private void txtQunatity_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
-
         private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
-
         private void txtGST_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
-
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
             if (txtDiscount.Text.Length == 0) return;
@@ -237,7 +259,6 @@ namespace EasyBuy.Forms.Admin
             txtPriceAfterDiscount.Text = Math.Round((Convert.ToDouble(txtPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)), 2).ToString();
             txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPrice.Text) - Convert.ToDouble(txtDiscountAmount.Text)), 2).ToString();
         }
-
         private void txtPrice_TextChanged(object sender, EventArgs e)
         {
             //if (txtQunatity.Text.Length == 0) return;
@@ -250,7 +271,6 @@ namespace EasyBuy.Forms.Admin
             txtSGstAmount.Clear();
             txtCGstAmount.Clear();
         }
-
         private void txtGST_TextChanged_1(object sender, EventArgs e)
         {
             try
@@ -263,9 +283,8 @@ namespace EasyBuy.Forms.Admin
                 txtFinalPrice.Text = Math.Round((Convert.ToDouble(txtPriceAfterDiscount.Text) + Convert.ToDouble(gstAmount * 2)), 2).ToString();
             }
             catch { }
-           
-        }
 
+        }
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
@@ -275,7 +294,6 @@ namespace EasyBuy.Forms.Admin
             printPreviewDialog1.ShowDialog();
 
         }
-
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             var noOfCount = Convert.ToInt32(txtNoOfPrint.Text);
@@ -289,11 +307,11 @@ namespace EasyBuy.Forms.Admin
 
 
         }
-
         private async void txtName_TextChanged(object sender, EventArgs e)
         {
             if (txtName.Text.Length < 3) return;
-            if (cmbCategory.Text == "---Select---" && btnAdd.Text != "Update")
+            if (btnAdd.Text == "Update") return;
+            if (cmbCategory.Text == "---Select---")
             {
                 MessageBox.Show("Please Select Category", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtName.Clear();
@@ -314,26 +332,65 @@ namespace EasyBuy.Forms.Admin
             }
 
         }
-
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            try
+            string category = cmbSearchCategory.Text;
+            if (category == "---Select---") MessageBox.Show("Please Select An Category", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
             {
-                await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Product.Where(x => x.Name.Contains(txtSearchName.Text)).ToListAsync());
-                ProductDataGridView.DataSource = products;
-                txtSearchName.Clear();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+
+                    await using var context = new EasyBuyContext();
+                    var products = new List<Models.Product>();
+                    if (txtSearchName.Text.Length == 0)
+                        products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)).ToListAsync());
+                    else
+                        products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category) && x.Name.Contains(txtSearchName.Text)).ToListAsync());
+                    ProductDataGridView.DataSource = products;
+                    txtSearchName.Clear();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            this.RefreshData();
+            this.LoadProducts();
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            this.currentPage = 0;
+            LoadProducts();
+
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (this.currentPage == this.pageCount)
+                this.currentPage = pageCount - 1;
+            this.currentPage--;
+            if (currentPage < 1)
+                this.currentPage = 0;
+            LoadProducts();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            this.currentPage++;
+            if (this.currentPage > (this.pageCount - 1))
+                this.currentPage = this.pageCount - 1;
+            LoadProducts();
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            this.currentPage = pageCount - 1;
+            LoadProducts();
         }
     }
 }
