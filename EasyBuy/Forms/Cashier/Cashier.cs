@@ -141,19 +141,19 @@ namespace EasyBuy.Forms.Cashier
                 foreach (DataGridViewRow row in dgvItem.Rows)
                 {
                     var saleDetail = new SaleDetails();
-                    saleDetail.ProductCode = row.Cells[1].Value.ToString();
-                    saleDetail.ProductName = row.Cells[2].Value.ToString();
-                    saleDetail.Price = Convert.ToDecimal(row.Cells[3].Value ?? 0);
+                    saleDetail.ProductCode = row.Cells[12].Value.ToString();
+                    saleDetail.ProductName = row.Cells[1].Value.ToString();
+                    saleDetail.Price = Convert.ToDecimal(row.Cells[2].Value ?? 0);
                     saleDetail.DiscountAmount = Convert.ToDecimal(row.Cells[4].Value ?? 0);
-                    saleDetail.SGST = Convert.ToDecimal(row.Cells[5].Value ?? 0);
-                    saleDetail.CGST = Convert.ToDecimal(row.Cells[6].Value ?? 0);
-                    saleDetail.PriceAfterDiscount = Convert.ToDecimal(row.Cells[7].Value ?? 0);
-                    saleDetail.ProductQuantity = Convert.ToInt32(row.Cells[8].Value ?? 0);
-                    saleDetail.TotalValueInclGST = Convert.ToDecimal(row.Cells[9].Value ?? 0);
+                    saleDetail.SGST = Convert.ToDecimal(row.Cells[7].Value ?? 0);
+                    saleDetail.CGST = Convert.ToDecimal(row.Cells[8].Value ?? 0);
+                    saleDetail.PriceAfterDiscount = Convert.ToDecimal(row.Cells[5].Value ?? 0);
+                    saleDetail.ProductQuantity = Convert.ToInt32(row.Cells[10].Value ?? 0);
+                    saleDetail.TotalValueInclGST = Convert.ToDecimal(row.Cells[11].Value ?? 0);
                     saleDetail.SaleId = billCount;
                     saleDetails.Add(saleDetail);
                     var product = await Task.Run(() => context.Product.FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(row.Cells[0].Value)));
-                    product.Quantity = product.Quantity - Convert.ToInt32(row.Cells[8].Value ?? 0);
+                    product.Quantity = product.Quantity - Convert.ToInt32(row.Cells[10].Value ?? 0);
                     await Task.Run(() => context.Product.Update(product));
                 }
                 await Task.Run(() => context.SaleDetails.AddRangeAsync(saleDetails));
@@ -489,7 +489,7 @@ namespace EasyBuy.Forms.Cashier
         private void dgvItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-            if (e.ColumnIndex == 12)
+            if (e.ColumnIndex == 13)
             {
                 if (MessageBox.Show("Are You Sure You Want To Remove", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -562,6 +562,7 @@ namespace EasyBuy.Forms.Cashier
                         newRow.Cells[9].Value = product.TotalPriceIncludingGST;
                         newRow.Cells[10].Value = 1;
                         newRow.Cells[11].Value = product.TotalPriceIncludingGST;
+                        newRow.Cells[12].Value = product.Code;
                         dgvItem.Rows.Add(newRow);
                         this.FillTotalValue(product.TotalPriceIncludingGST);
                         txtBarecode.Text = "";

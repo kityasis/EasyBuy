@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EasyBuy.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ namespace EasyBuy.Forms.Admin
 {
     public partial class Product : Form
     {
-        private int totalRecords=0;
+        private int totalRecords = 0;
         private int pageSize = 15;
         private int pageCount = 0;
         private int currentPage = 1;
@@ -21,40 +22,48 @@ namespace EasyBuy.Forms.Admin
         {
             InitializeComponent();
         }
-        private async void LoadProducts()
+        private async void LoadProducts(string category, string name)
         {
             try
             {
-               
-
-                int skip = 0;
-                skip = (this.currentPage * this.pageSize);
-              
+                var skip = (this.currentPage * this.pageSize);
                 await using var context = new EasyBuyContext();
-                var productes = await Task.Run(() => context.Product.Skip(skip).Take(pageSize).ToListAsync());
-                ProductDataGridView.DataSource = productes;
+                var products = new List<Models.Product>();
+
+                if (category == null && name == null) 
+                    products = await Task.Run(() => context.Product.Skip(skip).Take(pageSize).ToListAsync());
+                else if (category != null && name != null) 
+                    products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category) && x.Name.Contains(name)).Skip(skip).Take(pageSize).ToListAsync());
+                else 
+                    products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)).Skip(skip).Take(pageSize).ToListAsync());
+
+                ProductDataGridView.DataSource = products;
                 this.txtRecordNumber.Text = (this.currentPage + 1).ToString() + "/" + this.pageCount.ToString();
             }
             catch (Exception)
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-        private static async Task<int> LoadTotalProductCount()
+        private static async Task<int> LoadTotalProductCount(string category, string name)
         {
             try
             {
 
                 await using var context = new EasyBuyContext();
-                return await Task.Run(() => context.Product.CountAsync());
+                if (category == null && name == null)
+                    return await Task.Run(() => context.Product.CountAsync());
+                else if (category != null && name != null)
+                    return await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category) && x.Name.Contains(name)).CountAsync());
+                else
+                    return await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)).CountAsync());
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return 0;
-
         }
         private async void LoadCategoryComboBox()
         {
@@ -74,19 +83,23 @@ namespace EasyBuy.Forms.Admin
 
         }
         private async void Product_Load(object sender, EventArgs e)
-        {            
+        {
             ProductDataGridView.EnableHeadersVisualStyles = false;
             ProductDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue;
             ProductDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             ProductDataGridView.DefaultCellStyle.Font = new Font("Consolas", 7, FontStyle.Bold);
-            this.totalRecords = await LoadTotalProductCount();
+            this.totalRecords = await LoadTotalProductCount(null, null);
+            Pagination();
+
+            LoadProducts(null, null);
+            LoadCategoryComboBox();
+        }
+        private void Pagination()
+        {
             this.pageCount = this.totalRecords / this.pageSize;
             if (this.totalRecords % this.pageSize > 0)
                 this.pageCount++;
             this.currentPage = 0;
-
-            LoadProducts();
-            LoadCategoryComboBox();
         }
         private async void btnAdd_Click(object sender, EventArgs e)
         {
@@ -146,7 +159,7 @@ namespace EasyBuy.Forms.Admin
                     MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
-                LoadProducts();
+                LoadProducts(null, null);
 
             }
         }
@@ -229,7 +242,7 @@ namespace EasyBuy.Forms.Admin
                         MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                LoadProducts();
+                LoadProducts(null, null);
             }
         }
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -335,37 +348,28 @@ namespace EasyBuy.Forms.Admin
         private async void btnSearch_Click(object sender, EventArgs e)
         {
             string category = cmbSearchCategory.Text;
-            if (category == "---Select---") MessageBox.Show("Please Select An Category", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (category == "---Select---")
+            {
+                MessageBox.Show("Please Select An Category", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
-                try
-                {
-
-                    await using var context = new EasyBuyContext();
-                    var products = new List<Models.Product>();
-                    if (txtSearchName.Text.Length == 0)
-                        products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)).ToListAsync());
-                    else
-                        products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category) && x.Name.Contains(txtSearchName.Text)).ToListAsync());
-                    ProductDataGridView.DataSource = products;
-                    txtSearchName.Clear();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.totalRecords = await LoadTotalProductCount(category, txtSearchName.Text);          
+                Pagination();
+                LoadProducts(category, txtSearchName.Text);
             }
-
         }
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private async void btnRefresh_Click(object sender, EventArgs e)
         {
-            this.LoadProducts();
+            this.totalRecords = await LoadTotalProductCount(null, null);
+            Pagination();
+            LoadProducts(null, null);
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
         {
             this.currentPage = 0;
-            LoadProducts();
+            LoadProducts(null, null);
 
         }
 
@@ -376,7 +380,7 @@ namespace EasyBuy.Forms.Admin
             this.currentPage--;
             if (currentPage < 1)
                 this.currentPage = 0;
-            LoadProducts();
+            LoadProducts(null, null);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -384,13 +388,13 @@ namespace EasyBuy.Forms.Admin
             this.currentPage++;
             if (this.currentPage > (this.pageCount - 1))
                 this.currentPage = this.pageCount - 1;
-            LoadProducts();
+            LoadProducts(null, null);
         }
 
         private void btnLast_Click(object sender, EventArgs e)
         {
             this.currentPage = pageCount - 1;
-            LoadProducts();
+            LoadProducts(null, null);
         }
     }
 }
