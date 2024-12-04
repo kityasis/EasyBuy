@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EasyBuy.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,21 +31,7 @@ namespace EasyBuy.Forms
             }
 
         }
-        private async void LoadProductComboBox()
-        {
-            cmbProduct.Items.Clear();
-            try
-            {
-                await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Product.ToListAsync());
-                cmbProduct.Items.AddRange(products.Select(x => x.Name).ToArray());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-        }
         private async void LoadSupplierComboBox()
         {
             cmbSupplier.Items.Clear();
@@ -79,7 +67,6 @@ namespace EasyBuy.Forms
         {
             LoadCategoryComboBox();
             LoadCustomerComboBox();
-            LoadProductComboBox();
             LoadSupplierComboBox();
             rbtnPurchase.Checked = true;
             cmbCustomer.Visible = false;
@@ -93,18 +80,21 @@ namespace EasyBuy.Forms
         {
             cmbCustomer.Visible = true;
             cmbSupplier.Visible = false;
+            cmbCategory.Visible = false;
         }
 
         private void rbtnPurchase_CheckedChanged(object sender, EventArgs e)
         {
             cmbCustomer.Visible = false;
             cmbSupplier.Visible = true;
+            cmbCategory.Visible = false;
         }
 
         private void rbtnStock_CheckedChanged(object sender, EventArgs e)
         {
             cmbCustomer.Visible = false;
             cmbSupplier.Visible = false;
+            cmbCategory.Visible = true;
         }
 
         private void rbtnGst_CheckedChanged(object sender, EventArgs e)
@@ -112,14 +102,13 @@ namespace EasyBuy.Forms
             cmbCustomer.Visible = false;
             cmbSupplier.Visible = false;
             cmbCategory.Visible = false;
-            cmbProduct.Visible = false;
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
             if (rbtnPurchase.Checked)
             {
-                dgvGST.Visible = false;               
+                dgvGST.Visible = false;
                 dgvSale.Visible = false;
                 dgvStock.Visible = false;
                 PurchaseReport();
@@ -127,7 +116,7 @@ namespace EasyBuy.Forms
             else if (rbtnSale.Checked)
             {
                 dgvGST.Visible = false;
-                dgvPurchage.Visible = false;               
+                dgvPurchage.Visible = false;
                 dgvStock.Visible = false;
                 SaleReport();
 
@@ -136,11 +125,11 @@ namespace EasyBuy.Forms
             {
                 dgvGST.Visible = false;
                 dgvPurchage.Visible = false;
-                dgvSale.Visible = false;                
+                dgvSale.Visible = false;
                 StockReport();
             }
             else if (rbtnGst.Checked)
-            {               
+            {
                 dgvPurchage.Visible = false;
                 dgvSale.Visible = false;
                 dgvStock.Visible = false;
@@ -154,8 +143,11 @@ namespace EasyBuy.Forms
             try
             {
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Purchase.ToListAsync());
-                dgvPurchage.DataSource = products;
+                List<Purchase> purchases = new List<Purchase>();
+                string supplier = cmbSupplier.Text;
+                if (cmbSupplier.SelectedIndex == -1) purchases = await Task.Run(() => context.Purchase.ToListAsync());
+                else purchases = await Task.Run(() => context.Purchase.Where(x => x.Supplier.Contains(supplier)).ToListAsync());
+                dgvPurchage.DataSource = purchases;
                 dgvPurchage.Visible = true;
             }
             catch (Exception ex)
@@ -168,8 +160,10 @@ namespace EasyBuy.Forms
             try
             {
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.SaleDetails.ToListAsync());
-                dgvSale.DataSource = products;
+                List<SaleDetails> saleDetails = new List<SaleDetails>();
+                if (cmbCustomer.SelectedIndex == -1) saleDetails = await Task.Run(() => context.SaleDetails.ToListAsync());
+                else saleDetails = await Task.Run(() => context.SaleDetails.ToListAsync());
+                dgvSale.DataSource = saleDetails = await Task.Run(() => context.SaleDetails.ToListAsync()); ;
                 dgvSale.Visible = true;
             }
             catch (Exception ex)
@@ -182,7 +176,10 @@ namespace EasyBuy.Forms
             try
             {
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Product.ToListAsync());
+                List<Models.Product> products = new List<Models.Product>();
+                string category = cmbCategory.Text;
+                if (cmbCategory.SelectedIndex == -1) products = await Task.Run(() => context.Product.ToListAsync());
+                else products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)).ToListAsync());
                 dgvStock.DataSource = products;
                 dgvStock.Visible = true;
             }
@@ -204,6 +201,59 @@ namespace EasyBuy.Forms
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnExportToExcel_Click(object sender, EventArgs e)
+        {
+            if (rbtnPurchase.Checked)
+            {
+                dgvPurchage.SelectAll();
+                DataObject dataObj = dgvPurchage.GetClipboardContent();
+                if (dataObj != null)
+                    Clipboard.SetDataObject(dataObj);
+                ExportToExcel();
+
+            }
+            else if (rbtnSale.Checked)
+            {
+                dgvSale.SelectAll();
+                DataObject dataObj = dgvSale.GetClipboardContent();
+                if (dataObj != null)
+                    Clipboard.SetDataObject(dataObj);
+                ExportToExcel();
+
+            }
+            else if (rbtnStock.Checked)
+            {
+                dgvStock.SelectAll();
+                DataObject dataObj = dgvStock.GetClipboardContent();
+                if (dataObj != null)
+                    Clipboard.SetDataObject(dataObj);
+                ExportToExcel();
+            }
+            else if (rbtnGst.Checked)
+            {
+                dgvGST.SelectAll();
+                DataObject dataObj = dgvGST.GetClipboardContent();
+                if (dataObj != null)
+                    Clipboard.SetDataObject(dataObj);
+                ExportToExcel();
+            }
+        }
+
+        private void ExportToExcel()
+        {
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new Microsoft.Office.Interop.Excel.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
         }
     }
 }
