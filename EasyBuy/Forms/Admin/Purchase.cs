@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EasyBuy.Utility;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyBuy.Forms.Product_Items
@@ -11,6 +12,8 @@ namespace EasyBuy.Forms.Product_Items
     public partial class Purchase : Form
     {
         private Int64 _id;
+        private DateTime createdDate;
+        private string createdBy;
         public Purchase()
         {
             InitializeComponent();
@@ -107,17 +110,21 @@ namespace EasyBuy.Forms.Product_Items
                     };
                     if (btnAdd.Text == "Add")
                     {
-
+                        purchase.CreatedBy = UserInfo.UserName;
+                        purchase.CreatedDate = DateTime.Now;
                         await Task.Run(() => context.Purchase.Add(purchase));
                     }
                     else
                     {
+                        purchase.CreatedBy = this.createdBy;
+                        purchase.CreatedDate = this.createdDate;
+                        purchase.UpdatedBy = UserInfo.UserName;
+                        purchase.UpdatedDate = DateTime.Now;
                         purchase.Id = _id;
                         await Task.Run(() => context.Purchase.Update(purchase));
                         btnAdd.Text = "Add";
 
-                    }
-                    
+                    }                    
                     await context.SaveChangesAsync();
                     this.Clear();
                 }
@@ -275,6 +282,7 @@ namespace EasyBuy.Forms.Product_Items
                 {
                     try
                     {
+                        btnAdd.Text = "Update";
                         await using var context = new EasyBuyContext();
                         var product = await Task.Run(() => context.Purchase.FirstOrDefaultAsync(x => x.Id == id));
                         txtName.Text= product.Name;                       
@@ -290,8 +298,9 @@ namespace EasyBuy.Forms.Product_Items
                         txtFinalPrice.Text= product.TotalPurchaseCostInclGST.ToString()    ;
                         cmbCategory.Text = product.Catagory;
                         cmbSupplier.Text = product.Supplier;
-                        this._id = product.Id;
-                        btnAdd.Text = "Update";
+                        this._id = product.Id;                        
+                        this.createdBy = product.CreatedBy;
+                        this.createdDate = product.CreatedDate;
                     }
                     catch (Exception)
                     {

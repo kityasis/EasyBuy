@@ -2,7 +2,7 @@
 
 namespace EasyBuy.Models
 {
-    public class Sale
+    public class Sale: Audit
     {
         public long Id { get; set; }       
         public required string BillNumber { get; set; }

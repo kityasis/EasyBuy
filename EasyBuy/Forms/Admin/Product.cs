@@ -1,4 +1,4 @@
-﻿using EasyBuy.Models;
+﻿using EasyBuy.Utility;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,8 @@ namespace EasyBuy.Forms.Admin
         private int pageSize = 15;
         private int pageCount = 0;
         private int currentPage = 1;
+        private DateTime createdDate;
+        private string createdBy;
 
         private Int64 _id;
         public Product()
@@ -40,7 +42,7 @@ namespace EasyBuy.Forms.Admin
                 ProductDataGridView.DataSource = products;
                 this.txtRecordNumber.Text = (this.currentPage + 1).ToString() + "/" + this.pageCount.ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -130,15 +132,21 @@ namespace EasyBuy.Forms.Admin
                         GSTPercentage = Convert.ToDecimal(txtGST.Text),
                         SGST = Convert.ToDecimal(txtSGstAmount.Text),
                         CGST = Convert.ToDecimal(txtCGstAmount.Text),
-                        TotalPriceIncludingGST = Convert.ToDecimal(txtFinalPrice.Text)
+                        TotalPriceIncludingGST = Convert.ToDecimal(txtFinalPrice.Text) 
+
                     };
                     if (btnAdd.Text == "Add")
                     {
-
+                        product.CreatedBy = UserInfo.UserName;
+                        product.CreatedDate = DateTime.Now;
                         await Task.Run(() => context.Product.Add(product));
                     }
                     else
                     {
+                        product.CreatedBy = this.createdBy;
+                        product.CreatedDate = this.createdDate;                    
+                        product.UpdatedBy = UserInfo.UserName;
+                        product.UpdatedDate = DateTime.Now;
                         product.Id = _id;
                         await Task.Run(() => context.Product.Update(product));
                         btnAdd.Text = "Add";
@@ -236,6 +244,8 @@ namespace EasyBuy.Forms.Admin
                         cmbCategory.Text = product.Catagory;
                         txtBarcode.Text = product.Code;
                         this._id = product.Id;
+                        this.createdBy = product.CreatedBy;
+                        this.createdDate = product.CreatedDate;
                     }
                     catch (Exception)
                     {

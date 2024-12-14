@@ -1,7 +1,7 @@
 ﻿
 namespace EasyBuy.Models
 {
-    public class Purchase
+    public class Purchase: Audit
     {
         public long Id { get; set; }
         public string Supplier { get; set; }

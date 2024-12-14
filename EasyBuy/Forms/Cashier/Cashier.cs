@@ -8,6 +8,7 @@ using System.Data;
 using System.Collections.Generic;
 using EasyBuy.Models;
 using EasyBuy.Utility;
+using EasyBuy.Forms.Admin;
 
 namespace EasyBuy.Forms.Cashier
 {
@@ -17,9 +18,9 @@ namespace EasyBuy.Forms.Cashier
         {
             InitializeComponent();
         }
-        TextBox SelectedTextBox = null;       
+        TextBox SelectedTextBox = null;
         int slNumber = 1;
-        long billCount = 0;        
+        long billCount = 0;
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace EasyBuy.Forms.Cashier
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             datelbl.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
-            pnlManualSearch.Visible = false;            
+            pnlManualSearch.Visible = false;
             GenerateBillNumber();
             LoadComboBox();
             txtBarecode.Focus();
@@ -100,7 +101,7 @@ namespace EasyBuy.Forms.Cashier
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
         private void slide(Button button)
         {
             panelslide.Height = button.Height;
@@ -134,7 +135,9 @@ namespace EasyBuy.Forms.Cashier
                     BillNumber = txtBillNumber.Text,
                     SellerName = lblCashierName.Text,
                     SubTotal = Convert.ToDecimal(lblSubTotal.Text),
-                    GrandTotal = Convert.ToDecimal(lblGrandTotal.Text)
+                    GrandTotal = Convert.ToDecimal(lblGrandTotal.Text),
+                    CreatedBy = UserInfo.UserName,
+                    CreatedDate = DateTime.Now
                 };
                 var saleDetails = new List<SaleDetails>();
                 await Task.Run(() => context.Sale.AddAsync(sale));
@@ -454,7 +457,7 @@ namespace EasyBuy.Forms.Cashier
             lblGrandTotal.Text = totalPrice.ToString();
         }
         private decimal TotalPrice(decimal price, int qty) => price * qty;
-        
+
         private decimal GetPriceAfterDiscount(decimal price, decimal qty) => Math.Round(price * qty, 2);
         private void btnCancelTransaction_Click(object sender, EventArgs e)
         {
@@ -574,8 +577,19 @@ namespace EasyBuy.Forms.Cashier
                 catch (Exception) { }
             }
 
-              
 
+
+        }
+
+        private void txtAmountPaidByCustomer_TextChanged(object sender, EventArgs e)
+        {
+            txtAmountToRefound.Text = Math.Round((Convert.ToDecimal(lblSubTotal.Text) - Convert.ToDecimal(txtAmountPaidByCustomer.Text)), 2).ToString();
+        }
+
+        private void txtAmountPaidByCustomer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
         }
     }
 }

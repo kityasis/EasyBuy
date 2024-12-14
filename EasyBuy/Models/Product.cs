@@ -1,7 +1,7 @@
 ﻿
 namespace EasyBuy.Models
 {
-    public class Product
+    public class Product : Audit
     {
         public long Id { get; set; }
         public string Code { get; set; }        
@@ -16,6 +16,5 @@ namespace EasyBuy.Models
         public decimal SGST { get; set; }
         public decimal CGST { get; set; }
         public decimal TotalPriceIncludingGST { get; set; }
-
     }
 }

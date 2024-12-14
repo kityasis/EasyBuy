@@ -64,6 +64,21 @@
             panel1 = new System.Windows.Forms.Panel();
             label1 = new System.Windows.Forms.Label();
             ProductDataGridView = new System.Windows.Forms.DataGridView();
+            idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            catagoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            discountAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            priceAfterDiscountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            gSTPercentageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            sGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            cGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            totalPriceIncludingGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             productBindingSource = new System.Windows.Forms.BindingSource(components);
             printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
@@ -81,21 +96,6 @@
             txtRecordNumber = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
             groupBox6 = new System.Windows.Forms.GroupBox();
-            idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            catagoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            discountAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            priceAfterDiscountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            gSTPercentageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            sGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            cGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            totalPriceIncludingGSTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -206,7 +206,7 @@
             txtGST.Location = new System.Drawing.Point(62, 23);
             txtGST.Name = "txtGST";
             txtGST.Size = new System.Drawing.Size(66, 23);
-            txtGST.TabIndex = 7;
+            txtGST.TabIndex = 6;
             txtGST.TextChanged += txtGST_TextChanged_1;
             txtGST.KeyPress += txtGST_KeyPress;
             // 
@@ -268,7 +268,7 @@
             txtDiscount.Location = new System.Drawing.Point(104, 16);
             txtDiscount.Name = "txtDiscount";
             txtDiscount.Size = new System.Drawing.Size(65, 23);
-            txtDiscount.TabIndex = 6;
+            txtDiscount.TabIndex = 5;
             txtDiscount.TextChanged += txtDiscount_TextChanged;
             txtDiscount.KeyPress += txtDiscount_KeyPress;
             // 
@@ -341,7 +341,7 @@
             cmbCategory.Location = new System.Drawing.Point(85, 15);
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new System.Drawing.Size(176, 23);
-            cmbCategory.TabIndex = 2;
+            cmbCategory.TabIndex = 1;
             cmbCategory.Text = "---Select---";
             // 
             // label3
@@ -359,7 +359,7 @@
             txtName.Location = new System.Drawing.Point(324, 17);
             txtName.Name = "txtName";
             txtName.Size = new System.Drawing.Size(212, 23);
-            txtName.TabIndex = 3;
+            txtName.TabIndex = 2;
             txtName.TextChanged += txtName_TextChanged;
             // 
             // label7
@@ -377,7 +377,7 @@
             txtQunatity.Location = new System.Drawing.Point(772, 16);
             txtQunatity.Name = "txtQunatity";
             txtQunatity.Size = new System.Drawing.Size(78, 23);
-            txtQunatity.TabIndex = 5;
+            txtQunatity.TabIndex = 4;
             txtQunatity.KeyPress += txtQunatity_KeyPress;
             // 
             // label4
@@ -395,7 +395,7 @@
             txtPrice.Location = new System.Drawing.Point(584, 17);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new System.Drawing.Size(115, 23);
-            txtPrice.TabIndex = 4;
+            txtPrice.TabIndex = 3;
             txtPrice.TextChanged += txtPrice_TextChanged;
             txtPrice.KeyPress += txtPrice_KeyPress;
             // 
@@ -422,7 +422,7 @@
             btnAdd.Location = new System.Drawing.Point(290, 15);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new System.Drawing.Size(82, 28);
-            btnAdd.TabIndex = 59;
+            btnAdd.TabIndex = 7;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
@@ -468,6 +468,129 @@
             ProductDataGridView.Size = new System.Drawing.Size(1213, 338);
             ProductDataGridView.TabIndex = 66;
             ProductDataGridView.CellContentClick += ProductDataGridView_CellContentClick;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // catagoryDataGridViewTextBoxColumn
+            // 
+            catagoryDataGridViewTextBoxColumn.DataPropertyName = "Catagory";
+            catagoryDataGridViewTextBoxColumn.HeaderText = "Catagory";
+            catagoryDataGridViewTextBoxColumn.MinimumWidth = 6;
+            catagoryDataGridViewTextBoxColumn.Name = "catagoryDataGridViewTextBoxColumn";
+            catagoryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            codeDataGridViewTextBoxColumn.HeaderText = "Code";
+            codeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            codeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            priceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
+            quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // discountDataGridViewTextBoxColumn
+            // 
+            discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
+            discountDataGridViewTextBoxColumn.HeaderText = "Discount";
+            discountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
+            discountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // discountAmountDataGridViewTextBoxColumn
+            // 
+            discountAmountDataGridViewTextBoxColumn.DataPropertyName = "DiscountAmount";
+            discountAmountDataGridViewTextBoxColumn.HeaderText = "DiscountAmount";
+            discountAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            discountAmountDataGridViewTextBoxColumn.Name = "discountAmountDataGridViewTextBoxColumn";
+            discountAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceAfterDiscountDataGridViewTextBoxColumn
+            // 
+            priceAfterDiscountDataGridViewTextBoxColumn.DataPropertyName = "PriceAfterDiscount";
+            priceAfterDiscountDataGridViewTextBoxColumn.HeaderText = "PriceAfterDiscount";
+            priceAfterDiscountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            priceAfterDiscountDataGridViewTextBoxColumn.Name = "priceAfterDiscountDataGridViewTextBoxColumn";
+            priceAfterDiscountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // gSTPercentageDataGridViewTextBoxColumn
+            // 
+            gSTPercentageDataGridViewTextBoxColumn.DataPropertyName = "GSTPercentage";
+            gSTPercentageDataGridViewTextBoxColumn.HeaderText = "GSTPercentage";
+            gSTPercentageDataGridViewTextBoxColumn.MinimumWidth = 6;
+            gSTPercentageDataGridViewTextBoxColumn.Name = "gSTPercentageDataGridViewTextBoxColumn";
+            gSTPercentageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sGSTDataGridViewTextBoxColumn
+            // 
+            sGSTDataGridViewTextBoxColumn.DataPropertyName = "SGST";
+            sGSTDataGridViewTextBoxColumn.HeaderText = "SGST";
+            sGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            sGSTDataGridViewTextBoxColumn.Name = "sGSTDataGridViewTextBoxColumn";
+            sGSTDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cGSTDataGridViewTextBoxColumn
+            // 
+            cGSTDataGridViewTextBoxColumn.DataPropertyName = "CGST";
+            cGSTDataGridViewTextBoxColumn.HeaderText = "CGST";
+            cGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            cGSTDataGridViewTextBoxColumn.Name = "cGSTDataGridViewTextBoxColumn";
+            cGSTDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // totalPriceIncludingGSTDataGridViewTextBoxColumn
+            // 
+            totalPriceIncludingGSTDataGridViewTextBoxColumn.DataPropertyName = "TotalPriceIncludingGST";
+            totalPriceIncludingGSTDataGridViewTextBoxColumn.HeaderText = "TotalPriceIncludingGST";
+            totalPriceIncludingGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            totalPriceIncludingGSTDataGridViewTextBoxColumn.Name = "totalPriceIncludingGSTDataGridViewTextBoxColumn";
+            totalPriceIncludingGSTDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Edit
+            // 
+            Edit.HeaderText = "Edit";
+            Edit.MinimumWidth = 6;
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Text = "Edit";
+            Edit.UseColumnTextForButtonValue = true;
+            // 
+            // Delete
+            // 
+            Delete.HeaderText = "Delete";
+            Delete.MinimumWidth = 6;
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
             // 
             // productBindingSource
             // 
@@ -660,129 +783,6 @@
             groupBox6.TabIndex = 74;
             groupBox6.TabStop = false;
             groupBox6.Text = "Final";
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // catagoryDataGridViewTextBoxColumn
-            // 
-            catagoryDataGridViewTextBoxColumn.DataPropertyName = "Catagory";
-            catagoryDataGridViewTextBoxColumn.HeaderText = "Catagory";
-            catagoryDataGridViewTextBoxColumn.MinimumWidth = 6;
-            catagoryDataGridViewTextBoxColumn.Name = "catagoryDataGridViewTextBoxColumn";
-            catagoryDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            codeDataGridViewTextBoxColumn.HeaderText = "Code";
-            codeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            codeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            priceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            quantityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // discountDataGridViewTextBoxColumn
-            // 
-            discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
-            discountDataGridViewTextBoxColumn.HeaderText = "Discount";
-            discountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
-            discountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // discountAmountDataGridViewTextBoxColumn
-            // 
-            discountAmountDataGridViewTextBoxColumn.DataPropertyName = "DiscountAmount";
-            discountAmountDataGridViewTextBoxColumn.HeaderText = "DiscountAmount";
-            discountAmountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            discountAmountDataGridViewTextBoxColumn.Name = "discountAmountDataGridViewTextBoxColumn";
-            discountAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceAfterDiscountDataGridViewTextBoxColumn
-            // 
-            priceAfterDiscountDataGridViewTextBoxColumn.DataPropertyName = "PriceAfterDiscount";
-            priceAfterDiscountDataGridViewTextBoxColumn.HeaderText = "PriceAfterDiscount";
-            priceAfterDiscountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            priceAfterDiscountDataGridViewTextBoxColumn.Name = "priceAfterDiscountDataGridViewTextBoxColumn";
-            priceAfterDiscountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // gSTPercentageDataGridViewTextBoxColumn
-            // 
-            gSTPercentageDataGridViewTextBoxColumn.DataPropertyName = "GSTPercentage";
-            gSTPercentageDataGridViewTextBoxColumn.HeaderText = "GSTPercentage";
-            gSTPercentageDataGridViewTextBoxColumn.MinimumWidth = 6;
-            gSTPercentageDataGridViewTextBoxColumn.Name = "gSTPercentageDataGridViewTextBoxColumn";
-            gSTPercentageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sGSTDataGridViewTextBoxColumn
-            // 
-            sGSTDataGridViewTextBoxColumn.DataPropertyName = "SGST";
-            sGSTDataGridViewTextBoxColumn.HeaderText = "SGST";
-            sGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            sGSTDataGridViewTextBoxColumn.Name = "sGSTDataGridViewTextBoxColumn";
-            sGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cGSTDataGridViewTextBoxColumn
-            // 
-            cGSTDataGridViewTextBoxColumn.DataPropertyName = "CGST";
-            cGSTDataGridViewTextBoxColumn.HeaderText = "CGST";
-            cGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            cGSTDataGridViewTextBoxColumn.Name = "cGSTDataGridViewTextBoxColumn";
-            cGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalPriceIncludingGSTDataGridViewTextBoxColumn
-            // 
-            totalPriceIncludingGSTDataGridViewTextBoxColumn.DataPropertyName = "TotalPriceIncludingGST";
-            totalPriceIncludingGSTDataGridViewTextBoxColumn.HeaderText = "TotalPriceIncludingGST";
-            totalPriceIncludingGSTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            totalPriceIncludingGSTDataGridViewTextBoxColumn.Name = "totalPriceIncludingGSTDataGridViewTextBoxColumn";
-            totalPriceIncludingGSTDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Edit
-            // 
-            Edit.HeaderText = "Edit";
-            Edit.MinimumWidth = 6;
-            Edit.Name = "Edit";
-            Edit.ReadOnly = true;
-            Edit.Text = "Edit";
-            Edit.UseColumnTextForButtonValue = true;
-            // 
-            // Delete
-            // 
-            Delete.HeaderText = "Delete";
-            Delete.MinimumWidth = 6;
-            Delete.Name = "Delete";
-            Delete.ReadOnly = true;
-            Delete.Text = "Delete";
-            Delete.UseColumnTextForButtonValue = true;
             // 
             // Product
             // 
