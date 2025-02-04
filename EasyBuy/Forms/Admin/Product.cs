@@ -331,7 +331,7 @@ namespace EasyBuy.Forms.Admin
 
         }
         private async void txtName_TextChanged(object sender, EventArgs e)
-        {
+       {
             if (txtName.Text.Length < 3) return;
             if (btnAdd.Text == "Update") return;
             if (cmbCategory.Text == "---Select---")
@@ -346,7 +346,13 @@ namespace EasyBuy.Forms.Admin
                 string category = cmbCategory.Text;
                 await using var context = new EasyBuyContext();
                 var productCount = await Task.Run(() => context.Product.Where(x => x.Catagory == category).CountAsync());
-                txtBarcode.Text = txtName.Text.Substring(0, 3) + (productCount + 1).ToString();
+                var barCode = txtName.Text.Substring(0, 3) + (productCount + 1).ToString();
+                var barCodeCount = await Task.Run(() => context.Product.Where(x => x.Code == barCode).CountAsync());
+                if (barCodeCount > 0)
+                {
+                    barCode = txtName.Text.Substring(0, 3) + (productCount + 2).ToString();
+                }
+                txtBarcode.Text = barCode;
 
             }
             catch (Exception)

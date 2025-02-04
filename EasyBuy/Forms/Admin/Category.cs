@@ -42,6 +42,7 @@ namespace EasyBuy.Forms
             txtName.Clear();
             txtDescription.Clear();
             btnAdd.Text = "Add";
+            txtName.ReadOnly = false;
         }
 
         private async void btnAdd_Click(object sender, EventArgs e)
@@ -110,6 +111,7 @@ namespace EasyBuy.Forms
                         txtDescription.Text = category.Description;
                         this._id = category.Id;
                         btnAdd.Text = "Update";
+                        txtName.ReadOnly = true;
                     }
                     catch (Exception)
                     {
