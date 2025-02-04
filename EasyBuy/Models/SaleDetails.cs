@@ -12,7 +12,7 @@ namespace EasyBuy.Models
         public decimal SGST { get; set; }
         public decimal CGST { get; set; }
         public decimal PriceAfterDiscount { get; set; }
-        public decimal ProductQuantity { get; set; }
+        public int ProductQuantity { get; set; }
         public decimal TotalValueInclGST { get; set; }
     }
 }

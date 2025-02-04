@@ -47,59 +47,44 @@ namespace EasyBuy.Forms
             }
 
         }
-        private async void LoadCustomerComboBox()
-        {
-            cmbCustomer.Items.Clear();
-            try
-            {
-                await using var context = new EasyBuyContext();
-                var customers = await Task.Run(() => context.Member.ToListAsync());
-                cmbCustomer.Items.AddRange(customers.Select(x => x.Name).ToArray());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
+        
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            LoadCategoryComboBox();
-            LoadCustomerComboBox();
+            LoadCategoryComboBox();          
             LoadSupplierComboBox();
-            rbtnPurchase.Checked = true;
-            cmbCustomer.Visible = false;
+            rbtnPurchase.Checked = true;           
             dgvGST.Visible = false;
             dgvPurchage.Visible = false;
             dgvSale.Visible = false;
             dgvStock.Visible = false;
+            txtBillNumber.Visible = false;
         }
 
         private void rbtnSale_CheckedChanged(object sender, EventArgs e)
         {
-            cmbCustomer.Visible = true;
+            txtBillNumber.Visible = true;
             cmbSupplier.Visible = false;
             cmbCategory.Visible = false;
         }
 
         private void rbtnPurchase_CheckedChanged(object sender, EventArgs e)
         {
-            cmbCustomer.Visible = false;
+            txtBillNumber.Visible = false;
             cmbSupplier.Visible = true;
             cmbCategory.Visible = false;
         }
 
         private void rbtnStock_CheckedChanged(object sender, EventArgs e)
         {
-            cmbCustomer.Visible = false;
+            txtBillNumber.Visible = false;
             cmbSupplier.Visible = false;
             cmbCategory.Visible = true;
         }
 
         private void rbtnGst_CheckedChanged(object sender, EventArgs e)
         {
-            cmbCustomer.Visible = false;
+            txtBillNumber.Visible = false;
             cmbSupplier.Visible = false;
             cmbCategory.Visible = false;
         }
@@ -145,8 +130,12 @@ namespace EasyBuy.Forms
                 await using var context = new EasyBuyContext();
                 List<Purchase> purchases = new List<Purchase>();
                 string supplier = cmbSupplier.Text;
-                if (cmbSupplier.SelectedIndex == -1) purchases = await Task.Run(() => context.Purchase.ToListAsync());
-                else purchases = await Task.Run(() => context.Purchase.Where(x => x.Supplier.Contains(supplier)).ToListAsync());
+                if (cmbSupplier.SelectedIndex == -1) 
+                    purchases = await Task.Run(() => context.Purchase.ToListAsync());
+                else 
+                    purchases = await Task.Run(() => context.Purchase.Where(x => x.Supplier.Contains(supplier)
+                                && x.CreatedDate >= Convert.ToDateTime(dtpFrom.Text)
+                                && x.CreatedDate <= Convert.ToDateTime(dtpTo.Text)).ToListAsync());
                 dgvPurchage.DataSource = purchases;
                 dgvPurchage.Visible = true;
             }
@@ -161,9 +150,31 @@ namespace EasyBuy.Forms
             {
                 await using var context = new EasyBuyContext();
                 List<SaleDetails> saleDetails = new List<SaleDetails>();
-                if (cmbCustomer.SelectedIndex == -1) saleDetails = await Task.Run(() => context.SaleDetails.ToListAsync());
-                else saleDetails = await Task.Run(() => context.SaleDetails.ToListAsync());
-                dgvSale.DataSource = saleDetails = await Task.Run(() => context.SaleDetails.ToListAsync()); ;
+                if (txtBillNumber.Text == "")
+                {
+                    
+                    var result1 = from s in context.Sale
+                                 join sd in context.SaleDetails on s.Id equals sd.SaleId
+                                 where s.CreatedDate >= Convert.ToDateTime(dtpFrom.Text)
+                                 && s.CreatedDate <= Convert.ToDateTime(dtpTo.Text)
+                                 select sd;
+                    saleDetails = result1.ToList();
+                }
+
+                else
+                {                    
+                    var result = from s in context.Sale
+                                 join sd in context.SaleDetails on s.Id equals sd.SaleId
+                                 where s.BillNumber == txtBillNumber.Text
+                                 select sd;
+                    saleDetails = result.ToList();
+                    txtBillNumber.Clear();
+                }
+
+
+
+                //await Task.Run(() => context.SaleDetails.ToListAsync());
+                dgvSale.DataSource = saleDetails ;
                 dgvSale.Visible = true;
             }
             catch (Exception ex)
@@ -178,8 +189,12 @@ namespace EasyBuy.Forms
                 await using var context = new EasyBuyContext();
                 List<Models.Product> products = new List<Models.Product>();
                 string category = cmbCategory.Text;
-                if (cmbCategory.SelectedIndex == -1) products = await Task.Run(() => context.Product.ToListAsync());
-                else products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)).ToListAsync());
+                if (cmbCategory.SelectedIndex == -1) 
+                    products = await Task.Run(() => context.Product.ToListAsync());
+                else 
+                    products = await Task.Run(() => context.Product.Where(x => x.Catagory.Contains(category)
+                    && x.CreatedDate >= Convert.ToDateTime(dtpFrom.Text)
+                    && x.CreatedDate <= Convert.ToDateTime(dtpTo.Text)).ToListAsync());
                 dgvStock.DataSource = products;
                 dgvStock.Visible = true;
             }
@@ -193,7 +208,8 @@ namespace EasyBuy.Forms
             try
             {
                 await using var context = new EasyBuyContext();
-                var products = await Task.Run(() => context.Sale.ToListAsync());
+                var products = await Task.Run(() => context.Sale.Where(x=> x.CreatedDate >= Convert.ToDateTime(dtpFrom.Text)
+                    && x.CreatedDate <= Convert.ToDateTime(dtpTo.Text)).ToListAsync());
                 dgvGST.DataSource = products;
                 dgvGST.Visible = true;
             }
