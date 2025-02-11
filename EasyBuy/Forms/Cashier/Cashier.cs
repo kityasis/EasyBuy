@@ -21,6 +21,7 @@ namespace EasyBuy.Forms.Cashier
         TextBox SelectedTextBox = null;
         int slNumber = 1;
         long billCount = 0;
+        string billNumber;
         public static string mem_id_pass;
         private void Cashier_Load(object sender, EventArgs e)
         {
@@ -30,14 +31,12 @@ namespace EasyBuy.Forms.Cashier
             txtMobile.Enabled = false;
             txtMemberid.Enabled = false;
             label2.Enabled = false;
-            label3.Enabled = false;
-            txtBillNumber.ReadOnly = true;
+            label3.Enabled = false;            
             dgvItem.EnableHeadersVisualStyles = false;
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             datelbl.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
-            pnlManualSearch.Visible = false;
-            GenerateBillNumber();
+            pnlManualSearch.Visible = false;         
             LoadComboBox();
             txtBarecode.Focus();
         }
@@ -48,11 +47,11 @@ namespace EasyBuy.Forms.Cashier
                 await using var context = new EasyBuyContext();
                 billCount = await Task.Run(() => context.Sale.CountAsync());
                 billCount += 1;
-                txtBillNumber.Text = $"EASYBUY-{billCount}";
+                billNumber = $"EASYBUY-{billCount}";
             }
             catch (Exception)
             {
-                MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error Occured Please check network connection", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private async void LoadComboBox()
@@ -121,7 +120,11 @@ namespace EasyBuy.Forms.Cashier
         }
         private async void btn_settlepayments_Click(object sender, EventArgs e)
         {
+            //GenerateBillNumber();
             await using var context = new EasyBuyContext();
+            billCount = await Task.Run(() => context.Sale.CountAsync());
+            billCount += 1;
+            billNumber = $"EASYBUY-{billCount}";
             using var transaction = context.Database.BeginTransaction();
             try
             {
@@ -132,7 +135,7 @@ namespace EasyBuy.Forms.Cashier
                     Date = DateTime.Now,
                     MemberId = txtMemberid.Text,
                     PaymentType = rbtnCash.Checked ? "Cash" : rbtnUPI.Checked ? "UPI" : "CARD",
-                    BillNumber = txtBillNumber.Text,
+                    BillNumber = billNumber,
                     SellerName = lblCashierName.Text,
                     SubTotal = Convert.ToDecimal(lblSubTotal.Text),
                     GrandTotal = Convert.ToDecimal(lblGrandTotal.Text),
@@ -169,7 +172,7 @@ namespace EasyBuy.Forms.Cashier
                 this.Hide();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 transaction.Rollback();
                 MessageBox.Show("Error Occured Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -338,7 +341,7 @@ namespace EasyBuy.Forms.Cashier
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 50));
             e.Graphics.DrawString("GSTIN :  21BEQPJ5769E1ZB",
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 70));
-            e.Graphics.DrawString("Bill No : " + txtBillNumber.Text,
+            e.Graphics.DrawString("Bill No : " + billNumber,
                 new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 90));
             e.Graphics.DrawString("Date : " + DateTime.Now,
                new Font("Fake Receipt", 10, FontStyle.Regular), Brushes.Black, new Point(10, 110));
