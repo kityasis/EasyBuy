@@ -144,7 +144,6 @@
             // 
             txtBarcode.Location = new System.Drawing.Point(13, 16);
             txtBarcode.Name = "txtBarcode";
-            txtBarcode.ReadOnly = true;
             txtBarcode.Size = new System.Drawing.Size(122, 23);
             txtBarcode.TabIndex = 14;
             // 
