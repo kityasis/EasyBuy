@@ -27,16 +27,15 @@ namespace EasyBuy.Forms.Cashier
         {
             lblCashierName.Text = UserInfo.UserName;
             rbtnCash.Checked = true;
-            rbtnGuestCustomer.Checked = true;
-            txtMobile.Enabled = false;
+            rbtnGuestCustomer.Checked = true;        
             txtMemberid.Enabled = false;
             label2.Enabled = false;
-            label3.Enabled = false;            
+            label3.Enabled = false;
             dgvItem.EnableHeadersVisualStyles = false;
             dgvItem.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             dgvItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             datelbl.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
-            pnlManualSearch.Visible = false;         
+            pnlManualSearch.Visible = false;
             LoadComboBox();
             txtBarecode.Focus();
         }
@@ -120,6 +119,12 @@ namespace EasyBuy.Forms.Cashier
         }
         private async void btn_settlepayments_Click(object sender, EventArgs e)
         {
+            if (txtMobileNumber.Text == null || txtMobileNumber.Text.Count() != 10)
+            {
+                MessageBox.Show("Please Enter Valid Mobile Number");
+                txtMobileNumber.Focus();
+                return;
+            }
             //GenerateBillNumber();
             await using var context = new EasyBuyContext();
             billCount = await Task.Run(() => context.Sale.CountAsync());
@@ -133,7 +138,7 @@ namespace EasyBuy.Forms.Cashier
                 {
                     CustomerType = rbtnGuestCustomer.Checked ? "Guest Customer" : "Nexus Member",
                     Date = DateTime.Now,
-                    MemberId = txtMemberid.Text,
+                    MemberId = txtMobileNumber.Text,
                     PaymentType = rbtnCash.Checked ? "Cash" : rbtnUPI.Checked ? "UPI" : "CARD",
                     BillNumber = billNumber,
                     SellerName = lblCashierName.Text,
@@ -191,14 +196,14 @@ namespace EasyBuy.Forms.Cashier
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            txtMobile.Enabled = false;
+           
             txtMemberid.Enabled = false;
             label2.Enabled = false;
             label3.Enabled = false;
         }
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            txtMobile.Enabled = true;
+            txtMobileNumber.Enabled = true;
             txtMemberid.Enabled = true;
             label2.Enabled = true;
             label3.Enabled = true;
@@ -304,24 +309,25 @@ namespace EasyBuy.Forms.Cashier
         {
             SelectedTextBox = sender as TextBox;
         }
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtDiscunt_TextChanged(object sender, EventArgs e)
         {
-            //int dis_pt;
-            //try
-            //{
-            //    dis_pt = Convert.ToInt32(txtDiscunt.Text);
-            //    dis = subtotal * dis_pt / 100;
-            //    txtDiscountAmount.Text = "Rs. " + dis.ToString();
-            //    lblTotalDiscount.Text = dis.ToString();
-            //    grandTotal = subtotal - dis;
-            //    lblGrandTotal.Text = "Rs " + grandTotal.ToString();
-            //}
-            //catch
-            //{
+            decimal discountPercentage;
+            decimal discountAmount;
+            decimal subTotal;
+            try
+            {
+                discountPercentage = Convert.ToDecimal(txtDiscunt.Text);
+                subTotal = Convert.ToDecimal(lblSubTotal.Text);
+                discountAmount = Math.Round(subTotal * discountPercentage / 100, 2);
+                txtDiscountAmount.Text = "Rs. " + discountAmount.ToString();
+                lblGrandTotal.Text = "Rs " +Math.Round(subTotal - discountAmount,2).ToString();
+            }
+            catch
+            {
 
-            //}
+            }
         }
-        private void textBox2_Click(object sender, EventArgs e)
+        private void txtDiscunt_Click(object sender, EventArgs e)
         {
             SelectedTextBox = sender as TextBox;
         }
@@ -403,6 +409,8 @@ namespace EasyBuy.Forms.Cashier
                new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(45, i + 260));
             e.Graphics.DrawString("Cashier : " + lblCashierName.Text,
               new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(10, i + 280));
+            e.Graphics.DrawString("Mobile Number : " + txtMobileNumber.Text,
+              new Font("Fake Receipt", 12, FontStyle.Regular), Brushes.Black, new Point(10, i + 300));
         }
         private void MemberCheck()
         {
@@ -539,51 +547,67 @@ namespace EasyBuy.Forms.Cashier
                 {
 
                     await using var context = new EasyBuyContext();
-                    var product = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).FirstOrDefault());
-                    if (product != null)
+                    var productCount = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).Count());
+                    if (productCount > 1)
                     {
-                        foreach (DataGridViewRow row in dgvItem.Rows)
-                        {
-                            if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
-                            {
-                                row.Cells[10].Value = (Convert.ToInt32(row.Cells[10].Value) + 1);
-                                row.Cells[11].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[10].Value), Convert.ToDecimal(row.Cells[9].Value));
-                                this.FillTotalValue(product.TotalPriceIncludingGST);
-                                txtBarecode.Text = "";
-                                txtBarecode.Focus();
-                                return;
-                            }
-                        }
-                        DataGridViewRow newRow = new DataGridViewRow();
-                        newRow.CreateCells(dgvItem);
-                        newRow.Cells[0].Value = product.Id;
-                        newRow.Cells[1].Value = product.Name;
-                        newRow.Cells[2].Value = product.Price;
-                        newRow.Cells[3].Value = product.Discount;
-                        newRow.Cells[4].Value = product.DiscountAmount;
-                        newRow.Cells[5].Value = product.PriceAfterDiscount;
-                        newRow.Cells[6].Value = product.GSTPercentage;
-                        newRow.Cells[7].Value = product.SGST;
-                        newRow.Cells[8].Value = product.CGST;
-                        newRow.Cells[9].Value = product.TotalPriceIncludingGST;
-                        newRow.Cells[10].Value = 1;
-                        newRow.Cells[11].Value = product.TotalPriceIncludingGST;
-                        newRow.Cells[12].Value = product.Code;
-                        dgvItem.Rows.Add(newRow);
-                        this.FillTotalValue(product.TotalPriceIncludingGST);
-                        txtBarecode.Text = "";
-                        txtBarecode.Focus();
+                        var products = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).ToList());
+                        dgvSearchProduct.DataSource = products;
+                        dgvSearchProduct.Visible = true;
                     }
+                    else
+                    {
+                        var product = await Task.Run(() => context.Product.Where(x => x.Code == txtBarecode.Text).FirstOrDefault());
+                        if (product.Quantity > 0)
+                        {
+                            FillItemGrid(product);
+                        }
+                        else
+                        {
 
-
+                            MessageBox.Show("Qantity less than zero, please select another item");
+                            txtBarecode.Text = "";
+                            txtBarecode.Focus();
+                        }
+                    }
                 }
                 catch (Exception) { }
             }
 
-
-
         }
-
+        private void FillItemGrid(Models.Product product)
+        {
+            foreach (DataGridViewRow row in dgvItem.Rows)
+            {
+                if (Convert.ToInt64(row.Cells[0].Value) == product.Id)
+                {
+                    row.Cells[10].Value = (Convert.ToInt32(row.Cells[10].Value) + 1);
+                    row.Cells[11].Value = GetPriceAfterDiscount(Convert.ToDecimal(row.Cells[10].Value), Convert.ToDecimal(row.Cells[9].Value));
+                    this.FillTotalValue(product.TotalPriceIncludingGST);
+                    txtBarecode.Text = "";
+                    txtBarecode.Focus();
+                    return;
+                }
+            }
+            DataGridViewRow newRow = new DataGridViewRow();
+            newRow.CreateCells(dgvItem);
+            newRow.Cells[0].Value = product.Id;
+            newRow.Cells[1].Value = product.Name;
+            newRow.Cells[2].Value = product.Price;
+            newRow.Cells[3].Value = product.Discount;
+            newRow.Cells[4].Value = product.DiscountAmount;
+            newRow.Cells[5].Value = product.PriceAfterDiscount;
+            newRow.Cells[6].Value = product.GSTPercentage;
+            newRow.Cells[7].Value = product.SGST;
+            newRow.Cells[8].Value = product.CGST;
+            newRow.Cells[9].Value = product.TotalPriceIncludingGST;
+            newRow.Cells[10].Value = 1;
+            newRow.Cells[11].Value = product.TotalPriceIncludingGST;
+            newRow.Cells[12].Value = product.Code;
+            dgvItem.Rows.Add(newRow);
+            this.FillTotalValue(product.TotalPriceIncludingGST);
+            txtBarecode.Text = "";
+            txtBarecode.Focus();
+        }
         private void txtAmountPaidByCustomer_TextChanged(object sender, EventArgs e)
         {
             txtAmountToRefound.Text = Math.Round((Convert.ToDecimal(lblSubTotal.Text) - Convert.ToDecimal(txtAmountPaidByCustomer.Text)), 2).ToString();
@@ -593,6 +617,24 @@ namespace EasyBuy.Forms.Cashier
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.')) e.Handled = true;
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) e.Handled = true;
+        }
+
+        private async void dgvSearchProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var productId = Convert.ToInt32(dgvSearchProduct[0, e.RowIndex].Value);
+            await using var context = new EasyBuyContext();
+            var product = await Task.Run(() => context.Product.Where(x => x.Id == productId).FirstOrDefault());
+            dgvSearchProduct.Visible = false;
+            if (product.Quantity > 0)
+            {
+                FillItemGrid(product);
+            }
+            else
+            {
+                MessageBox.Show("Qantity less than zero, please select another item");
+                txtBarecode.Text = "";
+                txtBarecode.Focus();
+            }
         }
     }
 }
